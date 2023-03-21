@@ -1,2 +1,15 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	import Map from '../components/Map/Map.svelte';
+	import Checker from '../components/Checker/Checker.svelte';
+	// import Breakdown from '../components/Breakdown/Breakdown.svelte';
+</script>
+
+<main>
+	<Map />
+	<div class="grid grid-cols-3 gap-4 relative z-10">
+		<Checker />
+		<!-- <div class="col-span-2 h-screen">
+      <Breakdown />
+    </div> -->
+	</div>
+</main>
