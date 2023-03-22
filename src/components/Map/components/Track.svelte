@@ -1,16 +1,19 @@
 <script lang="ts">
+	import { gpx } from '../../../stores/gpx.store';
+	import Line from './Line.svelte';
+
 	import { getContext, onMount } from 'svelte';
 	import { fitBoundsWithPadding } from '../../../utils/map';
-	import { route, routeBBox } from '../../../stores/route.store';
+	import { gpxBBox } from '../../../stores/gpx.store';
 
 	import { key } from '../Map.context';
 	import type { MapContext } from '../Map.context';
 	const { getMap } = getContext<MapContext>(key);
 
-	import Marker from './Marker.svelte';
+	$: isLoaded = $gpx.features.length > 0;
 
 	onMount(() => {
-		routeBBox.subscribe((bBox) => {
+		gpxBBox.subscribe((bBox) => {
 			const map = getMap();
 			if (map && bBox) {
 				fitBoundsWithPadding({ map, bBox });
@@ -19,6 +22,6 @@
 	});
 </script>
 
-{#each $route.features as point}
-	<Marker coordinates={point.geometry.coordinates} />
-{/each}
+{#if isLoaded}
+	<Line features={$gpx} />
+{/if}

@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { GPXLoader } from '@loaders.gl/kml';
+	import { load } from '@loaders.gl/core';
+	import { gpx } from '../../../stores/gpx.store';
 	import FilePond from 'svelte-filepond';
 	let pond;
 	let name = 'filepond';
@@ -7,14 +10,10 @@
 	function handleInit() {
 		isVisible = true;
 	}
-
-	function handleAddFile(err: unknown, fileItem: { file: File }) {
-		const reader = new FileReader();
-		reader.onload = (evt: ProgressEvent) => {
-			console.log('onload ', evt.target);
-		};
-		reader.readAsText(fileItem.file);
-		console.log('A file has been added', fileItem);
+	// TODO:  hand off to service worker
+	async function handleAddFile(err: unknown, fileItem: { file: File }) {
+		const data = await load(fileItem.file, GPXLoader);
+		gpx.set(data);
 	}
 </script>
 

@@ -4,7 +4,7 @@
 
 	import { NavigationControl } from 'maplibre-gl';
 	import type { StyleSpecification } from 'maplibre-gl';
-	import { Route } from './components';
+	import { Route, Track } from './components';
 
 	let map: Map;
 	let mapContainer: HTMLElement;
@@ -40,6 +40,13 @@
 		});
 
 		map.addControl(new NavigationControl({}), 'top-right');
+
+		// map.on('load', function() {
+		// 	const { width, height } = map.getCanvas();
+		// });
+		// map.on('resize', function() {
+		// 	const { width, height } = map.getCanvas();
+		// });
 	}
 
 	setContext(key, {
@@ -61,4 +68,5 @@
 
 <div id="map" class="fixed w-screen h-screen z-0" bind:this={mapContainer}>
 	<Route />
+	<Track />
 </div>
