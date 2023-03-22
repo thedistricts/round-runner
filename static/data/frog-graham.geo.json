@@ -1,0 +1,209 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.137221, 54.600784]
+			},
+			"properties": {
+				"leg": 1,
+				"feature": "checkpoint",
+				"name": "Moot Hall (Start/Finish)"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.147797599999999, 54.65140759999999]
+			},
+			"properties": {
+				"leg": 1,
+				"feature": "summit",
+				"name": "Skiddaw"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.199828, 54.648057]
+			},
+			"properties": {
+				"leg": 1,
+				"feature": "checkpoint",
+				"name": "Bassenthwaite Church"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.203276, 54.648272]
+			},
+			"properties": {
+				"leg": 1,
+				"feature": "water entry",
+				"name": "Church Bay"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.217072, 54.645982]
+			},
+			"properties": {
+				"leg": 1,
+				"feature": "water exit",
+				"name": "Beck Wythop"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.218144, 54.629622]
+			},
+			"properties": {
+				"leg": 2,
+				"feature": "summit",
+				"name": "Barf"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.234084, 54.627897]
+			},
+			"properties": {
+				"leg": 2,
+				"feature": "summit",
+				"name": "Lords Seat"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.225926, 54.623079]
+			},
+			"properties": {
+				"leg": 2,
+				"feature": "summit",
+				"name": "Ullister Hill"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.242155, 54.591783]
+			},
+			"properties": {
+				"leg": 2,
+				"feature": "summit",
+				"name": "Grisedale Pike"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.2616997, 54.5879924]
+			},
+			"properties": {
+				"leg": 2,
+				"feature": "summit",
+				"name": "Hopegill Head"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.259501, 54.585557]
+			},
+			"properties": {
+				"leg": 2,
+				"feature": "summit",
+				"name": "Sand Hill"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.250313, 54.572028]
+			},
+			"properties": {
+				"leg": 2,
+				"feature": "summit",
+				"name": "Crag Hill"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.25734, 54.566318]
+			},
+			"properties": {
+				"leg": 2,
+				"feature": "summit",
+				"name": "Wandope"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.269341, 54.559322]
+			},
+			"properties": {
+				"leg": 2,
+				"feature": "summit",
+				"name": "Whiteless Pike"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.289071, 54.552645]
+			},
+			"properties": {
+				"leg": 2,
+				"feature": "summit",
+				"name": "Rannerdale Knotts"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.296053, 54.553187]
+			},
+			"properties": {
+				"leg": 2,
+				"feature": "water entry",
+				"name": "Hause Point"
+			}
+		},
+		{
+			"type": "Feature",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-3.305081, 54.552963]
+			},
+			"properties": {
+				"leg": 2,
+				"feature": "water exit",
+				"name": "Low Ling Crag"
+			}
+		}
+	]
+}
