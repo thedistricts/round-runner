@@ -1,23 +1,23 @@
 <script lang="ts">
-	import type { FeatureCollection } from 'geojson';
-
-	import { getContext, onMount } from 'svelte';
+	import { getContext, onMount, onDestroy } from 'svelte';
 	import { key } from '../Map.context';
 	import type { MapContext } from '../Map.context';
-
+	import type { FeatureCollection } from 'geojson';
 	const { getMap } = getContext<MapContext>(key);
 	export let features: FeatureCollection;
 
+	const ID_ROUTE = 'route'; 
+
 	onMount(() => {
 		const map = getMap();
-		map.addSource('route', {
+		map.addSource(ID_ROUTE, {
 			type: 'geojson',
 			data: features
 		});
 		map.addLayer({
-			id: 'route',
+			id: ID_ROUTE,
 			type: 'line',
-			source: 'route',
+			source: ID_ROUTE,
 			layout: {
 				'line-join': 'round',
 				'line-cap': 'round'
@@ -28,4 +28,10 @@
 			}
 		});
 	});
+
+	onDestroy(() => {
+		const map = getMap();
+		map.removeLayer(ID_ROUTE);
+		map.removeSource(ID_ROUTE);
+	})
 </script>

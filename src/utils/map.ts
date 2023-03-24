@@ -1,7 +1,7 @@
 import type { Map, LngLatBoundsLike } from 'maplibre-gl';
 import type { BBox } from 'geojson';
 
-const BOUNDS_PADDING_RATIO = { TOP: 0.15, BOTTOM: 0.15, LEFT: 0.35, RIGHT: 0.15 };
+const BOUNDS_PADDING_RATIO = { TOP: 0.05, RIGHT: 0.02, BOTTOM: 0.05, LEFT: 0.18  };
 
 interface FitBoundsWithPaddingProps {
 	map: Map;
@@ -9,7 +9,7 @@ interface FitBoundsWithPaddingProps {
 }
 
 export function fitBoundsWithPadding({ map, bBox }: FitBoundsWithPaddingProps) {
-	if (bBox[0] === Infinity) return;
+	if (!Number.isFinite(bBox[0])) return;
 	const { width, height } = map.getCanvas();
 	const padding = {
 		top: height * BOUNDS_PADDING_RATIO.TOP,

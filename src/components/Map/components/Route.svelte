@@ -2,12 +2,11 @@
 	import { getContext, onMount } from 'svelte';
 	import { fitBoundsWithPadding } from '../../../utils/map';
 	import { route, routeBBox } from '../../../stores/route.store';
-
-	import { key } from '../Map.context';
-	import type { MapContext } from '../Map.context';
-	const { getMap } = getContext<MapContext>(key);
-
 	import Marker from './Marker.svelte';
+
+	import type { MapContext } from '../Map.context';
+	import { key } from '../Map.context';
+	const { getMap } = getContext<MapContext>(key);
 
 	onMount(() => {
 		routeBBox.subscribe((bBox) => {
@@ -20,5 +19,8 @@
 </script>
 
 {#each $route.features as point}
-	<Marker coordinates={point.geometry.coordinates} />
+	<Marker
+		coordinates={point.geometry.coordinates}
+		properties={point.properties}
+	/>
 {/each}
