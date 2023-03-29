@@ -5,7 +5,7 @@
 
 <main>
 	<Map />
-	<div class="grid grid-cols-3 gap-4 relative z-10 pointer-events-none">
+	<div class="grid grid-cols-3 gap-4 relative h-screen z-10 pointer-events-none">
 		<Checker />
 		<!-- <div class="col-span-2 h-screen">
       <Breakdown />
