@@ -12,7 +12,7 @@
 	let times:string[] = [];
 	let start = dayjs();
 	let end = dayjs();
-	let elapsed = dayjs();
+	let elapsed = new Date(0);
 	let hasValidTimes = false;
 	let hasCoordinateTimes = false;
 	let isValid = false;
@@ -26,14 +26,15 @@
     if (isValid) {
       start = dayjs(times?.[0]);
       end = dayjs(times?.[times.length - 1]);
-      elapsed = dayjs(start.diff(end, 'milliseconds'));
+      console.log(times?.[0], times?.[times.length - 1],  start, end);
+      elapsed = new Date(end.diff(start));
     }
 	})
 
 </script>
 
 <div 
-  class="relative text-white px-6 pt-6 pb-7 rounded"
+  class="relative text-white px-5 pt-4 pb-6 rounded"
   class:bg-indigo-700={isValid}
   class:bg-red-600={!isValid}
 >
@@ -47,22 +48,37 @@
       { date.utc().format('DD MMMM YYYY') }
     </div>
   </div>
-  <div 
-    class="text-xs"
-    class:text-indigo-200={isValid}
-    class:text-red-200={!isValid}
-  >
-    <p>
-      <span class="pr-4">Start: { start.utc().format('h:mm a') }</span> 
-      Finish: {end.utc().format('h:mm a')}
-    </p>
-    <p>Est Elapsed Time: {elapsed.format('h [hours] m [minutes]')}</p>
-  </div>
+
+  {#if isValid }
+    <div 
+      class="text-xs"
+      class:text-indigo-200={isValid}
+      class:text-red-200={!isValid}
+    >
+      <p>
+        <span class="pr-4">Start: { start.utc().format('h:mm a') }</span> 
+        Finish: {end.utc().format('h:mm a')}
+      </p>
+      <p>
+        Est Elapsed Time: 
+        {elapsed.getUTCHours()} hours 
+        {elapsed.getUTCMinutes()} minutes
+      </p>
+    </div>
+  {/if}
+
+  {#if !isValid }
+    <div class="text-red-600 text-xs font-medium text-center p-3 rounded bg-white translate-y-1">
+      Time information is missing from the file
+    </div>
+  {/if}
 
   <button
     on:click={gpx.reset}
     type="button"
-    class="absolute top-2 right-2 rounded-full p-1 focus:ring-2 focus:ring-indigo-500"
+    class:focus:ring-indigo-500={isValid}
+    class:focus:ring-red-500={!isValid}
+    class="absolute top-2 right-2 rounded-full p-1 focus:ring-2"
   >
     <span class="sr-only">Reset</span>
     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
