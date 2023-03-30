@@ -1,7 +1,7 @@
 import type { Map, LngLatBoundsLike } from 'maplibre-gl';
 import type { BBox } from 'geojson';
 
-const BOUNDS_PADDING_RATIO = { TOP: 0.05, RIGHT: 0.02, BOTTOM: 0.05, LEFT: 0.18  };
+const BOUNDS_PADDING_RATIO = { TOP: 0.05, RIGHT: 0.02, BOTTOM: 0.05, LEFT: 0.18 };
 
 interface FitBoundsWithPaddingProps {
 	map: Map;

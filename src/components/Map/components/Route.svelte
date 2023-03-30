@@ -19,8 +19,5 @@
 </script>
 
 {#each $route.features as point}
-	<Marker
-		coordinates={point.geometry.coordinates}
-		properties={point.properties}
-	/>
+	<Marker coordinates={point.geometry.coordinates} properties={point.properties} />
 {/each}

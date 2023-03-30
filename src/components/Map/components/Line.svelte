@@ -6,7 +6,7 @@
 	const { getMap } = getContext<MapContext>(key);
 	export let features: FeatureCollection;
 
-	const ID_ROUTE = 'route'; 
+	const ID_ROUTE = 'route';
 
 	onMount(() => {
 		const map = getMap();
@@ -33,5 +33,5 @@
 		const map = getMap();
 		map.removeLayer(ID_ROUTE);
 		map.removeSource(ID_ROUTE);
-	})
+	});
 </script>

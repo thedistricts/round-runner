@@ -24,7 +24,7 @@
 </script>
 
 {#if $gpx.features.length === 0}
-	<div 
+	<div
 		class:opacity-1={isVisible}
 		class:opacity-0={!isVisible}
 		class="h-20 transition-opacity duration-500 delay-200"

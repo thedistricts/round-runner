@@ -18,7 +18,7 @@
 		[POINT_FEATURE.SUMMIT, '#FF0000'],
 		[POINT_FEATURE.WATER_ENTRY, '#6FDBFF'],
 		[POINT_FEATURE.WATER_EXIT, '#6FDBFF']
-	])
+	]);
 
 	onMount(() => {
 		const map = getMap();

@@ -5,7 +5,7 @@ import bbox from '@turf/bbox';
 const EMPTY_COLLECTION: GPXGeoJson = {
 	type: 'FeatureCollection',
 	features: []
-}
+};
 
 function createCount() {
 	const { subscribe, set, update } = writable<GPXGeoJson>(EMPTY_COLLECTION);

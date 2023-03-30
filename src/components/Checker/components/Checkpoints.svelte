@@ -9,7 +9,7 @@
 		{#if isLoaded}
 			{$route.features.length} Checkpoints
 		{/if}
-		<slot/>
+		<slot />
 	</div>
 {/if}
 
@@ -17,13 +17,11 @@
 	<div class="text-sm overflow-y-auto">
 		<div class="px-6 py-3">
 			<ol>
-			{#each $route.features as { properties }, i}
-				<li>
-					
+				{#each $route.features as { properties }, i}
+					<li>
 						{i + 1}: {properties.name}
-					
-				</li>
-			{/each}
+					</li>
+				{/each}
 			</ol>
 		</div>
 	</div>
