@@ -3,7 +3,7 @@
 	import Line from './Line.svelte';
 
 	import { getContext, onMount } from 'svelte';
-	import { fitBoundsWithPadding } from '../../../utils/map';
+	import { fitBoundsWithPadding } from '$lib/utils/map';
 	import { gpxBBox } from '../../../stores/gpx.store';
 
 	import { key } from '../Map.context';

@@ -5,20 +5,24 @@
 </script>
 
 {#if !isOpen}
-	<div class="flex px-6 py-3 text-sm h-11">
+	<div class="relative flex px-6 py-3 h-12">
 		{#if isLoaded}
-			{$route.features.length} Checkpoints
+			<h3 class="text-base font-normal text-stone-800">{$route.features.length} Checkpoints</h3>
 		{/if}
 		<slot />
 	</div>
 {/if}
 
 {#if isOpen}
-	<div class="text-sm overflow-y-auto">
+	<div class="relative overflow-y-auto">
 		<div class="px-6 py-3">
-			<ol>
+			{#if isLoaded}
+				<h3 class="text-base font-normal text-stone-800">{$route.features.length} Checkpoints</h3>
+			{/if}
+			<slot />
+			<ol class="text-sm text-stone-500 mt-4">
 				{#each $route.features as { properties }, i}
-					<li>
+					<li class="py-1">
 						{i + 1}: {properties.name}
 					</li>
 				{/each}

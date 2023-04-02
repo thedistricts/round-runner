@@ -4,7 +4,7 @@
 
 	import { NavigationControl } from 'maplibre-gl';
 	import type { StyleSpecification } from 'maplibre-gl';
-	import { Route, Track } from './components';
+	import { Route, Track, Results } from './components';
 
 	let map: Map;
 	let mapContainer: HTMLElement;
@@ -69,4 +69,5 @@
 <div id="map" class="fixed w-screen h-screen z-0" bind:this={mapContainer}>
 	<Route />
 	<Track />
+	<Results />
 </div>

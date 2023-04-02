@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext, onMount } from 'svelte';
-	import { fitBoundsWithPadding } from '../../../utils/map';
+	import { fitBoundsWithPadding } from '$lib/utils/map';
 	import { route, routeBBox } from '../../../stores/route.store';
 	import Marker from './Marker.svelte';
 
