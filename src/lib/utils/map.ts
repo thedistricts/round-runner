@@ -6,7 +6,7 @@ const BOUNDS_PADDING_RATIO = { TOP: 0.05, RIGHT: 0.02, BOTTOM: 0.05, LEFT: 0.18 
 interface FitBoundsWithPaddingProps {
 	map: Map;
 	bBox: BBox;
-	animate: boolean;
+	animate?: boolean;
 }
 
 export function fitBoundsWithPadding({ map, bBox, animate = true }: FitBoundsWithPaddingProps) {

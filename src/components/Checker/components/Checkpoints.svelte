@@ -2,11 +2,12 @@
 	import { route } from '$lib/stores/route.store';
 	$: isLoaded = $route.features.length > 0;
 	export let isOpen = false;
+	export let hasResults = false;
 </script>
 
 {#if !isOpen}
 	<div class="relative flex px-6 py-3 h-12">
-		{#if isLoaded}
+		{#if isLoaded && !hasResults}
 			<h3 class="text-base font-normal text-stone-800">{$route.features.length} Checkpoints</h3>
 		{/if}
 		<slot />
@@ -16,17 +17,20 @@
 {#if isOpen}
 	<div class="relative overflow-y-auto">
 		<div class="px-6 py-3">
-			{#if isLoaded}
+			{#if isLoaded && !hasResults}
 				<h3 class="text-base font-normal text-stone-800">{$route.features.length} Checkpoints</h3>
 			{/if}
+
+			{#if !hasResults}
+				<ol class="text-sm text-stone-500 mt-4">
+					{#each $route.features as { properties }, i}
+						<li class="py-1">
+							{i + 1}: {properties.name}
+						</li>
+					{/each}
+				</ol>
+			{/if}
 			<slot />
-			<ol class="text-sm text-stone-500 mt-4">
-				{#each $route.features as { properties }, i}
-					<li class="py-1">
-						{i + 1}: {properties.name}
-					</li>
-				{/each}
-			</ol>
 		</div>
 	</div>
 {/if}

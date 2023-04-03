@@ -1,16 +1,15 @@
 import { expose } from 'comlink';
 import * as turf from '@turf/turf';
-import type { GPXGeoJson } from '$lib/stores/gpx.store.d';
-import type { RouteGeoJson } from '$lib/stores/route.store.d';
+
 import { VALIDITY } from '$lib/enum';
 import { VALIDITY_DISTANCE } from '$lib/const';
+import type {
+	RatifyProps,
+	RatifyReturn,
+	NearestPointOnLineWithValidity
+} from './ratification.worker.d';
 
-interface RatifyProps {
-	track: GPXGeoJson;
-	route: RouteGeoJson;
-}
-
-export function ratify({ track, route }: RatifyProps) {
+export function ratify({ track, route }: RatifyProps): RatifyReturn {
 	const trackLineString = track.features.find((feature) => feature.geometry.type === 'LineString');
 
 	if (!trackLineString) {
@@ -40,7 +39,7 @@ export function ratify({ track, route }: RatifyProps) {
 		return point;
 	});
 
-	return nearestRoutePoints;
+	return nearestRoutePoints as NearestPointOnLineWithValidity[];
 }
 
 expose({ ratify });
