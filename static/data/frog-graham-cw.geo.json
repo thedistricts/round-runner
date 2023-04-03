@@ -396,7 +396,7 @@
       "properties": {
         "name": "Otterbield Island",
         "leg": 1,
-        "feature": "water entry"
+        "feature": "water checkpoint"
       },
       "geometry": {
         "type": "Point",
@@ -426,7 +426,7 @@
       "properties": {
         "name": "Rampsholme Island",
         "leg": 1,
-        "feature": "water entry"
+        "feature": "water checkpoint"
       },
       "geometry": {
         "type": "Point",
