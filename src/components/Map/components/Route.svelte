@@ -18,7 +18,6 @@
 				fitBoundsWithPadding({ map, bBox, animate: false });
 			}
 		});
-		
 	});
 </script>
 

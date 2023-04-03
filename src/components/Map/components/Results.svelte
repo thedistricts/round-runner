@@ -5,7 +5,5 @@
 </script>
 
 {#each $ratification as point}
-	<Circle
-		coordinates={turf.getCoord(point)}
-	/>
+	<Circle coordinates={turf.getCoord(point)} />
 {/each}

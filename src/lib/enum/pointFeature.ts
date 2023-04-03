@@ -3,5 +3,5 @@ export enum POINT_FEATURE {
 	SUMMIT = 'summit',
 	WATER_ENTRY = 'water entry',
 	WATER_EXIT = 'water exit',
-	WATER_CHECKPOINT = 'water checkpoint',
+	WATER_CHECKPOINT = 'water checkpoint'
 }

@@ -2,8 +2,8 @@ import { expose } from 'comlink';
 import * as turf from '@turf/turf';
 import type { GPXGeoJson } from '$lib/stores/gpx.store.d';
 import type { RouteGeoJson } from '$lib/stores/route.store.d';
-import { VALIDITY } from "$lib/enum";
-import { VALIDITY_DISTANCE } from "$lib/const";
+import { VALIDITY } from '$lib/enum';
+import { VALIDITY_DISTANCE } from '$lib/const';
 
 interface RatifyProps {
 	track: GPXGeoJson;

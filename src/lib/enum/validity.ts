@@ -1,5 +1,5 @@
 export enum VALIDITY {
-  VALID,
-  WARN,
-  FAIL
+	VALID,
+	WARN,
+	FAIL
 }

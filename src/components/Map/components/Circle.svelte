@@ -9,7 +9,7 @@
 	import type { MapContext } from '../Map.context';
 
 	export let coordinates: Position;
-	export let radius: number  = 0.001; // kilometer
+	export let radius: number = 0.001; // kilometer
 	export let colour: string = '#FF9B0D';
 	export let lineWidth: number = 3;
 	export let opacity: number = 0.75;
@@ -28,7 +28,7 @@
 		const hasCircleSource = map.getSource(`location-source:${id}`);
 
 		if (!hasCircleSource) {
-		const circle = turf.circle(coordinates, radius, DRAW_OPTIONS);
+			const circle = turf.circle(coordinates, radius, DRAW_OPTIONS);
 
 			map.addSource(`location-source:${id}`, {
 				type: 'geojson',

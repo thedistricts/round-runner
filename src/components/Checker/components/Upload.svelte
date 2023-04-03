@@ -63,7 +63,7 @@
 		class:opacity-1={isVisible}
 		class:opacity-0={!isVisible}
 		class="h-20 transition-opacity duration-500 delay-200"
-		>
+	>
 		<!-- TODO: look at FileTypeValidation -->
 		<FilePond
 			bind:this={pond}
@@ -72,7 +72,6 @@
 			oninit={handleFilePondInit}
 			onaddfile={handleAddFile}
 			credits={false}
-			
 			allowFileTypeValidation
 			acceptedFileTypes={['application/gpx+xml']}
 			acceptedFileExtensions={['gpx']}
