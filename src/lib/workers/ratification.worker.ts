@@ -1,27 +1,46 @@
-import * as turf from '@turf/turf';
 import { expose } from 'comlink';
-import type { GPXGeoJson } from '../../stores/gpx.store.d';
-import type { RouteGeoJson } from '../../stores/route.store.d';
+import * as turf from '@turf/turf';
+import type { GPXGeoJson } from '$lib/stores/gpx.store.d';
+import type { RouteGeoJson } from '$lib/stores/route.store.d';
+import { VALIDITY } from "$lib/enum";
+import { VALIDITY_DISTANCE } from "$lib/const";
 
 interface RatifyProps {
-	data: GPXGeoJson;
+	track: GPXGeoJson;
 	route: RouteGeoJson;
 }
 
-export function ratify({ data, route }: RatifyProps) {
-	// cycle through the route points test against route,
-	// find the nearest, does it fall within the boundary?
-	// do we have to cycle through them all?
-	const lineStringFeature = data.features.find((feature) => feature.geometry.type === 'LineString');
+export function ratify({ track, route }: RatifyProps) {
+	const trackLineString = track.features.find((feature) => feature.geometry.type === 'LineString');
 
-	if (!lineStringFeature) {
+	if (!trackLineString) {
 		throw new Error('Feature Collection does not contain a LineString');
 	}
 
-	const routePoints = route.features.map((routePoints) =>
-		turf.nearestPointOnLine(lineStringFeature, turf.getCoord(routePoints))
-	);
-	return routePoints;
+	const nearestRoutePoints = route.features.map((routePoint) => {
+		const point = turf.nearestPointOnLine(trackLineString, turf.getCoord(routePoint));
+		point.properties = {
+			...point.properties,
+			valid: VALIDITY.FAIL
+		};
+
+		const distanceAway = point.properties?.dist ?? Infinity;
+		const validityDistance = VALIDITY_DISTANCE.get(routePoint.properties.feature);
+
+		if (!validityDistance) {
+			throw new Error('Route feature type is not valid');
+		}
+
+		if (distanceAway < validityDistance?.[VALIDITY.WARN]) {
+			point.properties.valid = VALIDITY.WARN;
+		}
+		if (distanceAway < validityDistance?.[VALIDITY.VALID]) {
+			point.properties.valid = VALIDITY.VALID;
+		}
+		return point;
+	});
+
+	return nearestRoutePoints;
 }
 
 expose({ ratify });
