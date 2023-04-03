@@ -1,0 +1,470 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Moot Hall (Start)",
+        "leg": 1,
+        "feature": "checkpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.13732,
+          54.600761
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Skiddaw",
+        "leg": 1,
+        "feature": "summit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.14778,
+          54.651379
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bassenthwaite Church",
+        "leg": 1,
+        "feature": "checkpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.19979,
+          54.647671
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Beck Wythop",
+        "leg": 1,
+        "feature": "water entry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.217,
+          54.645962
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Barf",
+        "leg": 1,
+        "feature": "summit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.21802,
+          54.629581
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lords Seat",
+        "leg": 1,
+        "feature": "summit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.23403,
+          54.627861
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ullister Hill",
+        "leg": 1,
+        "feature": "summit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.22654,
+          54.622341
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grisedale Pike",
+        "leg": 1,
+        "feature": "summit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.24207,
+          54.59174
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hopegill Head",
+        "leg": 1,
+        "feature": "summit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.26166,
+          54.588081
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sand Hill",
+        "leg": 1,
+        "feature": "summit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.25948,
+          54.585499
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Crag Hill",
+        "leg": 1,
+        "feature": "summit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.25032,
+          54.57206
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.25711,
+          54.566341
+        ]
+      },
+      "properties": {
+        "name": "Wandhope",
+        "leg": 1,
+        "feature": "summit"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.26929,
+          54.559368
+        ]
+      },
+      "properties": {
+        "name": "Whiteless Pike",
+        "leg": 1,
+        "feature": "summit"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.28902,
+          54.552639
+        ]
+      },
+      "properties": {
+        "name": "Low Bank",
+        "leg": 1,
+        "feature": "summit"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.29589,
+          54.553139
+        ]
+      },
+      "properties": {
+        "name": "Hause Point",
+        "leg": 1,
+        "feature": "water exit"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.30456,
+          54.55286
+        ]
+      },
+      "properties": {
+        "name": "Low Ling Crag",
+        "leg": 1,
+        "feature": "water entry"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.31822,
+          54.555599
+        ]
+      },
+      "properties": {
+        "name": "Mellbreak S Summit",
+        "leg": 1,
+        "feature": "summit"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.29853,
+          54.527439
+        ]
+      },
+      "properties": {
+        "name": "Red Pike",
+        "leg": 1,
+        "feature": "summit"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.28785,
+          54.521519
+        ]
+      },
+      "properties": {
+        "name": "High Stile",
+        "leg": 1,
+        "feature": "summit"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.26109,
+          54.526829
+        ]
+      },
+      "properties": {
+        "name": "Horse Close",
+        "leg": 1,
+        "feature": "water entry"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Crag Wood",
+        "leg": 1,
+        "feature": "water exit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.25885,
+          54.529362
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Robinson",
+        "leg": 1,
+        "feature": "summit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.23528,
+          54.540821
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dalehead",
+        "leg": 1,
+        "feature": "summit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.20227,
+          54.527241
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "High Spy",
+        "leg": 1,
+        "feature": "summit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.18514,
+          54.535568
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cat Bells",
+        "leg": 1,
+        "feature": "summit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1707,
+          54.568329
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Otterbield Bay",
+        "leg": 1,
+        "feature": "water exit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.15942,
+          54.579651
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Otterbield Island",
+        "leg": 1,
+        "feature": "water entry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.15645,
+          54.57959
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "St Herberts Island",
+        "leg": 1,
+        "feature": "water entry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.14784,
+          54.581661
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rampsholme Island",
+        "leg": 1,
+        "feature": "water entry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.14057,
+          54.582321
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Calf Close Bay",
+        "leg": 1,
+        "feature": "water entry"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1355,
+          54.583248
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Moot Hall (Finish)",
+        "leg": 1,
+        "feature": "checkpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.13732,
+          54.600761
+        ]
+      }
+    }
+  ]
+}
