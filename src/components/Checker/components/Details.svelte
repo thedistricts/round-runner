@@ -61,9 +61,13 @@
 	{/if}
 
 	{#if !isValid}
-		<div class="text-red-600 text-xs font-medium text-center p-3 rounded bg-white translate-y-1">
-			<a href="https://support.strava.com/hc/en-us/articles/216917947-Uploading-GPS-Files-without-Time-Information" target="_blank">Time information is missing from the file</a>
-		</div>
+		<a
+			class="text-red-600 text-xs font-medium text-center rounded bg-white translate-y-1 p-3 inline-block w-full"
+			href="https://support.strava.com/hc/en-us/articles/216917947-Uploading-GPS-Files-without-Time-Information"
+			target="_blank"
+		>
+			Time information is missing from the file
+		</a>
 	{/if}
 
 	<button
