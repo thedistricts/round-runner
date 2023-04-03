@@ -9,7 +9,7 @@
 	let map: Map;
 	let mapContainer: HTMLElement;
 	const tileset = 'Outdoor_3857';
-	const initialState = { lng: -3.28, lat: 54.5, zoom: 10 };
+	const initialState = { lng: -3.28, lat: 54.5, zoom: 12 };
 
 	const style = {
 		version: 8,

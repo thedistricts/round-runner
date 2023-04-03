@@ -1,11 +1,11 @@
 <script lang="ts">
 	import dayjs from 'dayjs';
 	import utc from 'dayjs/plugin/utc';
-	import { gpx } from '../../../stores/gpx.store';
+	import { gpx } from '$lib/stores/gpx.store';
+	import { ratification } from '$lib/stores/ratification.store';
 
 	dayjs.extend(utc);
 
-	// TODO: detect and signpost lack of timing
 	$: date = dayjs($gpx.features?.[0]?.properties.time);
 	let times: string[] = [];
 	let start = dayjs();
@@ -24,10 +24,14 @@
 		if (isValid) {
 			start = dayjs(times?.[0]);
 			end = dayjs(times?.[times.length - 1]);
-			console.log(times?.[0], times?.[times.length - 1], start, end);
 			elapsed = new Date(end.diff(start));
 		}
 	});
+
+	function handleOnResetClick() {
+		gpx.reset();
+		ratification.reset();
+	}
 </script>
 
 <div
@@ -58,12 +62,12 @@
 
 	{#if !isValid}
 		<div class="text-red-600 text-xs font-medium text-center p-3 rounded bg-white translate-y-1">
-			Time information is missing from the file
+			<a href="https://support.strava.com/hc/en-us/articles/216917947-Uploading-GPS-Files-without-Time-Information" target="_blank">Time information is missing from the file</a>
 		</div>
 	{/if}
 
 	<button
-		on:click={gpx.reset}
+		on:click={handleOnResetClick}
 		type="button"
 		class:focus:ring-indigo-500={isValid}
 		class:focus:ring-red-500={!isValid}

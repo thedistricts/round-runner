@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { route } from '../../../stores/route.store';
+	import { route } from '$lib/stores/route.store';
 	$: isLoaded = $route.features.length > 0;
 	export let isOpen = false;
 </script>
