@@ -9,3 +9,10 @@ type RatificationPointResult = {
 };
 
 export type RatificationResults = Feature<Point, RatificationPointResult>[];
+
+type FilteredRatificationResults = {
+	valids?: RatificationResults;
+	invalids?: RatificationResults;
+	warnings?: RatificationResults;
+};
+

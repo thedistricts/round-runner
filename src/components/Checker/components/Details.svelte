@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onDestroy } from 'svelte';
 	import dayjs from 'dayjs';
 	import utc from 'dayjs/plugin/utc';
 	import { gpx } from '$lib/stores/gpx.store';
@@ -15,7 +16,7 @@
 	let hasCoordinateTimes = false;
 	let isValid = false;
 
-	gpx.subscribe(() => {
+	const unsubscribe = gpx.subscribe(() => {
 		const coordinates = $gpx.features?.[0]?.geometry?.coordinates ?? [];
 		times = $gpx.features?.[0]?.properties?.coordinateProperties?.times ?? [];
 		hasValidTimes = coordinates.length === times.length;
@@ -32,6 +33,8 @@
 		gpx.reset();
 		ratification.reset();
 	}
+
+	onDestroy(unsubscribe);
 </script>
 
 <div

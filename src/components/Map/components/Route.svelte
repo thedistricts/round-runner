@@ -1,8 +1,8 @@
 <script lang="ts">
 	import * as turf from '@turf/turf';
 
-	import { getContext, onMount } from 'svelte';
-	import { fitBoundsWithPadding } from '$lib/utils/map';
+	import { getContext, onDestroy } from 'svelte';
+	import { fitBoundsWithPadding } from '$lib/utils';
 	import { route, routeBBox } from '$lib/stores/route.store';
 	import Marker from './Marker.svelte';
 	import ValidityBoundary from './ValidityBoundary.svelte';
@@ -11,14 +11,14 @@
 	import { key } from '../Map.context';
 	const { getMap } = getContext<MapContext>(key);
 
-	onMount(() => {
-		routeBBox.subscribe((bBox) => {
-			const map = getMap();
-			if (map && bBox) {
-				fitBoundsWithPadding({ map, bBox, animate: false });
-			}
-		});
+	const unsubscribe = routeBBox.subscribe((bBox) => {
+		const map = getMap();
+		if (map && bBox) {
+			fitBoundsWithPadding({ map, bBox, animate: false });
+		}
 	});
+
+	onDestroy(unsubscribe);
 </script>
 
 {#each $route.features as point}

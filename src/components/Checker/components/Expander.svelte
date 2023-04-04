@@ -1,0 +1,20 @@
+<script lang="ts">
+	export let isOpen = false;
+</script>
+
+{#if !isOpen}
+	<div class="relative flex px-6 py-3 min-h-[52px]">
+		<slot />
+	</div>
+{/if}
+
+{#if isOpen}
+	<div class="relative overflow-y-auto">
+		<div class="h-full">
+			<div class="px-6 py-3">
+				<slot />
+			</div>
+		</div>
+		<div class="fixed bottom-0 left-0 right-0 h-5 bg-gradient-to-t from-white" />
+	</div>
+{/if}
