@@ -23,22 +23,25 @@
 
 	const map = getMap();
 	const id = `${coordinates.toString()}:${radius}:${colour}`;
+	const innerCircleId = `location-radius:${id}`;
+	const outerCircleId = `location-radius-outline:${id}`;
+	const sourceId = `location-source:${id}`;
 
 	onMount(() => {
-		const hasCircleSource = map.getSource(`location-source:${id}`);
+		const hasCircleSource = map.getSource(sourceId);
 
 		if (!hasCircleSource) {
 			const circle = turf.circle(coordinates, radius, DRAW_OPTIONS);
 
-			map.addSource(`location-source:${id}`, {
+			map.addSource(sourceId, {
 				type: 'geojson',
 				data: circle
 			});
 
 			map.addLayer({
-				id: `location-radius:${id}`,
+				id: innerCircleId,
 				type: 'fill',
-				source: `location-source:${id}`,
+				source: sourceId,
 				paint: {
 					'fill-color': colour,
 					'fill-opacity': opacity
@@ -46,9 +49,9 @@
 			});
 
 			map.addLayer({
-				id: `location-radius-outline:${id}`,
+				id: outerCircleId,
 				type: 'line',
-				source: `location-source:${id}`,
+				source: sourceId,
 				paint: {
 					'line-color': colour,
 					'line-width': lineWidth,
@@ -59,8 +62,8 @@
 	});
 
 	onDestroy(() => {
-		map.removeSource(`location-source:${id}`);
-		map.removeLayer(`location-radius:${id}`);
-		map.removeLayer(`location-radius-outline:${id}`);
+		if (map.getLayer(innerCircleId)) map.removeLayer(innerCircleId);
+		if (map.getLayer(outerCircleId)) map.removeLayer(outerCircleId);
+		if (map.getSource(sourceId)) map.removeSource(sourceId);
 	});
 </script>
