@@ -1,27 +1,14 @@
 <script lang="ts">
-	import { getContext } from 'svelte';
+	import type { LngLatLike } from 'maplibre-gl';
 	import type { Position } from 'geojson';
-	import type { MapContext } from '../../Map/Map.context';
-	import { fitBoundsWithPadding } from '$lib/utils';
 
-	import { key } from '../../Map/Map.context';
-
-	import { route } from '$lib/stores/route.store';
+	import { route, routeFocus } from '$lib/stores/route.store';
 	$: isLoaded = $route.features.length > 0;
 	export let isOpen = false;
 
-	// const { getMap } = getContext<MapContext>(key);
-
-	function handleOnMapFocus(coordinates?: Position) {
+	function handleOnMapFocus(coordinates?: LngLatLike | Position) {
 		if (!coordinates) throw new Error('No coordinates provided');
-		// TODO: Fit map to bounds of coordinates
-		// TODO: abstract Map context to higher level
-
-		console.log(coordinates);
-		// const map = getMap();
-		// if (map && bBox) {
-		// 	fitBoundsWithPadding({ map, bBox });
-		// }
+		routeFocus.set(coordinates as LngLatLike);
 	}
 </script>
 
@@ -33,8 +20,9 @@
 		<ol class="text-sm text-stone-500 mt-4">
 			{#each $route.features as feature, i}
 				<li class="-ml-2">
-					<button on:click={() => handleOnMapFocus(feature.geometry.coordinates)} class="px-2 py-1"
-						>{i + 1}: {feature.properties.name}</button
+					<button
+						on:click={() => handleOnMapFocus(feature.geometry.coordinates)}
+						class="px-2 py-1 hover:text-blue-500">{i + 1}: {feature.properties.name}</button
 					>
 				</li>
 			{/each}

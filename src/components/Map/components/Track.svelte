@@ -14,9 +14,9 @@
 
 	const unsubscribe = gpxBBox.subscribe((bBox) => {
 		const map = getMap();
-		if (map && bBox) {
-			fitBoundsWithPadding({ map, bBox });
-		}
+		setTimeout(() => {
+			fitBoundsWithPadding({ map, bBox, animate: true });
+		}, 250);
 	});
 
 	onDestroy(unsubscribe);
