@@ -5,9 +5,11 @@
 	import { gpx } from '$lib/stores/gpx.store';
 	import { ratification } from '$lib/stores/ratification.store';
 
-	dayjs.extend(utc);
+	export let fileName = '';
 
+	dayjs.extend(utc);
 	$: date = dayjs($gpx.features?.[0]?.properties.time);
+
 	let times: string[] = [];
 	let start = dayjs();
 	let end = dayjs();
@@ -43,7 +45,7 @@
 	class:bg-red-600={!isValid}
 >
 	<div class="pb-2">
-		<h2 class="text-lg font-semibold">CW-FG-Dan-Nisbet.gpx</h2>
+		<h2 class="text-lg font-semibold">{fileName}</h2>
 		<div class="text-xs" class:text-indigo-200={isValid} class:text-red-200={!isValid}>
 			{date.utc().format('DD MMMM YYYY')}
 		</div>

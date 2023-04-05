@@ -25,6 +25,7 @@
 	let pond;
 	let name = 'filepond';
 	let isVisible = false;
+	let fileName = '';
 
 	function handleFilePondInit() {
 		isVisible = true;
@@ -33,6 +34,7 @@
 	async function handleAddFile(err: unknown, fileItem: { file: File }) {
 		const data: GPXGeoJson = await load(fileItem.file, GPXLoader);
 		gpx.set(data);
+		fileName = fileItem.file.name;
 		const { ratify } = Comlink.wrap<ExposeRatificationWorker>(ratificationWorker);
 		const ratificationResult = await ratify({ track: data, route: $route });
 		ratificationStore.set(ratificationResult);
@@ -78,7 +80,7 @@
 		/>
 	</div>
 {:else}
-	<Details />
+	<Details {fileName} />
 {/if}
 
 <style global>
