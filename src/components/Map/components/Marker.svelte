@@ -15,7 +15,7 @@
 
 	onMount(() => {
 		const map = getMap();
-		const color = FEATURE_COLOUR.get(properties.feature);
+		const color = FEATURE_COLOUR.get(properties.featureType);
 		new Marker({ color }).setLngLat(coordinates as [number, number]).addTo(map);
 	});
 </script>

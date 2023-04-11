@@ -15,6 +15,7 @@ interface FitPositionWithOffsetProps extends FitUtilProps  {
 	position?: LngLatLike;
 	maxZoom?: number; 
 	duration?: number;
+	offset?: number;
 }
 
 export function fitBoundsWithPadding({ map, bBox, animate = true }: FitBoundsWithPaddingProps) {
@@ -33,11 +34,11 @@ export function fitBoundsWithPadding({ map, bBox, animate = true }: FitBoundsWit
 }
 
 
-export function fitPositionWithOffset({ map, position, animate = true, maxZoom = 13, duration = 1000 }: FitPositionWithOffsetProps) {
+export function fitPositionWithOffset({ map, position, animate = true, maxZoom = 13, duration = 1000, offset = 0.3333 }: FitPositionWithOffsetProps) {
 	if (!position || !map ) return;
 	const { width } = map.getCanvas();
 	const padding = {
-		left: width * BOUNDS_PADDING_RATIO.LEFT
+		left: width * offset
 	};
 	const bounds = new LngLatBounds().extend(position as LngLatLike);
 	map.fitBounds(bounds, { maxZoom, padding, duration, animate });

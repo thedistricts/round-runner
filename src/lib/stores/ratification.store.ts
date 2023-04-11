@@ -1,3 +1,4 @@
+import type { LngLatLike } from 'maplibre-gl';
 import { writable, derived } from 'svelte/store';
 import type { RatificationResults, FilteredRatificationResults } from './ratification.store.d';
 import { VALIDITY } from '$lib/enum';
@@ -36,3 +37,5 @@ export const results = derived(ratification, ($ratification) => {
 
 	return ratificationResults;
 });
+
+export const resultsFocus = writable<LngLatLike>(undefined);

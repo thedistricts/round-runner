@@ -1,18 +1,8 @@
-import type { Feature, Point } from '@turf/helpers';
-import type { VALIDITY } from '$lib/enum';
-
-type RatificationPointResult = {
-	dist?: number;
-	location?: number;
-	index?: number;
-	valid?: VALIDITY;
-};
-
-export type RatificationResults = Feature<Point, RatificationPointResult>[];
+import type { RatifyReturn } from '$lib/workers/ratification.worker.d';
+export type RatificationResults = RatifyReturn;
 
 type FilteredRatificationResults = {
-	valids?: RatificationResults;
-	invalids?: RatificationResults;
-	warnings?: RatificationResults;
+	valids?: RatifyReturn;
+	invalids?: RatifyReturn;
+	warnings?: RatifyReturn;
 };
-

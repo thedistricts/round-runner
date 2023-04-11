@@ -70,6 +70,10 @@
 		<FilePond
 			bind:this={pond}
 			{name}
+			dropOnElement
+			dropOnPage
+			dropValidation
+			labelIdle="Drag & Drop your attempt or <span class='filepond--label-action'> Browse </span>"
 			allowMultiple={false}
 			oninit={handleFilePondInit}
 			onaddfile={handleAddFile}
@@ -77,6 +81,8 @@
 			allowFileTypeValidation
 			acceptedFileTypes={['application/gpx+xml']}
 			acceptedFileExtensions={['gpx']}
+			maxFiles={1}
+			checkValidity
 		/>
 	</div>
 {:else}

@@ -2,6 +2,7 @@
 	import { onDestroy } from 'svelte';
 	import dayjs from 'dayjs';
 	import utc from 'dayjs/plugin/utc';
+	import { HOURS, DATE } from '$lib/const';
 	import { gpx } from '$lib/stores/gpx.store';
 	import { ratification } from '$lib/stores/ratification.store';
 
@@ -47,15 +48,15 @@
 	<div class="pb-2">
 		<h2 class="text-lg font-semibold">{fileName}</h2>
 		<div class="text-xs" class:text-indigo-200={isValid} class:text-red-200={!isValid}>
-			{date.utc().format('DD MMMM YYYY')}
+			{date.utc().format(DATE)}
 		</div>
 	</div>
 
 	{#if isValid}
 		<div class="text-xs" class:text-indigo-200={isValid} class:text-red-200={!isValid}>
 			<p>
-				<span class="pr-4">Start: {start.utc().format('h:mm a')}</span>
-				Finish: {end.utc().format('h:mm a')}
+				<span class="pr-4">Start: {start.utc().format(HOURS)}</span>
+				Finish: {end.utc().format(HOURS)}
 			</p>
 			<p>
 				Est Elapsed Time:

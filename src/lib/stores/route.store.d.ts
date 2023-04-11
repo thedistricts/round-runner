@@ -2,7 +2,7 @@ import type { FeatureCollection, Point } from 'geojson';
 import { PointFeature } from '../enum';
 export interface PointProperties {
 	leg: number;
-	feature: PointFeature;
+	featureType: PointFeature;
 	name: string;
 }
 

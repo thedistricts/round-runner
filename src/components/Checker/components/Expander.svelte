@@ -10,13 +10,13 @@
 
 {#if isOpen}
 	<div
-		class="relative overflow-y-auto before:fixed before:block before:left-0 before:right-0 before:h-16 before:bg-gradient-to-b before:from-white before:via-white"
+		class="relative overflow-y-auto before:fixed before:block before:left-0 before:right-4 before:h-16 before:bg-gradient-to-b before:from-white before:via-white"
 	>
 		<div class="h-full">
 			<div class="px-6 py-3">
 				<slot />
 			</div>
 		</div>
-		<div class="fixed bottom-0 left-0 right-0 h-5 bg-gradient-to-t from-white" />
+		<div class="fixed bottom-0 left-0 right-4 h-5 bg-gradient-to-t from-white" />
 	</div>
 {/if}
