@@ -1,14 +1,10 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
- 
-export const load = (({ params }) => {
-  if (params.round === 'frog-graham-cw') {
-    return {
-      title: 'Frog Graham Round CW',
-      json: '/data/frog-graham-cw.geo.json',
-      logo: '/assets/frog-graham.jpg'
-    };
-  }
+
+export const load =  (async ({ params, parent }) => {
+  const { rounds } = await parent();
+  const matchingRound = rounds.find((round) => round.slug === params.round);
+  if (matchingRound) return matchingRound;
 
   throw error(404);
 }) satisfies PageServerLoad;

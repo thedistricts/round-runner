@@ -1,0 +1,18 @@
+{
+  "rounds": [
+    {
+      "default": true,
+      "slug": "frog-graham-cw",
+      "title": "Frog Graham Round CW",
+      "json": "/data/frog-graham-cw.geo.json",
+      "logo": "/assets/frog-graham.jpg"
+    },
+    {
+      "default": false,
+      "slug": "frog-graham-ccw",
+      "title": "Frog Graham Round CCW",
+      "json": "/data/frog-graham-ccw.geo.json",
+      "logo": "/assets/frog-graham.jpg"
+    }
+  ]
+}

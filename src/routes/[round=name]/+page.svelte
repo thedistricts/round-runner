@@ -7,12 +7,10 @@
 
 	export let data: PageData;
 
-	console.log('PageData -> ', data);
-
 	onMount(async () => {
-		const res = await fetch('/data/frog-graham-cw.geo.json');
-		const data: RouteGeoJson = await res.json();
-		route.set(data);
+		const res = await fetch(data.json);
+		const routeGeoJson: RouteGeoJson = await res.json();
+		route.set(routeGeoJson);
 	});
 </script>
 

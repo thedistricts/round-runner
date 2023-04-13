@@ -1,4 +1,8 @@
-<script>
+<script lang="ts">
+	import type { PageData } from './$types';
 	import { redirect } from '@sveltejs/kit';
-	throw redirect(307, '/frog-graham-cw');
+	export let data: PageData;
+
+	const roundDefault = data.rounds.find((round) => round.default);
+	throw redirect(307, `/${roundDefault?.slug}`);
 </script>
