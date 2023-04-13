@@ -30,7 +30,7 @@
 
 		<div class="relative p-6">
 			<Upload />
-			<div class:hidden={hasGpx} class="absolute z-10 -bottom-10 right-6">
+			<div class:hidden={hasGpx} class="absolute -bottom-10 right-6">
 				<ExpandAction {handleOnClick} />
 			</div>
 		</div>
