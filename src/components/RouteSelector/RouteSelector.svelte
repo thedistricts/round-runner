@@ -1,4 +1,9 @@
+<script lang="ts">
+	import { page } from '$app/stores';
+	const { title, logo } = $page.data;
+</script>
+
 <header class="flex items-center text-xl">
-	<img src="./assets/frog-graham.jpg" alt="Frog Graham logo" class="h-16" />
-	<h1 class="px-6">Frog Graham Round</h1>
+	<img src={logo} alt={`${title} logo`} class="h-16" />
+	<h1 class="px-6">{title}</h1>
 </header>
