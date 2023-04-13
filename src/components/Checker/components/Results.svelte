@@ -26,14 +26,14 @@
 </script>
 
 {#if hasRatificationResults}
-	<h3 class="sticky top-3 text-base font-normal text-stone-800">Checkpoints</h3>
+	<h3 class="sticky top-3 text-base font-normal text-stone-800 z-30">Checkpoints</h3>
 	<div class="pt-3">
 		{#if failed.length > 0}
 			<div class="py-3 flex flex-col gap-3 text-red-500">
 				<h4 class="text-sm font-semibold">Failed</h4>
 				{#each failed as failedFeature}
 					<button
-						class="relative py-4 flex flex-col items-center bg-white border-2 border-red-500 rounded-md shadow md:flex-row md:max-w-xl hover:bg-gray-100"
+						class="relative z-10 py-4 flex flex-col items-center bg-white border-2 border-red-500 rounded shadow md:flex-row md:max-w-xl hover:bg-gray-100"
 						on:click={() => handleOnMapFocus(failedFeature.geometry.coordinates)}
 					>
 						<div class="px-7 text-left">
@@ -59,7 +59,7 @@
 				<h4 class="text-sm font-semibold">Warnings</h4>
 				{#each warnings as warningFeature}
 					<button
-						class="relative pt-4 pb-5 flex flex-col items-center bg-white border border-gray-200 rounded-md shadow md:flex-row md:max-w-xl hover:bg-gray-100"
+						class="relative z-10 pt-4 pb-5 flex flex-col items-center bg-white border border-gray-200 rounded shadow md:flex-row md:max-w-xl hover:bg-gray-100"
 						on:click={() => handleOnMapFocus(warningFeature.geometry.coordinates)}
 					>
 						<div class="px-7 text-left">
@@ -85,7 +85,7 @@
 				<h4 class="text-green-500 text-sm font-semibold">Valid</h4>
 				{#each valids as validFeature}
 					<button
-						class="py-4 flex flex-col items-center bg-white border border-gray-200 rounded-md shadow md:flex-row md:max-w-xl hover:bg-gray-100"
+						class="py-4 flex flex-col items-center bg-white border border-gray-200 rounded shadow md:flex-row md:max-w-xl hover:bg-gray-100"
 						on:click={() => handleOnMapFocus(validFeature.geometry.coordinates)}
 					>
 						<div class="px-7 text-left">

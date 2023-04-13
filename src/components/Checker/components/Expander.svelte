@@ -10,7 +10,7 @@
 
 {#if isOpen}
 	<div
-		class="relative overflow-y-auto before:fixed before:block before:left-0 before:right-4 before:h-16 before:bg-gradient-to-b before:from-white before:via-white"
+		class="relative overflow-y-auto before:z-20 before:fixed before:block before:left-0 before:right-4 before:h-16 before:bg-gradient-to-b before:from-white before:via-white"
 	>
 		<div class="h-full">
 			<div class="px-6 py-3">
