@@ -4,6 +4,7 @@
 	import type { LngLatLike } from 'maplibre-gl';
 	import type { Position } from 'geojson';
 	import { HOURS } from '$lib/const';
+	import { kilometersToMeters } from '$lib/utils';
 
 	import { ratification, results, resultsFocus } from '$lib/stores/ratification.store';
 	import { Loader } from './';
@@ -26,7 +27,9 @@
 </script>
 
 {#if hasRatificationResults}
-	<h3 class="sticky top-3 text-base font-normal text-stone-800 z-30">Checkpoints</h3>
+	<h3 class="z-30 block sticky top-3 text-base font-normal text-stone-800 pointer-events-none">
+		Checkpoints
+	</h3>
 	<div class="pt-3">
 		{#if failed.length > 0}
 			<div class="py-3 flex flex-col gap-3 text-red-500">
@@ -41,7 +44,7 @@
 								{failedFeature.properties.name}
 							</div>
 							<div class="text-xs text-neutral-500">
-								nearest point: {Number(failedFeature.properties.dist * 1000).toFixed(0)}m
+								nearest point: {kilometersToMeters(failedFeature.properties.dist)}m
 							</div>
 						</div>
 						{#if failedFeature.properties.time}
@@ -67,7 +70,7 @@
 								{warningFeature.properties.name}
 							</div>
 							<div class="text-xs text-neutral-500">
-								nearest point: {Number(warningFeature.properties.dist * 1000).toFixed(0)}m
+								nearest point: {kilometersToMeters(warningFeature.properties.dist)}m
 							</div>
 						</div>
 						{#if warningFeature.properties.time}
