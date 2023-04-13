@@ -17,7 +17,7 @@ export function ratify({ track, route }: RatifyProps): RatifyReturn {
 
 	const nearestRoutePoints = route.features.map((routePoint, index) => {
 		const point = turf.nearestPointOnLine(trackLineString, turf.getCoord(routePoint));
-		const time = point.properties.index ? trackLineString.properties.coordinateProperties.times[point.properties.index] : undefined;
+		const time = point.properties.index ? trackLineString.properties?.coordinateProperties?.times[point.properties.index] : undefined;
 		point.properties = {
 			...routePoint.properties,
 			...point.properties,
