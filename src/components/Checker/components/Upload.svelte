@@ -31,14 +31,14 @@
 		isVisible = true;
 	}
 
-	async function handleAddFile(err: unknown, fileItem: { file: File }) {
+	async function handleAddFile(_err: unknown, fileItem: { file: File }) {
+		loadWorker();
 		const data: GPXGeoJson = await load(fileItem.file, GPXLoader);
 		gpx.set(data);
 		fileName = fileItem.file.name;
 		const { ratify } = Comlink.wrap<ExposeRatificationWorker>(ratificationWorker);
 		const ratificationResult = await ratify({ track: data, route: $route });
 		ratificationStore.set(ratificationResult);
-		console.log(ratificationResult);
 		terminateWorker();
 	}
 
@@ -54,7 +54,6 @@
 
 	onMount(() => {
 		dayjs.extend(utc);
-		loadWorker();
 	});
 
 	onDestroy(terminateWorker);
