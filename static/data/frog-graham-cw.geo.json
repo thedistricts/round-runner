@@ -36,7 +36,8 @@
 			"properties": {
 				"name": "Bassenthwaite Church",
 				"leg": 1,
-				"featureType": "checkpoint"
+				"featureType": "checkpoint",
+				"notes": "Must touch churchyard wall"
 			},
 			"geometry": {
 				"type": "Point",

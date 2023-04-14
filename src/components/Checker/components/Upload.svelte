@@ -5,8 +5,7 @@
 	import dayjs from 'dayjs';
 	import utc from 'dayjs/plugin/utc';
 
-	// TODO: also allow garmin .fit files
-	// https://developer.garmin.com/fit/example-projects/javascript/
+	// TODO: also allow .KML files?
 	import { GPXLoader } from '@loaders.gl/kml';
 	import { load } from '@loaders.gl/core';
 

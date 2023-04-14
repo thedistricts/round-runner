@@ -108,7 +108,7 @@
 	</div>
 {/if}
 {#if !hasRatificationResults}
-	<div class="text-center py-3">
+	<div class="text-center py-8">
 		<Loader />
 	</div>
 {/if}
