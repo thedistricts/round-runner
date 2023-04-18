@@ -4,5 +4,15 @@ module.exports = {
 	theme: {
 		extend: {}
 	},
-	plugins: []
+	plugins: [
+		require('tailwindcss-print-styles')
+	],
+	variants: {
+		display: ['print'],
+		overflow: ['print'],
+		margin: ['print'],
+		padding: ['print'],
+		height: ['print'],
+		"drop-shadow": ['print'],
+  }
 };

@@ -19,13 +19,6 @@
 		});
 
 		map.addControl(new NavigationControl({}), 'bottom-right');
-
-		// map.on('load', function() {
-		// 	const { width, height } = map.getCanvas();
-		// });
-		// map.on('resize', function() {
-		// 	const { width, height } = map.getCanvas();
-		// });
 	}
 
 	setContext(key, {
@@ -40,7 +33,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" on:load={load} />
 </svelte:head>
 
-<div id="map" class="fixed w-screen h-screen z-0" bind:this={mapContainer}>
+<div id="map" class="fixed w-screen h-screen z-0 print:hidden" bind:this={mapContainer}>
 	<Route />
 	<Track />
 	<Results />

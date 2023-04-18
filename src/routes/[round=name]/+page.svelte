@@ -16,11 +16,17 @@
 	});
 </script>
 
-<div class="grid grid-cols-3 gap-4 relative h-screen z-10 pointer-events-none">
+<div
+	class="
+	grid grid-cols-3 gap-4 
+	relative h-screen
+	z-10 pointer-events-none
+	print:block print:h-auto"
+>
 	<Checker />
 
 	{#if $breakdown}
-		<div class="col-span-2 h-screen pointer-events-auto">
+		<div class="col-span-2 h-screen pointer-events-auto print:h-auto">
 			<Breakdown />
 		</div>
 	{/if}

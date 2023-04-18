@@ -4,6 +4,7 @@
 	import utc from 'dayjs/plugin/utc';
 	import { HOURS, DATE } from '$lib/const';
 	import { gpx } from '$lib/stores/gpx.store';
+	import { getMetricsFrom } from '$lib/utils';
 	import { breakdown } from '$lib/stores/breakdown.store';
 	import { ratification } from '$lib/stores/ratification.store';
 
@@ -11,26 +12,23 @@
 
 	dayjs.extend(utc);
 	$: date = dayjs($gpx.features?.[0]?.properties.time);
-
-	let times: string[] = [];
 	let start = dayjs();
 	let end = dayjs();
 	let elapsed = new Date(0);
-	let hasValidTimes = false;
-	let hasCoordinateTimes = false;
 	let isValid = false;
 
-	const unsubscribe = gpx.subscribe(() => {
-		const coordinates = $gpx.features?.[0]?.geometry?.coordinates ?? [];
-		times = $gpx.features?.[0]?.properties?.coordinateProperties?.times ?? [];
-		hasValidTimes = coordinates.length === times.length;
-		hasCoordinateTimes = times.length > 0;
-		isValid = hasCoordinateTimes && hasValidTimes;
-		if (isValid) {
-			start = dayjs(times?.[0]);
-			end = dayjs(times?.[times.length - 1]);
-			elapsed = new Date(end.diff(start));
-		}
+	const unsubscribe = gpx.subscribe((track) => {
+		const {
+			start: trackStart,
+			end: trackEnd,
+			elapsed: trackElapsed,
+			isValid: isTrackValid
+		} = getMetricsFrom(track);
+
+		start = trackStart;
+		end = trackEnd;
+		elapsed = trackElapsed;
+		isValid = isTrackValid;
 	});
 
 	function handleOnResetClick() {

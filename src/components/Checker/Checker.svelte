@@ -17,18 +17,23 @@
 	});
 
 	onDestroy(unsubscribe);
-
-	// TODO: ratification processing should show a loading skeleton
 </script>
 
-<div class="h-screen">
+<div class="h-screen print:h-auto">
 	<div
 		class:expanded={isOpen}
-		class="pointer-events-auto bg-white rounded-md drop-shadow divide-y divide-slate-200 m-8 mr-0"
+		class="
+			pointer-events-auto 
+			bg-white rounded-md drop-shadow
+			divide-y divide-slate-200
+			m-8 mr-0
+			print:drop-shadow-none
+			print:m-0
+		"
 	>
 		<RouteSelector />
 
-		<div class="relative p-6">
+		<div class="relative p-6 print:hidden">
 			<Upload />
 			<div class:hidden={hasGpx} class="absolute -bottom-10 right-6">
 				<ExpandAction {handleOnClick} />
@@ -51,5 +56,9 @@
 		display: grid;
 		grid-template-rows: 4rem auto 1fr;
 		height: calc(100vh - 4rem);
+		@media print {
+			display: block;
+			height: auto;
+		}
 	}
 </style>

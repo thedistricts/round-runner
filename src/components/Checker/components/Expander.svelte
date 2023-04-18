@@ -14,7 +14,8 @@
 			relative overflow-y-auto
 			before:pointer-events-none 
 			before:z-20 before:fixed before:block before:left-0 before:right-4 before:h-16 
-			before:bg-gradient-to-b before:from-white before:via-white"
+			before:bg-gradient-to-b before:from-white before:via-white
+			print:hidden"
 	>
 		<div class="h-full">
 			<div class="px-6 py-3">
