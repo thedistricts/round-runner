@@ -1,21 +1,52 @@
 <script lang="ts">
+	import { onDestroy } from 'svelte';
+	import { gpx } from '$lib/stores/gpx.store';
+
 	import dayjs from 'dayjs';
-	import { HOURS } from '$lib/const';
-	import { ratification } from '$lib/stores/ratification.store';
+	import { DATE, HOURS } from '$lib/const';
+	import { getMetricsFrom, getMetricsDefaults } from '$lib/utils';
+	import { submissionPoints } from '$lib/stores/ratification.store';
+	let metrics = getMetricsDefaults();
+	const unsubscribe = gpx.subscribe((track) => {
+		metrics = getMetricsFrom(track);
+	});
+	onDestroy(unsubscribe);
+
+	function getOrderLabel(order: number) {
+		if (order === 0) {
+			return 'Start';
+		}
+		if (order === $submissionPoints.length - 1) {
+			return 'Finish';
+		}
+		return order;
+	}
 </script>
 
-<article class="p-8 pl-0 h-full">
-	<div class="bg-white rounded-md drop-shadow pb-5 h-full overflow-auto">
-		<header class="border-b px-6 py-4 flex items-center sticky top-0 z-10 bg-white">
+<article class="p-8 pl-0 h-full print:h-auto print:p-0">
+	<div
+		class="
+		bg-white rounded-md drop-shadow
+		pb-5 h-full
+		overflow-auto
+		print:overflow-visible
+		print:drop-shadow-none
+		print:p-0
+		"
+	>
+		<header class="border-b px-6 py-4 flex items-center sticky top-0 z-10 bg-white print:px-0">
 			<h4 class="text-xl">Ratification Breakdown</h4>
 		</header>
 
-		<div class="px-6">
+		<div class="px-6 print:p-0">
 			<div class="flex justify-between gap-3 pt-5 pb-6 text-gray-600">
-				<div>Date:</div>
-				<div>Start:</div>
-				<div>End:</div>
-				<div>Estimated Elapsed Time:</div>
+				<div>Date: {metrics.start.utc().format(DATE)}</div>
+				<div>Start: {metrics.start.utc().format(HOURS)}</div>
+				<div>End: {metrics.end.utc().format(HOURS)}</div>
+				<div>
+					Elapsed Time: {metrics.elapsed.getUTCHours()} hours
+					{metrics.elapsed.getUTCMinutes()} minutes
+				</div>
 			</div>
 
 			<div class="relative overflow-x-auto">
@@ -29,10 +60,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						{#each $ratification as ratificationFeature}
+						{#each $submissionPoints as ratificationFeature, order}
 							<tr class="bg-white border-b ">
 								<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-									{ratificationFeature.properties.order}
+									{getOrderLabel(order)}
 								</th>
 								<td class="px-6 py-5"> {ratificationFeature.properties.name} </td>
 								<td class="px-6 py-5">

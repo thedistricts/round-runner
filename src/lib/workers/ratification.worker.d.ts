@@ -15,7 +15,7 @@ interface RatifyProps {
 
 
 interface NearestPointOnLineProperties extends PointProperties  { index: number; dist: number; location: number; };
-interface ValidityPointProperties extends NearestPointOnLineProperties { valid: VALIDITY, time?: string, order: number, notes?: string };
+interface ValidityPointProperties extends NearestPointOnLineProperties { valid: VALIDITY, time?: string, order: number, notes?: string, ratify?: boolean };
 
 export type NearestPointOnLineWithValidity = Feature<
 	Point,

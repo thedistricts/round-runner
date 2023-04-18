@@ -6,7 +6,8 @@
 			"properties": {
 				"name": "Moot Hall (Start)",
 				"leg": 1,
-				"featureType": "checkpoint"
+				"featureType": "checkpoint",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -21,7 +22,8 @@
 			"properties": {
 				"name": "Skiddaw",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -37,7 +39,8 @@
 				"name": "Bassenthwaite Church",
 				"leg": 1,
 				"featureType": "checkpoint",
-				"notes": "Must touch churchyard wall"
+				"notes": "Must touch churchyard wall",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -67,7 +70,8 @@
 			"properties": {
 				"name": "Barf",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -82,7 +86,8 @@
 			"properties": {
 				"name": "Lords Seat",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -97,7 +102,8 @@
 			"properties": {
 				"name": "Ullister Hill",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -112,7 +118,8 @@
 			"properties": {
 				"name": "Grisedale Pike",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -127,7 +134,8 @@
 			"properties": {
 				"name": "Hopegill Head",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -142,7 +150,8 @@
 			"properties": {
 				"name": "Sand Hill",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -157,7 +166,8 @@
 			"properties": {
 				"name": "Crag Hill",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -179,7 +189,8 @@
 			"properties": {
 				"name": "Wandhope",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"ratify": true
 			}
 		},
 		{
@@ -194,7 +205,8 @@
 			"properties": {
 				"name": "Whiteless Pike",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"ratify": true
 			}
 		},
 		{
@@ -202,14 +214,16 @@
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
-					-3.28902,
-					54.552639
+					-3.289032,
+					54.552643
 				]
 			},
 			"properties": {
-				"name": "Low Bank",
+				"name": "Rannerdale Knotts",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"notes": "Via Low Bank",
+				"ratify": true
 			}
 		},
 		{
@@ -239,7 +253,8 @@
 			"properties": {
 				"name": "Low Ling Crag",
 				"leg": 1,
-				"featureType": "water entry"
+				"featureType": "water entry",
+				"ratify": true
 			}
 		},
 		{
@@ -252,9 +267,11 @@
 				]
 			},
 			"properties": {
-				"name": "Mellbreak S Summit",
+				"name": "Mellbreak",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"notes": "South summit",
+				"ratify": true
 			}
 		},
 		{
@@ -269,7 +286,8 @@
 			"properties": {
 				"name": "Red Pike",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"ratify": true
 			}
 		},
 		{
@@ -284,7 +302,9 @@
 			"properties": {
 				"name": "High Stile",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"notes": "Wainwright 806m summit",
+				"ratify": true
 			}
 		},
 		{
@@ -299,7 +319,8 @@
 			"properties": {
 				"name": "Horse Close",
 				"leg": 1,
-				"featureType": "water entry"
+				"featureType": "water entry",
+				"ratify": true
 			}
 		},
 		{
@@ -322,7 +343,8 @@
 			"properties": {
 				"name": "Robinson",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -337,7 +359,8 @@
 			"properties": {
 				"name": "Dalehead",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -352,7 +375,8 @@
 			"properties": {
 				"name": "High Spy",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -367,7 +391,8 @@
 			"properties": {
 				"name": "Cat Bells",
 				"leg": 1,
-				"featureType": "summit"
+				"featureType": "summit",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -397,7 +422,8 @@
 			"properties": {
 				"name": "Otterbield Island",
 				"leg": 1,
-				"featureType": "water checkpoint"
+				"featureType": "water checkpoint",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -412,7 +438,8 @@
 			"properties": {
 				"name": "St Herberts Island",
 				"leg": 1,
-				"featureType": "water entry"
+				"featureType": "water entry",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -427,7 +454,8 @@
 			"properties": {
 				"name": "Rampsholme Island",
 				"leg": 1,
-				"featureType": "water checkpoint"
+				"featureType": "water checkpoint",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",
@@ -457,7 +485,8 @@
 			"properties": {
 				"name": "Moot Hall (Finish)",
 				"leg": 1,
-				"featureType": "checkpoint"
+				"featureType": "checkpoint",
+				"ratify": true
 			},
 			"geometry": {
 				"type": "Point",

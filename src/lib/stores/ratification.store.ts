@@ -38,4 +38,10 @@ export const results = derived(ratification, ($ratification) => {
 	return ratificationResults;
 });
 
+export const submissionPoints = derived(ratification, ($ratification) => {
+	return $ratification.filter(
+		(feature) => feature.properties.ratify
+	);
+});
+
 export const resultsFocus = writable<LngLatLike>(undefined);
