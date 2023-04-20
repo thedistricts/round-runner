@@ -3,6 +3,7 @@
 	import RouteSelector from '../RouteSelector/RouteSelector.svelte';
 	import { Upload, Checkpoints, Expander, Results, ExpandAction } from './components';
 	import { gpx } from '$lib/stores/gpx.store';
+	import { breakdown } from '$lib/stores/breakdown.store';
 
 	let isOpen = false;
 	let hasGpx = false;
@@ -19,7 +20,7 @@
 	onDestroy(unsubscribe);
 </script>
 
-<div class="h-screen print:h-auto">
+<div class="h-screen lg:max-w-2xl print:h-auto">
 	<div
 		class:expanded={isOpen}
 		class="
@@ -41,12 +42,14 @@
 		</div>
 
 		<Expander {isOpen}>
-			{#if hasGpx}
-				<Results />
-			{/if}
-			{#if !hasGpx}
-				<Checkpoints {isOpen} />
-			{/if}
+			<div class:print:hidden={$breakdown}>
+				{#if hasGpx}
+					<Results />
+				{/if}
+				{#if !hasGpx}
+					<Checkpoints {isOpen} />
+				{/if}
+			</div>
 		</Expander>
 	</div>
 </div>

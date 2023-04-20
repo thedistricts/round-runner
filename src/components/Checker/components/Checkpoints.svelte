@@ -13,9 +13,7 @@
 </script>
 
 {#if isLoaded}
-	<h3
-		class="z-30 block sticky top-3 text-base font-normal text-stone-800 pointer-events-none print:hidden"
-	>
+	<h3 class="z-30 block sticky top-3 text-base font-normal text-stone-800 pointer-events-none">
 		{$route.features.length} Checkpoints
 	</h3>
 	{#if isOpen}

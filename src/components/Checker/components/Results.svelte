@@ -36,7 +36,10 @@
 				<h4 class="text-sm font-semibold">Failed</h4>
 				{#each failed as failedFeature}
 					<button
-						class="relative z-10 py-4 flex flex-col items-center bg-white border-2 border-red-500 rounded shadow md:flex-row md:max-w-xl hover:bg-gray-100"
+						class="
+							relative z-10 py-4 flex flex-col 
+							bg-white border-2 border-red-500 rounded hover:bg-gray-100
+							shadow"
 						on:click={() => handleOnMapFocus(failedFeature.geometry.coordinates)}
 					>
 						<div class="px-7 text-left">
@@ -62,7 +65,9 @@
 				<h4 class="text-sm font-semibold">Warnings</h4>
 				{#each warnings as warningFeature}
 					<button
-						class="relative z-10 pt-4 pb-5 flex flex-col items-center bg-white border border-gray-200 rounded shadow md:flex-row md:max-w-xl hover:bg-gray-100"
+						class="relative z-10 py-4 flex flex-col 
+							bg-white border-2 border-gray-200 rounded hover:bg-gray-100
+							shadow"
 						on:click={() => handleOnMapFocus(warningFeature.geometry.coordinates)}
 					>
 						<div class="px-7 text-left">
@@ -88,10 +93,12 @@
 				<h4 class="text-green-500 text-sm font-semibold">Valid</h4>
 				{#each valids as validFeature}
 					<button
-						class="py-4 flex flex-col items-center bg-white border border-gray-200 rounded shadow md:flex-row md:max-w-xl hover:bg-gray-100"
+						class="relative z-10 py-4 flex items-center
+							bg-white border-2 border-gray-200 rounded hover:bg-gray-100
+							shadow"
 						on:click={() => handleOnMapFocus(validFeature.geometry.coordinates)}
 					>
-						<div class="px-7 text-left">
+						<div class="px-7">
 							<div>
 								{validFeature.properties.name}
 							</div>

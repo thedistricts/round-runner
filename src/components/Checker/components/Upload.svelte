@@ -62,7 +62,7 @@
 	<div
 		class:opacity-1={isVisible}
 		class:opacity-0={!isVisible}
-		class="h-20 transition-opacity duration-500 delay-200"
+		class="h-20 transition-opacity duration-500 delay-200 print:hidden"
 	>
 		<!-- TODO: look at FileTypeValidation -->
 		<FilePond

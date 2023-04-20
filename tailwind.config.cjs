@@ -13,6 +13,9 @@ module.exports = {
 		margin: ['print'],
 		padding: ['print'],
 		height: ['print'],
+		"box-shadow": ['print'],
+		"shadow": ['print'],
 		"drop-shadow": ['print'],
+		"before": ['print'],
   }
 };
