@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
 	import dayjs from 'dayjs';
+	import utc from 'dayjs/plugin/utc';
+
 	import type { LngLatLike } from 'maplibre-gl';
 	import type { Position } from 'geojson';
 	import { HOURS } from '$lib/const';
@@ -8,6 +10,8 @@
 
 	import { ratification, results, resultsFocus } from '$lib/stores/ratification.store';
 	import { Loader } from './';
+
+	dayjs.extend(utc);
 
 	let hasRatificationResults = false;
 	$: warnings = $results?.warnings ?? [];
@@ -52,7 +56,7 @@
 						</div>
 						{#if failedFeature.properties.time}
 							<div class="absolute top-4 right-3 text-sm text-neutral-400">
-								{dayjs(failedFeature.properties.time).format(HOURS)}
+								{dayjs(failedFeature.properties.time).utc().format(HOURS)}
 							</div>
 						{/if}
 					</button>
@@ -80,7 +84,7 @@
 						</div>
 						{#if warningFeature.properties.time}
 							<div class="absolute top-4 right-3 text-sm text-neutral-400">
-								{dayjs(warningFeature.properties.time).format(HOURS)}
+								{dayjs(warningFeature.properties.time).utc().format(HOURS)}
 							</div>
 						{/if}
 					</button>
@@ -105,7 +109,7 @@
 						</div>
 						{#if validFeature.properties.time}
 							<div class="ml-auto px-3 text-sm text-neutral-400">
-								{dayjs(validFeature.properties.time).format(HOURS)}
+								{dayjs(validFeature.properties.time).utc().format(HOURS)}
 							</div>
 						{/if}
 					</button>

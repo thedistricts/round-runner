@@ -3,13 +3,20 @@
 	import { gpx } from '$lib/stores/gpx.store';
 
 	import dayjs from 'dayjs';
+	import utc from 'dayjs/plugin/utc';
+
 	import { DATE, HOURS } from '$lib/const';
 	import { getMetricsFrom, getMetricsDefaults } from '$lib/utils';
 	import { submissionPoints } from '$lib/stores/ratification.store';
+	import { breakdown } from '$lib/stores/breakdown.store';
+
+	dayjs.extend(utc);
+
 	let metrics = getMetricsDefaults();
 	const unsubscribe = gpx.subscribe((track) => {
 		metrics = getMetricsFrom(track);
 	});
+
 	onDestroy(unsubscribe);
 
 	function getOrderLabel(order: number) {
@@ -20,6 +27,10 @@
 			return 'Finish';
 		}
 		return order;
+	}
+
+	function handleOnBreakdownCloseClick() {
+		breakdown.set(false);
 	}
 </script>
 
@@ -36,6 +47,28 @@
 	>
 		<header class="border-b px-6 py-4 flex items-center sticky top-0 z-10 bg-white print:px-0">
 			<h4 class="text-xl">Ratification Breakdown</h4>
+			<button
+				class="ml-auto rounded-full p-1 focus:ring-2 focus:ring-indigo-500"
+				on:click={handleOnBreakdownCloseClick}
+			>
+				<!-- TOOD: Make Svgs components -->
+				<span class="sr-only">Close</span>
+				<svg
+					class="h-6 w-6"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+					aria-hidden="true"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M6 18L18 6M6 6l12 12"
+					/>
+				</svg>
+			</button>
 		</header>
 
 		<div class="px-6 print:p-0">
@@ -68,7 +101,7 @@
 								<td class="px-6 py-5"> {ratificationFeature.properties.name} </td>
 								<td class="px-6 py-5">
 									{#if ratificationFeature.properties.time}
-										{dayjs(ratificationFeature.properties.time).format(HOURS)}
+										{dayjs(ratificationFeature.properties.time).utc().format(HOURS)}
 									{/if}
 								</td>
 								<td class="px-6 py-5">
