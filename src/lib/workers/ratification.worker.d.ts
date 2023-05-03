@@ -1,6 +1,8 @@
 import { ratify } from './ratification.worker';
 import type { Point, Feature } from '@turf/turf';
 import type { GPXGeoJson } from '$lib/stores/gpx.store.d';
+import type { LineStringProperties } from '$lib/stores/gpx.store.d';
+
 import type { RouteGeoJson, PointProperties } from '$lib/stores/route.store.d';
 
 type Ratify = typeof ratify;
@@ -22,3 +24,17 @@ export type NearestPointOnLineWithValidity = Feature<
 	ValidityPointProperties
 > ;
 type RatifyReturn = NearestPointOnLineWithValidity[];
+
+export interface SortByGridProps {
+	trackLineString: turf.Feature<turf.LineString, LineStringProperties>;
+	routePoints: RouteGeoJson;
+	boundingBox?: turf.BBox;
+}
+
+export interface GetNearestPointOnLineWithValidityProps {
+	trackLineString: turf.Feature<turf.LineString>;
+	point: turf.Feature<turf.Point>;
+	order: number;
+	times: string[];
+	index: number;
+}
