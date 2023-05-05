@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { onMount } from 'svelte';
+	import { onMount, beforeUpdate } from 'svelte';
 	import { breakdown } from '$lib/stores/breakdown.store';
 	import { route } from '$lib/stores/route.store';
 	import type { RouteGeoJson } from '$lib/stores/route.store.d';
@@ -9,7 +9,7 @@
 
 	export let data: PageData;
 
-	onMount(async () => {
+	beforeUpdate(async () => {
 		const res = await fetch(data.json);
 		const routeGeoJson: RouteGeoJson = await res.json();
 		route.set(routeGeoJson);

@@ -47,7 +47,7 @@ export function ratify({ track, route }: RatifyProps): RatifyReturn {
 
 	const slicedChunks = route.features.map((_, index) => {
 		// NOTE: to ensure we don't mismatch the start with the end 
-		// i.e. when the end point of a round is closer to the start than the start point
+		// i.e. when the end point of a round is closer to the start than the first track point
 		// we slice the track in parts and enforce the beginning and finish of the route
 		const start = index === 0
 			? turf.point(trackLineString.geometry.coordinates[0])
