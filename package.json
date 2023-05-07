@@ -46,6 +46,7 @@
 		"comlink": "^4.4.1",
 		"dayjs": "^1.11.7",
 		"filepond": "^4.30.4",
+		"filepond-plugin-file-validate-type": "^1.2.8",
 		"maplibre-gl": "^2.4.0",
 		"svelte-filepond": "^0.2.0"
 	}

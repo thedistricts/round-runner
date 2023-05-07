@@ -31,6 +31,7 @@
 		const hasCircleSource = map.getSource(sourceId);
 
 		if (!hasCircleSource) {
+			// TODO: is turf.buffer better?
 			const circle = turf.circle(coordinates, radius, DRAW_OPTIONS);
 
 			map.addSource(sourceId, {

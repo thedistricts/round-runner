@@ -12,8 +12,8 @@
 
 <header class="flex items-center text-xl">
 	<img src={logo} alt={`${title} logo`} class="h-16" />
-	<div class="relative flex w-full pr-4">
-		<span class="pointer-events-none absolute inset-y-0 right-5 ml-3 flex items-center pr-2">
+	<div class="relative flex w-full pr-3">
+		<span class="pointer-events-none absolute inset-y-0 right-4 ml-3 flex items-center pr-2">
 			<svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 				<path
 					fill-rule="evenodd"
@@ -27,13 +27,10 @@
 			id="rounds"
 			class="
 				appearance-none
-				after:content-['▼'] 
-				after:absolute
-				after:right-2
 				w-full 
-			text-gray-900 text-base 
+			text-gray-900 text-lg 
 				rounded-lg focus:ring-blue-500 focus:border-blue-500 
-				block p-2.5 ml-4"
+				block p-2.5 ml-3"
 		>
 			{#each rounds as round}
 				<option selected={slug === round.slug} value={round.slug}>

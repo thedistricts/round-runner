@@ -1,9 +1,6 @@
 <script lang="ts">
 	import * as Comlink from 'comlink';
-	import { onMount, onDestroy } from 'svelte';
-
-	import dayjs from 'dayjs';
-	import utc from 'dayjs/plugin/utc';
+	import { onDestroy } from 'svelte';
 
 	// TODO: also allow .KML files?
 	import { GPXLoader } from '@loaders.gl/kml';
@@ -14,17 +11,19 @@
 	import { ratification as ratificationStore } from '$lib/stores/ratification.store';
 	import type { GPXGeoJson } from '$lib/stores/gpx.store.d';
 
-	import FilePond from 'svelte-filepond';
+	import FilePond, { registerPlugin } from 'svelte-filepond';
+	import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 	import Details from './Details.svelte';
 
 	import RatificationWorker from '$lib/workers/ratification.worker?worker';
 	import type { ExposeRatificationWorker } from '$lib/workers/ratification.worker.d';
 
 	let ratificationWorker: Worker;
-	let pond;
 	let name = 'filepond';
 	let isVisible = false;
 	let fileName = '';
+
+	registerPlugin(FilePondPluginFileValidateType);
 
 	function handleFilePondInit() {
 		isVisible = true;
@@ -51,10 +50,6 @@
 		}
 	}
 
-	onMount(() => {
-		dayjs.extend(utc);
-	});
-
 	onDestroy(terminateWorker);
 </script>
 
@@ -64,23 +59,19 @@
 		class:opacity-0={!isVisible}
 		class="h-20 transition-opacity duration-500 delay-200 print:hidden"
 	>
-		<!-- TODO: look at FileTypeValidation -->
 		<FilePond
-			bind:this={pond}
 			{name}
+			oninit={handleFilePondInit}
+			onaddfile={handleAddFile}
+			allowFileTypeValidation={true}
+			acceptedFileTypes={['application/xml']}
+			acceptedFileExtensions={['gpx']}
 			dropOnElement
 			dropOnPage
 			dropValidation
-			labelIdle="Drag & Drop your attempt or <span class='filepond--label-action'> Browse </span>"
 			allowMultiple={false}
-			oninit={handleFilePondInit}
-			onaddfile={handleAddFile}
+			labelIdle="Drag & Drop your attempt or <span class='filepond--label-action'> Browse </span>"
 			credits={false}
-			allowFileTypeValidation
-			acceptedFileTypes={['application/gpx+xml']}
-			acceptedFileExtensions={['gpx']}
-			maxFiles={1}
-			checkValidity
 		/>
 	</div>
 {:else}
