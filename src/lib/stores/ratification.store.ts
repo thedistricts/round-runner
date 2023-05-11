@@ -1,4 +1,7 @@
 import type { LngLatLike } from 'maplibre-gl';
+import  { featureCollection } from '@turf/helpers';
+import type { FeatureCollection } from '@turf/helpers';
+
 import { writable, derived } from 'svelte/store';
 import type { RatificationResults, FilteredRatificationResults } from './ratification.store.d';
 import { VALIDITY } from '$lib/enum';
@@ -45,3 +48,18 @@ export const submissionPoints = derived(ratification, ($ratification) => {
 });
 
 export const resultsFocus = writable<LngLatLike>(undefined);
+
+
+function createDebug() {
+	const debug = writable<FeatureCollection>(undefined);
+
+	const { subscribe, set, update } = debug;
+
+	return {
+		subscribe,
+		set,
+		update,
+		reset: () => set(featureCollection([])),
+	};
+}
+export const debug = createDebug();
