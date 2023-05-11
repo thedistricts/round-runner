@@ -16,15 +16,22 @@ export type ExposeRatificationWorker = {
 interface RatifyProps {
 	track: GPXGeoJson;
 	route: RouteGeoJson;
-};
+}
 
-interface NearestPointOnLineProperties extends PointProperties  { index: number; dist: number; location: number; };
-interface ValidityPointProperties extends NearestPointOnLineProperties { valid: VALIDITY, time?: string, order: number, notes?: string, ratify?: boolean };
+interface NearestPointOnLineProperties extends PointProperties {
+	index: number;
+	dist: number;
+	location: number;
+}
+interface ValidityPointProperties extends NearestPointOnLineProperties {
+	valid: VALIDITY;
+	time?: string;
+	order: number;
+	notes?: string;
+	ratify?: boolean;
+}
 
-export type NearestPointOnLineWithValidity = Feature<
-	Point,
-	ValidityPointProperties
-> ;
+export type NearestPointOnLineWithValidity = Feature<Point, ValidityPointProperties>;
 type RatifyReturn = NearestPointOnLineWithValidity[];
 
 export interface SortByGridProps {
@@ -45,4 +52,7 @@ export interface GetSlicesFromProps {
 	from: FeatureCollection<Feature<Point, PointProperties>[]>;
 	with: FeatureCollection<Point, PointProperties>;
 }
-export type GetSlicesFromReturn = turf.helpers.Feature<turf.helpers.LineString, turf.helpers.Properties>[];
+export type GetSlicesFromReturn = turf.helpers.Feature<
+	turf.helpers.LineString,
+	turf.helpers.Properties
+>[];

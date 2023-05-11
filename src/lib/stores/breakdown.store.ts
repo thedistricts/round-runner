@@ -8,7 +8,7 @@ function create() {
 		subscribe,
 		set,
 		update,
-		reset: () => set(false),
+		reset: () => set(false)
 	};
 }
 

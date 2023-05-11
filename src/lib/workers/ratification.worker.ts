@@ -14,7 +14,13 @@ import type {
 	GetSlicesFromReturn
 } from './ratification.worker.d';
 
-function getNearestPointOnLineWithValidity({ trackLineString, point: routePoint, order, times, index }: GetNearestPointOnLineWithValidityProps): NearestPointOnLineWithValidity {
+function getNearestPointOnLineWithValidity({
+	trackLineString,
+	point: routePoint,
+	order,
+	times,
+	index
+}: GetNearestPointOnLineWithValidityProps): NearestPointOnLineWithValidity {
 	const point = turf.nearestPointOnLine(trackLineString, routePoint);
 	point.properties.index = index;
 
@@ -27,9 +33,9 @@ function getNearestPointOnLineWithValidity({ trackLineString, point: routePoint,
 		...point.properties,
 		order: order + 1,
 		valid: VALIDITY.FAIL,
-		time,
+		time
 	};
-	
+
 	if (!validityDistance) throw new Error('Route feature type is not valid');
 
 	if (distanceAway < validityDistance?.[VALIDITY.WARN]) {
@@ -41,27 +47,33 @@ function getNearestPointOnLineWithValidity({ trackLineString, point: routePoint,
 	return point as NearestPointOnLineWithValidity;
 }
 
-
-function getSlices({ from: route, with: trackLineString }: GetSlicesFromProps): GetSlicesFromReturn {
+function getSlices({
+	from: route,
+	with: trackLineString
+}: GetSlicesFromProps): GetSlicesFromReturn {
 	const slices = route.features.map((_, index: number) => {
-		// NOTE: to ensure we don't mismatch the start with the end 
+		// NOTE: to ensure we don't mismatch the start with the end
 		// i.e. when the end point of a round is closer to the start than the first track point
 		// we slice the track in parts and enforce the beginning and finish of the route
 		const isInRange = index < route.features.length - 1;
 		const isStart = route.features[index].properties.featureType === POINT_FEATURE.CHECKPOINT_START;
-		const isEnd = !isInRange || route.features[index + 1].properties.featureType === POINT_FEATURE.CHECKPOINT_FINISH;
-		
+		const isEnd =
+			!isInRange ||
+			route.features[index + 1].properties.featureType === POINT_FEATURE.CHECKPOINT_FINISH;
+
 		const start = isStart
 			? turf.point(trackLineString.geometry.coordinates[0])
 			: route.features[index];
-		
+
 		const end = isEnd
-			? turf.point(trackLineString.geometry.coordinates[trackLineString.geometry.coordinates.length - 1])
+			? turf.point(
+					trackLineString.geometry.coordinates[trackLineString.geometry.coordinates.length - 1]
+			  )
 			: route.features[index + 1];
-		
+
 		const slice = turf.lineSlice(start, end, trackLineString);
 		return slice;
-	})
+	});
 	return slices;
 }
 
@@ -71,7 +83,7 @@ export function ratify({ track, route }: RatifyProps): RatifyReturn {
 		throw new Error('Feature Collection does not contain a LineString');
 	}
 	const slicedChunks = getSlices({ from: route, with: trackLineString });
-	
+
 	let totalIndex = 0;
 
 	const nearestRoutePointsTotal = slicedChunks.map((currentChunk, currentChunkIndex) => {

@@ -12,14 +12,19 @@ interface FitUtilProps {
 interface FitBoundsWithPaddingProps extends FitUtilProps {
 	bBox: BBox;
 }
-interface FitPositionWithOffsetProps extends FitUtilProps  {
+interface FitPositionWithOffsetProps extends FitUtilProps {
 	position?: LngLatLike;
-	maxZoom?: number; 
+	maxZoom?: number;
 	duration?: number;
 	offset?: number;
 }
 
-export function fitBoundsWithPadding({ map, bBox, animate = true, delay = 125 }: FitBoundsWithPaddingProps) {
+export function fitBoundsWithPadding({
+	map,
+	bBox,
+	animate = true,
+	delay = 125
+}: FitBoundsWithPaddingProps) {
 	if (!Number.isFinite(bBox[0]) || !map) return;
 	const { width, height } = map.getCanvas();
 	const padding = {
@@ -28,7 +33,7 @@ export function fitBoundsWithPadding({ map, bBox, animate = true, delay = 125 }:
 		left: width * BOUNDS_PADDING_RATIO.LEFT,
 		right: width * BOUNDS_PADDING_RATIO.RIGHT
 	};
-	
+
 	setTimeout(() => {
 		map.fitBounds(bBox as LngLatBoundsLike, {
 			padding,
@@ -37,9 +42,16 @@ export function fitBoundsWithPadding({ map, bBox, animate = true, delay = 125 }:
 	}, delay);
 }
 
-
-export function fitPositionWithOffset({ map, position, animate = true, maxZoom = 13, duration = 1000, offset = 0.3333, delay = 125 }: FitPositionWithOffsetProps) {
-	if (!position || !map ) return;
+export function fitPositionWithOffset({
+	map,
+	position,
+	animate = true,
+	maxZoom = 13,
+	duration = 1000,
+	offset = 0.3333,
+	delay = 125
+}: FitPositionWithOffsetProps) {
+	if (!position || !map) return;
 	const { width } = map.getCanvas();
 	const padding = {
 		left: width * offset
@@ -48,5 +60,4 @@ export function fitPositionWithOffset({ map, position, animate = true, maxZoom =
 	setTimeout(() => {
 		map.fitBounds(bounds, { maxZoom, padding, duration, animate });
 	}, delay);
-	
 }
