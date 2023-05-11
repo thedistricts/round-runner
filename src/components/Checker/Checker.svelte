@@ -34,7 +34,7 @@
 	>
 		<RouteSelector />
 
-		<div class="relative p-6 print:hidden">
+		<div class="relative p-6z print:hidden">
 			<Upload />
 			<div class:hidden={hasGpx} class="absolute -bottom-10 right-6">
 				<ExpandAction {handleOnClick} />
