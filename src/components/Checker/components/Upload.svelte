@@ -8,7 +8,10 @@
 
 	import { route } from '$lib/stores/route.store';
 	import { gpx } from '$lib/stores/gpx.store';
-	import { ratification as ratificationStore } from '$lib/stores/ratification.store';
+	import {
+		ratification as ratificationStore,
+		debug as debugStore
+	} from '$lib/stores/ratification.store';
 	import type { GPXGeoJson } from '$lib/stores/gpx.store.d';
 
 	import FilePond, { registerPlugin } from 'svelte-filepond';
@@ -22,6 +25,8 @@
 	let name = 'filepond';
 	let isVisible = false;
 	let fileName = '';
+	const IDLE_MESSAGE =
+		"Drag & Drop your attempt or <span class='filepond--label-action'> Browse </span>";
 
 	registerPlugin(FilePondPluginFileValidateType);
 
@@ -34,9 +39,11 @@
 		const data: GPXGeoJson = await load(fileItem.file, GPXLoader);
 		gpx.set(data);
 		fileName = fileItem.file.name;
-		const { ratify } = Comlink.wrap<ExposeRatificationWorker>(ratificationWorker);
+		const { ratify, debug } = Comlink.wrap<ExposeRatificationWorker>(ratificationWorker);
 		const ratificationResult = await ratify({ track: data, route: $route });
+		const ratificationDebugResult = await debug({ track: data, route: $route });
 		ratificationStore.set(ratificationResult);
+		debugStore.set(ratificationDebugResult);
 		terminateWorker();
 	}
 
@@ -70,7 +77,7 @@
 			dropOnPage
 			dropValidation
 			allowMultiple={false}
-			labelIdle="Drag & Drop your attempt or <span class='filepond--label-action'> Browse </span>"
+			labelIdle={IDLE_MESSAGE}
 			credits={false}
 		/>
 	</div>

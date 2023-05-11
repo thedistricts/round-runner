@@ -3,10 +3,10 @@
 	import dayjs from 'dayjs';
 	import utc from 'dayjs/plugin/utc';
 	import { HOURS, DATE } from '$lib/const';
-	import { gpx } from '$lib/stores/gpx.store';
 	import { getMetricsFrom } from '$lib/utils';
+	import { gpx } from '$lib/stores/gpx.store';
 	import { breakdown } from '$lib/stores/breakdown.store';
-	import { ratification } from '$lib/stores/ratification.store';
+	import { ratification, debug } from '$lib/stores/ratification.store';
 
 	export let fileName = '';
 
@@ -35,6 +35,7 @@
 		gpx.reset();
 		ratification.reset();
 		breakdown.reset();
+		debug.reset();
 	}
 
 	function showBreakdown() {

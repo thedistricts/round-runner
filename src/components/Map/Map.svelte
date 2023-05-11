@@ -2,7 +2,7 @@
 	import { onMount, onDestroy, setContext } from 'svelte';
 	import { Map, key } from './Map.context';
 	import { NavigationControl } from 'maplibre-gl';
-	import { Route, Track, Results } from './components';
+	import { Route, Track, Results, Debug } from './components';
 	import style from './Map.style';
 
 	let map: Map;
@@ -36,5 +36,6 @@
 <div id="map" class="fixed w-screen h-screen z-0 print:hidden" bind:this={mapContainer}>
 	<Route />
 	<Track />
+	<Debug />
 	<Results />
 </div>

@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { getContext, onDestroy } from 'svelte';
+	import { getContext, onMount, onDestroy } from 'svelte';
 	import * as turf from '@turf/turf';
-	import { ratification, resultsFocus } from '$lib/stores/ratification.store';
 	import { fitPositionWithOffset } from '$lib/utils';
+	import { ratification, resultsFocus } from '$lib/stores/ratification.store';
+
 	import Circle from './Circle.svelte';
 	import type { MapContext } from '../Map.context';
 	import { key } from '../Map.context';
