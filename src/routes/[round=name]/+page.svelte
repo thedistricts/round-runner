@@ -1,12 +1,11 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { onMount, beforeUpdate } from 'svelte';
+	import { beforeUpdate } from 'svelte';
 	import { breakdown } from '$lib/stores/breakdown.store';
 	import { route } from '$lib/stores/route.store';
 	import type { RouteGeoJson } from '$lib/stores/route.store.d';
 	import Checker from '../../components/Checker/Checker.svelte';
 	import { Breakdown } from '../../components/Breakdown';
-
 	export let data: PageData;
 
 	beforeUpdate(async () => {

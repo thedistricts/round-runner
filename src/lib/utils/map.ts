@@ -1,4 +1,4 @@
-import { LngLatBounds } from 'maplibre-gl';
+import * as maplibre from 'maplibre-gl';
 import type { Map, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import type { BBox } from 'geojson';
 
@@ -56,7 +56,7 @@ export function fitPositionWithOffset({
 	const padding = {
 		left: width * offset
 	};
-	const bounds = new LngLatBounds().extend(position as LngLatLike);
+	const bounds = new maplibre.LngLatBounds().extend(position as LngLatLike);
 	setTimeout(() => {
 		map.fitBounds(bounds, { maxZoom, padding, duration, animate });
 	}, delay);
