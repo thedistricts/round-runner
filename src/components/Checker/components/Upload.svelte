@@ -1,6 +1,8 @@
 <script lang="ts">
 	import * as Comlink from 'comlink';
-	import { onDestroy } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
+	import { browser } from '$app/environment';
+
 
 	// TODO: also allow .KML files?
 	import { GPXLoader } from '@loaders.gl/kml';
@@ -22,6 +24,9 @@
 	import type { ExposeRatificationWorker } from '$lib/workers/ratification.worker.d';
 
 	let ratificationWorker: Worker;
+	$: isDebug = false;
+
+
 	let name = 'filepond';
 	let isVisible = false;
 	let fileName = '';
@@ -41,9 +46,11 @@
 		fileName = fileItem.file.name;
 		const { ratify, debug } = Comlink.wrap<ExposeRatificationWorker>(ratificationWorker);
 		const ratificationResult = await ratify({ track: data, route: $route });
-		const ratificationDebugResult = await debug({ track: data, route: $route });
 		ratificationStore.set(ratificationResult);
-		debugStore.set(ratificationDebugResult);
+		if(isDebug) {
+			const ratificationDebugResult = await debug({ track: data, route: $route });
+			debugStore.set(ratificationDebugResult);
+		}
 		terminateWorker();
 	}
 
@@ -57,13 +64,20 @@
 		}
 	}
 
+	onMount(() => {
+		if (browser) {
+			const urlParams = new URLSearchParams(window.location.search);
+			isDebug = urlParams.has('debug');
+		}
+	});
+
 	onDestroy(terminateWorker);
 </script>
 
 {#if $gpx.features.length === 0}
 	<div
-		class:opacity-1={isVisible}
-		class:opacity-0={!isVisible}
+		class:!opacity-1={isVisible}
+		class:!opacity-0={!isVisible}
 		class="h-20 transition-opacity duration-500 delay-200 print:hidden"
 	>
 		<FilePond
