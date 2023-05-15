@@ -33,15 +33,20 @@
 
 <div
 	class="
-	grid grid-cols-3 gap-4 
-	relative h-screen
+	mr-8 md:mr-0
+	grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 
+	relative sm:h-screen
 	z-10 pointer-events-none
 	print:block print:h-auto"
 >
 	<Checker />
 
 	{#if $breakdown}
-		<div class="col-span-2 h-screen pointer-events-auto print:h-auto">
+		<div class="
+			xl:col-span-2 h-screen 
+			pointer-events-auto 
+			print:h-auto"
+		>
 			<Breakdown />
 		</div>
 	{/if}

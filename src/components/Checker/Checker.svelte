@@ -20,7 +20,7 @@
 	onDestroy(unsubscribe);
 </script>
 
-<div class="h-screen lg:max-w-2xl print:h-auto">
+<div class="md:h-screen print:h-auto">
 	<div
 		class:expanded={isOpen}
 		class="
@@ -55,10 +55,14 @@
 </div>
 
 <style>
+	/* TODO: Mobile styles */
 	.expanded {
-		display: grid;
-		grid-template-rows: 4rem auto 1fr;
-		height: calc(100vh - 4rem);
+		@media (min-width: 768px) { 
+			display: grid;
+			grid-template-rows: 4rem auto 1fr;
+			height: calc(100vh - 4rem);
+		}
+		
 		@media print {
 			display: block;
 			height: auto;

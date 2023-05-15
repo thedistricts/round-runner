@@ -34,12 +34,12 @@
 	}
 </script>
 
-<article class="p-8 pl-0 h-full print:h-auto print:p-0">
+<article class="pl-8 pb-8 md:p-8 md:pl-0 md:h-full print:h-auto print:p-0">
 	<div
 		class="
 		bg-white rounded-md drop-shadow
-		pb-5 h-full
-		overflow-auto
+		pb-5 md:h-full
+		md:overflow-auto
 		print:overflow-visible
 		print:drop-shadow-none
 		print:p-0
