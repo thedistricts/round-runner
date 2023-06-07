@@ -15,6 +15,14 @@
 			"description": "Ultimate SwimRun Challenge",
 			"json": "/data/frog-graham-ccw.geo.json",
 			"logo": "/assets/frog-graham.jpg"
+		},
+		{
+			"default": false,
+			"slug": "tadpole-cw",
+			"title": "The Tadpole Round CW",
+			"description": "A great introduction to SwimRun",
+			"json": "/data/tadpole-cw.geo.json",
+			"logo": "/assets/frog-graham.jpg"
 		}
 	]
 }

@@ -1,0 +1,80 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.29589,
+          54.553139
+        ]
+      },
+      "properties": {
+        "name": "Hause Point",
+        "featureType": "start checkpoint",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.30456,
+          54.55286
+        ]
+      },
+      "properties": {
+        "name": "Low Ling Crag",
+        "featureType": "water exit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.26109,
+          54.526829
+        ]
+      },
+      "properties": {
+        "name": "Horse Close",
+        "featureType": "water entry",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.25885,
+          54.529362
+        ]
+      },
+      "properties": {
+        "name": "Crag Wood",
+        "featureType": "water exit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.29589,
+          54.553139
+        ]
+      },
+      "properties": {
+        "name": "Hause Point",
+        "featureType": "finish checkpoint",
+        "ratify": true
+      }
+    },
+  ]
+}
