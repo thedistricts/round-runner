@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as turf from '@turf/turf';
-
+	
 	import { getContext, onDestroy } from 'svelte';
 	import { fitBoundsWithPadding, fitPositionWithOffset } from '$lib/utils';
 	import { route, routeBBox, routeFocus } from '$lib/stores/route.store';
@@ -27,7 +27,8 @@
 	});
 </script>
 
-{#each $route.features as point}
+{#each $route.features as point (point.properties)}
 	<Marker coordinates={turf.getCoord(point)} properties={point.properties} />
 	<ValidityBoundary coordinates={turf.getCoord(point)} properties={point.properties} />
 {/each}
+ 
