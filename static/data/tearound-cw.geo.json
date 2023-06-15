@@ -1,0 +1,171 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "George Fisher (Start)",
+        "featureType": "start checkpoint",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1377574,
+          54.603116
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Catbells",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1708004,
+          54.567750
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Robinson",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2364748,
+          54.540134
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2838122,
+          54.521666
+        ]
+      },
+      "properties": {
+        "name": "High Stile",
+        "featureType": "summit",
+        "notes": "",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rowling End",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1957517,
+          54.574696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Causey Pike",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2112706,
+          54.576339
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sail",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2420933,
+          54.572431
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eel Crag",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2513445,
+          54.571437
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grisedale Pike",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2426675,
+          54.591299
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hobcarton",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2502657,
+          54.586727
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "George Fisher (Finish)",
+        "featureType": "finish checkpoint",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1377574,
+          54.603116
+        ]
+      }
+    }
+  ]
+}

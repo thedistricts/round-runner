@@ -10,7 +10,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.13732, 54.600761]
+				"coordinates": [
+					-3.13732,
+					54.600761
+				]
 			}
 		},
 		{
@@ -22,7 +25,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.14778, 54.651379]
+				"coordinates": [
+					-3.14778,
+					54.651379
+				]
 			}
 		},
 		{
@@ -35,7 +41,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.200044508642848, 54.647879304079574]
+				"coordinates": [
+					-3.200044508642848,
+					54.647879304079574
+				]
 			}
 		},
 		{
@@ -46,7 +55,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.2170802412019595, 54.64446185116054]
+				"coordinates": [
+					-3.2170802412019595,
+					54.64446185116054
+				]
 			}
 		},
 		{
@@ -58,7 +70,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.21802, 54.629581]
+				"coordinates": [
+					-3.21802,
+					54.629581
+				]
 			}
 		},
 		{
@@ -70,7 +85,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.23403, 54.627861]
+				"coordinates": [
+					-3.23403,
+					54.627861
+				]
 			}
 		},
 		{
@@ -82,7 +100,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.22654, 54.622341]
+				"coordinates": [
+					-3.22654,
+					54.622341
+				]
 			}
 		},
 		{
@@ -94,7 +115,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.24207, 54.59174]
+				"coordinates": [
+					-3.24207,
+					54.59174
+				]
 			}
 		},
 		{
@@ -106,7 +130,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.26166, 54.588081]
+				"coordinates": [
+					-3.26166,
+					54.588081
+				]
 			}
 		},
 		{
@@ -118,7 +145,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.25948, 54.585499]
+				"coordinates": [
+					-3.25948,
+					54.585499
+				]
 			}
 		},
 		{
@@ -130,14 +160,20 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.25032, 54.57206]
+				"coordinates": [
+					-3.25032,
+					54.57206
+				]
 			}
 		},
 		{
 			"type": "Feature",
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.25711, 54.566341]
+				"coordinates": [
+					-3.25711,
+					54.566341
+				]
 			},
 			"properties": {
 				"name": "Wandhope",
@@ -149,7 +185,10 @@
 			"type": "Feature",
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.26929, 54.559368]
+				"coordinates": [
+					-3.26929,
+					54.559368
+				]
 			},
 			"properties": {
 				"name": "Whiteless Pike",
@@ -161,7 +200,10 @@
 			"type": "Feature",
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.289032, 54.552643]
+				"coordinates": [
+					-3.289032,
+					54.552643
+				]
 			},
 			"properties": {
 				"name": "Rannerdale Knotts",
@@ -174,22 +216,28 @@
 			"type": "Feature",
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.29589, 54.553139]
+				"coordinates": [
+					-3.29589,
+					54.553139
+				]
 			},
 			"properties": {
 				"name": "Hause Point",
-				"featureType": "water exit"
+				"featureType": "water entry"
 			}
 		},
 		{
 			"type": "Feature",
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.30456, 54.55286]
+				"coordinates": [
+					-3.30456,
+					54.55286
+				]
 			},
 			"properties": {
 				"name": "Low Ling Crag",
-				"featureType": "water entry",
+				"featureType": "water exit",
 				"ratify": true
 			}
 		},
@@ -197,7 +245,10 @@
 			"type": "Feature",
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.31822, 54.555599]
+				"coordinates": [
+					-3.31822,
+					54.555599
+				]
 			},
 			"properties": {
 				"name": "Mellbreak",
@@ -210,7 +261,10 @@
 			"type": "Feature",
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.29853, 54.527439]
+				"coordinates": [
+					-3.29853,
+					54.527439
+				]
 			},
 			"properties": {
 				"name": "Red Pike",
@@ -222,7 +276,10 @@
 			"type": "Feature",
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.28785, 54.521519]
+				"coordinates": [
+					-3.28785,
+					54.521519
+				]
 			},
 			"properties": {
 				"name": "High Stile",
@@ -235,7 +292,10 @@
 			"type": "Feature",
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.26109, 54.526829]
+				"coordinates": [
+					-3.26109,
+					54.526829
+				]
 			},
 			"properties": {
 				"name": "Horse Close",
@@ -251,7 +311,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.25885, 54.529362]
+				"coordinates": [
+					-3.25885,
+					54.529362
+				]
 			}
 		},
 		{
@@ -263,7 +326,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.23528, 54.540821]
+				"coordinates": [
+					-3.23528,
+					54.540821
+				]
 			}
 		},
 		{
@@ -275,7 +341,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.20227, 54.527241]
+				"coordinates": [
+					-3.20227,
+					54.527241
+				]
 			}
 		},
 		{
@@ -287,7 +356,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.18514, 54.535568]
+				"coordinates": [
+					-3.18514,
+					54.535568
+				]
 			}
 		},
 		{
@@ -299,18 +371,24 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.1707, 54.568329]
+				"coordinates": [
+					-3.1707,
+					54.568329
+				]
 			}
 		},
 		{
 			"type": "Feature",
 			"properties": {
 				"name": "Otterbield Bay",
-				"featureType": "water exit"
+				"featureType": "water entry"
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.15942, 54.579651]
+				"coordinates": [
+					-3.15942,
+					54.579651
+				]
 			}
 		},
 		{
@@ -322,7 +400,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.15645, 54.57959]
+				"coordinates": [
+					-3.15645,
+					54.57959
+				]
 			}
 		},
 		{
@@ -334,7 +415,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.147554, 54.581174]
+				"coordinates": [
+					-3.147554,
+					54.581174
+				]
 			}
 		},
 		{
@@ -346,18 +430,24 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.140461450112484, 54.58210410795086]
+				"coordinates": [
+					-3.140461450112484,
+					54.58210410795086
+				]
 			}
 		},
 		{
 			"type": "Feature",
 			"properties": {
 				"name": "Calf Close Bay",
-				"featureType": "water entry"
+				"featureType": "water exit"
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.1355, 54.583248]
+				"coordinates": [
+					-3.1355,
+					54.583248
+				]
 			}
 		},
 		{
@@ -369,7 +459,10 @@
 			},
 			"geometry": {
 				"type": "Point",
-				"coordinates": [-3.13732, 54.600761]
+				"coordinates": [
+					-3.13732,
+					54.600761
+				]
 			}
 		}
 	]
