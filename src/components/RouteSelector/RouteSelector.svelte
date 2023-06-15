@@ -1,17 +1,23 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import type { PageData } from '../../routes/[round=name]/$types';
+
+	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { gpx } from '$lib/stores/gpx.store';
 	import { breakdown } from '$lib/stores/breakdown.store';
 	import { ratification } from '$lib/stores/ratification.store';
-	const { title, logo, slug, rounds } = $page.data as PageData;
 
 	function reset() {
 		gpx.reset();
 		ratification.reset();
 		breakdown.reset();
 	}
+
+	$: logoImgSrc = $page.data.logo as PageData['logo'];
+	$: logoAltText = $page.data.title as PageData['title'];
+	$: pageUrlSlug = $page.data.slug as PageData['slug'];
+	$: rounds = $page.data.rounds as PageData['rounds'];
+
 
 	function handleRouteSelectChange(event: Event) {
 		const target = event.target as HTMLSelectElement;
@@ -21,7 +27,7 @@
 </script>
 
 <header class="flex items-center text-xl">
-	<img src={logo} alt={`${title} logo`} class="h-16" />
+	<img src={logoImgSrc} alt={`${logoAltText} logo`} class="h-16" />
 	<div class="group relative flex w-full pr-3">
 		<span
 			class="pointer-events-none transition text-gray-500 group-hover:text-gray-900  absolute inset-y-0 right-4 ml-3 flex items-center pr-2"
@@ -47,7 +53,7 @@
 				block p-2.5 pl-4 ml-3"
 		>
 			{#each rounds as round}
-				<option selected={slug === round.slug} value={round.slug}>
+				<option selected={pageUrlSlug === round.slug} value={round.slug}>
 					{round.title}
 				</option>
 			{/each}
