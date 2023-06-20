@@ -10,7 +10,7 @@
 	export let properties: PointProperties;
 
 	const color = FEATURE_COLOUR.get(properties.featureType);
-	const radius = VALIDITY_DISTANCE.get(properties.featureType);
+	const radius = properties.validityDistance ?? VALIDITY_DISTANCE.get(properties.featureType);
 </script>
 
 <Circle {coordinates} colour={color} radius={radius?.[VALIDITY.VALID]} opacity={0.15} />

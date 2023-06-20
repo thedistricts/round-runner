@@ -4,6 +4,9 @@ export interface PointProperties {
 	leg: number;
 	featureType: PointFeature;
 	name: string;
+	notes?: string;
+	ratify?: boolean;
+	validityDistance?: [number, number]
 }
 
 export type RouteGeoJson = FeatureCollection<Point, PointProperties>;

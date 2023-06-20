@@ -37,13 +37,17 @@
 				"name": "Bassenthwaite Church",
 				"featureType": "checkpoint",
 				"notes": "Must touch churchyard wall",
-				"ratify": true
+				"ratify": true,
+				"validityDistance": [
+					0.034,
+					0.044
+				]
 			},
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
-					-3.200044508642848,
-					54.647879304079574
+					-3.20005,
+					54.64784
 				]
 			}
 		},
@@ -101,8 +105,8 @@
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
-					-3.22654,
-					54.622341
+					-3.226123,
+					54.622510
 				]
 			}
 		},
