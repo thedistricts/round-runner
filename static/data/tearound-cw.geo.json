@@ -65,60 +65,15 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Rowling End",
+        "name": "Hobcarton",
         "featureType": "summit",
         "ratify": true
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -3.193768,
-          54.575647
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Causey Pike",
-        "featureType": "summit",
-        "ratify": true
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -3.210235,
-          54.576843
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Sail",
-        "featureType": "summit",
-        "ratify": true
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -3.242049,
-          54.571243
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Eel Crag",
-        "featureType": "summit",
-        "ratify": true
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -3.250364,
-          54.572049
+          -3.249288,
+          54.587088
         ]
       }
     },
@@ -140,15 +95,60 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Hobcarton",
+        "name": "Eel Crag",
         "featureType": "summit",
         "ratify": true
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -3.249288,
-          54.587088
+          -3.250364,
+          54.572049
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sail",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.242049,
+          54.571243
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Causey Pike",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.210235,
+          54.576843
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rowling End",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193768,
+          54.575647
         ]
       }
     },
