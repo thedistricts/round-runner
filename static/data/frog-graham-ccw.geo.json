@@ -370,8 +370,8 @@
 			"geometry": {
 				"type": "Point",
 				"coordinates": [
-					-3.226123,
-					54.622510
+					-3.22593,
+					54.623058
 				]
 			}
 		},
@@ -427,8 +427,8 @@
 				"notes": "Must touch churchyard wall",
 				"ratify": true,
 				"validityDistance": [
-					0.034,
-					0.044
+					0.038,
+					0.048
 				]
 			},
 			"geometry": {
