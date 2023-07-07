@@ -1,80 +1,76 @@
-import { expose } from 'comlink';
-import * as turf from '@turf/turf';
-import { featureCollection } from '@turf/helpers';
-import { VALIDITY, POINT_FEATURE } from '$lib/enum';
-import { VALIDITY_DISTANCE } from '$lib/const';
 
-// TODO: display length along track turf.length
+import { expose } from 'comlink';
+import sortBy from 'lodash/sortBy';
+import * as turf from '@turf/turf';
+import type { Feature, LineString } from "@turf/helpers";
+import type { LineStringProperties } from '$lib/stores/gpx.store.d';
+import type { PointProperties } from '$lib/stores/route.store.d';
+
+import { VALIDITY } from '$lib/enum';
+import { VALIDITY_DISTANCE } from '$lib/const';
 import type {
 	RatifyProps,
 	RatifyReturn,
 	NearestPointOnLineWithValidity,
-	GetNearestPointOnLineWithValidityProps,
-	GetSlicesFromProps,
-	GetSlicesFromReturn
+	Distances,
+	CoordWithDistance,
+	ValidityPointProperties,
+	ValidityDistance
 } from './ratification.worker.d';
 
-function getNearestPointOnLineWithValidity({
-	trackLineString,
-	point: routePoint,
-	order,
-	times,
-	index
-}: GetNearestPointOnLineWithValidityProps): NearestPointOnLineWithValidity {
-	const point = turf.nearestPointOnLine(trackLineString, routePoint);
-	point.properties.index = index;
+function getValidCoordinate(coords: Distances, validityDistance: ValidityDistance): CoordWithDistance | null {
+	// TODO: TEST with 12 hour route, validityDistance is being assigned to the point properties
 
-	const distanceAway = point.properties?.dist ?? Infinity;
-	const validityDistance = VALIDITY_DISTANCE.get(routePoint.properties?.featureType);
-	const time = times?.[index];
-
-	point.properties = {
-		...routePoint.properties,
-		...point.properties,
-		order: order + 1,
-		valid: VALIDITY.FAIL,
-		time
-	};
-
-	if (!validityDistance) throw new Error('Route feature type is not valid');
-
-	if (distanceAway < validityDistance?.[VALIDITY.WARN]) {
-		point.properties.valid = VALIDITY.WARN;
-	}
-	if (distanceAway < validityDistance?.[VALIDITY.VALID]) {
-		point.properties.valid = VALIDITY.VALID;
-	}
-	return point as NearestPointOnLineWithValidity;
+  const validCoord = coords.reduce((prevCoord: CoordWithDistance | null, currCoord: CoordWithDistance) => {
+    if (prevCoord === null || !currCoord.properties.dist || !prevCoord.properties.dist) {
+      return currCoord;
+    }
+		if (currCoord.properties.dist <= prevCoord.properties.dist) {
+			return currCoord;
+		}
+		if (currCoord.properties.dist <= validityDistance[VALIDITY.VALID]) {
+      return currCoord;
+		}
+    return prevCoord;
+  }, null);
+  return validCoord;
 }
 
-function getSlices({
-	from: route,
-	with: trackLineString
-}: GetSlicesFromProps): GetSlicesFromReturn {
-	const slices = route.features.map((_, index: number) => {
-		// NOTE: to ensure we don't mismatch the start with the end
-		// i.e. when the end point of a round is closer to the start than the first track point
-		// we slice the track in parts and enforce the beginning and finish of the route
-		const isInRange = index < route.features.length - 1;
-		const isStart = route.features[index].properties.featureType === POINT_FEATURE.CHECKPOINT_START;
-		const isEnd =
-			!isInRange ||
-			route.features[index + 1].properties.featureType === POINT_FEATURE.CHECKPOINT_FINISH;
+function getNearestTimePointOnLine(line: Feature<LineString, LineStringProperties>, point: Feature<turf.Point, PointProperties >, validityDistance:ValidityDistance, pointIndex: number, routeLength: number) {
 
-		const start = isStart
-			? turf.point(trackLineString.geometry.coordinates[0])
-			: route.features[index];
+	const isStart = pointIndex === 0;
+	const isEnd = pointIndex === routeLength - 1;
+	const lineMidIndex = Math.floor(line.geometry.coordinates.length / 2);
 
-		const end = isEnd
-			? turf.point(
-					trackLineString.geometry.coordinates[trackLineString.geometry.coordinates.length - 1]
-			  )
-			: route.features[index + 1];
+	const distances = line.geometry.coordinates.map((coordinates, index) => ({
+			...point,
+			geometry: {
+				...point.geometry,
+				coordinates
+			},
+			properties: {
+				dist: turf.distance(turf.getGeom(point), coordinates),
+				index,
+				isStart,
+				isEnd,
+				valid: VALIDITY.FAIL
+		}})
+	);
+	
+	const filteredCoords = distances
+		.filter((coord) => {
+			return coord.properties.dist <= validityDistance[VALIDITY.WARN] * 2;
+		}).filter((coord) => {
+			if (isStart) return coord.properties.index < lineMidIndex;
+			if (isEnd) return coord.properties.index >= lineMidIndex;
+			return true;
+		});
+	
+	// TODO: Do we need this additional sort?
+	const sortedCoords = sortBy(filteredCoords, "properties.dist");
+	const validPoint = getValidCoordinate(sortedCoords, validityDistance);
 
-		const slice = turf.lineSlice(start, end, trackLineString);
-		return slice;
-	});
-	return slices;
+	return validPoint;
 }
 
 export function ratify({ track, route }: RatifyProps): RatifyReturn {
@@ -82,33 +78,42 @@ export function ratify({ track, route }: RatifyProps): RatifyReturn {
 	if (!trackLineString) {
 		throw new Error('Feature Collection does not contain a LineString');
 	}
-	const slicedChunks = getSlices({ from: route, with: trackLineString });
 
-	let totalIndex = 0;
+	const nearestRoutePoints = route.features.map((routePoint, index) => {
+		const validityDistance = VALIDITY_DISTANCE.get(routePoint.properties.featureType) as ValidityDistance;
+		const target = getNearestTimePointOnLine(trackLineString, routePoint, validityDistance, index, route.features.length);
+		const interpolatedTarget = turf.nearestPointOnLine(trackLineString, routePoint);
+	
+		const point = target ? target : { ...routePoint, properties: { dist: Infinity } as ValidityPointProperties} ;
+		const distanceAway = interpolatedTarget.properties.dist ?? Infinity;
+		const time = trackLineString?.properties?.coordinateProperties?.times[point.properties.index];
+				
+		point.properties = {
+			...routePoint.properties,
+			...point.properties,
+			dist: interpolatedTarget.properties.dist,
+			order: index + 1,
+			valid: VALIDITY.FAIL,
+			time
+		};
 
-	const nearestRoutePointsTotal = slicedChunks.map((currentChunk, currentChunkIndex) => {
-		const nearest = getNearestPointOnLineWithValidity({
-			trackLineString: currentChunk,
-			times: trackLineString.properties?.coordinateProperties?.times,
-			index: totalIndex,
-			point: route.features[currentChunkIndex],
-			order: currentChunkIndex
-		});
-		totalIndex += currentChunk.geometry.coordinates.length - 2;
-		return nearest;
+		console.log(JSON.stringify(point))
+
+		
+		if (!validityDistance) {
+			throw new Error('Route feature type is not valid');
+		}
+
+		if (distanceAway < validityDistance?.[VALIDITY.WARN]) {
+			point.properties.valid = VALIDITY.WARN;
+		}
+		if (distanceAway < validityDistance?.[VALIDITY.VALID]) {
+			point.properties.valid = VALIDITY.VALID;
+		}
+		return point;
 	});
-	return nearestRoutePointsTotal;
+
+	return nearestRoutePoints as NearestPointOnLineWithValidity[];
 }
 
-export function debug({ track, route }: RatifyProps) {
-	const trackLineString = track.features.find((feature) => feature.geometry.type === 'LineString');
-	if (!trackLineString) {
-		throw new Error('Feature Collection does not contain a LineString');
-	}
-
-	const slicedChunks = getSlices({ from: route, with: trackLineString });
-	slicedChunks.pop();
-	return featureCollection(slicedChunks);
-}
-
-expose({ ratify, debug });
+expose({ ratify });
