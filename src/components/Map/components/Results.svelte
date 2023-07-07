@@ -20,5 +20,5 @@
 </script>
 
 {#each $ratification as point}
-	<Circle coordinates={turf.getCoord(point)} />
+	{#if point?.geometry?.coordinates.length > 0}<Circle coordinates={turf.getCoord(point)} />{/if}
 {/each}

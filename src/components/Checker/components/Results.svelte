@@ -54,11 +54,11 @@
 								nearest point: {kilometersToMeters(failedFeature.properties.dist)}m
 							</div>
 						</div>
-						{#if failedFeature.properties.time}
+						{ #if failedFeature.properties.time }
 							<div class="absolute top-4 right-3 text-sm text-neutral-400">
 								{dayjs(failedFeature.properties.time).utc().format(HOURS)}
 							</div>
-						{/if}
+						{ /if }
 					</button>
 				{/each}
 			</div>
@@ -82,11 +82,11 @@
 								nearest point: {kilometersToMeters(warningFeature.properties.dist)}m
 							</div>
 						</div>
-						{#if warningFeature.properties.time}
+						{ #if warningFeature.properties.time }
 							<div class="absolute top-4 right-3 text-sm text-neutral-400">
 								{dayjs(warningFeature.properties.time).utc().format(HOURS)}
 							</div>
-						{/if}
+						{ /if }
 					</button>
 				{/each}
 			</div>
@@ -107,11 +107,11 @@
 								{validFeature.properties.name}
 							</div>
 						</div>
-						{#if validFeature.properties.time}
+						{ #if validFeature.properties.time }
 							<div class="ml-auto px-3 text-sm text-neutral-400">
 								{dayjs(validFeature.properties.time).utc().format(HOURS)}
 							</div>
-						{/if}
+						{ /if }
 					</button>
 				{/each}
 			</div>

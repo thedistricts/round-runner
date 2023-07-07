@@ -51,7 +51,6 @@
 				class="ml-auto rounded-full p-1 focus:ring-2 focus:ring-indigo-500"
 				on:click={handleOnBreakdownCloseClick}
 			>
-				<!-- TOOD: Make Svgs components -->
 				<span class="sr-only">Close</span>
 				<svg
 					class="h-6 w-6"
