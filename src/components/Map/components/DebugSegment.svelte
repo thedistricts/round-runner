@@ -8,7 +8,7 @@
 	export let color: any = '#000FFF';
 	export let index: number = 0;
 
-	const ID_ROUTE = `debug:${color}:${index}`;
+	const ID_ROUTE = `debug:${color}:${index + Math.random()}s`;
 
 	onMount(() => {
 		const map = getMap();
