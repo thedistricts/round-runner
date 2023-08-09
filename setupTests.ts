@@ -18,6 +18,14 @@ vi.mock('$app/environment', (): typeof environment => ({
   version: 'any',
 }));
 
+// Mock Browser Support
+if (typeof window.URL.createObjectURL === 'undefined') {
+  Object.defineProperty(window.URL, 'createObjectURL', {
+    writable: true,
+    value: vi.fn(),
+  });
+}
+
 // Mock SvelteKit runtime module $app/navigation
 vi.mock('$app/navigation', (): typeof navigation => ({
   afterNavigate: () => {},
