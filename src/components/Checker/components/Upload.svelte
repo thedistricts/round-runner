@@ -3,7 +3,6 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { browser } from '$app/environment';
 
-
 	// TODO: also allow .KML files?
 	import { GPXLoader } from '@loaders.gl/kml';
 	import { load } from '@loaders.gl/core';
@@ -80,8 +79,10 @@
 		class:!opacity-0={!isVisible}
 		class="h-20 transition-opacity duration-500 delay-200 print:hidden"
 	>
+		<label for={name}>upload</label>
 		<FilePond
 			{name}
+			id={name}
 			oninit={handleFilePondInit}
 			onaddfile={handleAddFile}
 			allowFileTypeValidation={true}

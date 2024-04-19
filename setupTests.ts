@@ -18,6 +18,8 @@ vi.mock('$app/environment', (): typeof environment => ({
   version: 'any',
 }));
 
+vi.mock('comlink');
+
 // Mock Browser Support
 if (typeof window.URL.createObjectURL === 'undefined') {
   Object.defineProperty(window.URL, 'createObjectURL', {
