@@ -1,0 +1,405 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.12627108161385,
+          53.1220273931532
+        ]
+      },
+      "properties": {
+        "name": "Llanberis shore",
+        "notes": "Llanberis parking shore of Llyn Padarn - Near large sword",
+        "featureType": "start checkpoint",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.157753,
+          53.097096
+        ]
+      },
+      "properties": {
+        "name": "Moel Eilio",
+        "featureType": "summit",
+        "notes": "Summit Cairn",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.13520551179418,
+          53.0851851708399
+        ]
+      },
+      "properties": {
+        "name": "Foel Goch",
+        "featureType": "summit",
+        "notes": "90m NNNE of path/fence junction",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.11194854312462,
+          53.085959986155
+        ]
+      },
+      "properties": {
+        "name": "Moel Cynghorion",
+        "featureType": "summit",
+        "notes": "On fence line",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.07616174446699,
+          53.0684287765643
+        ]
+      },
+      "properties": {
+        "name": "Yr Wyddfa",
+        "featureType": "summit",
+        "notes": "Trig point",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.08273174351463,
+          53.0622901301555
+        ]
+      },
+      "properties": {
+        "name": "Cribau Tregalan",
+        "featureType": "summit",
+        "notes": "Cairn",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.02509183838335,
+          53.0489005567055
+        ]
+      },
+      "properties": {
+        "name": "Elephant Rock",
+        "notes": "SW edge of Elephant Rock - Where the shore meets the rock face",
+        "featureType": "water entry",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.01759790874091,
+          53.0513655054258
+        ]
+      },
+      "properties": {
+        "name": "Llyn Gwynant Beach",
+        "notes": "Beach at north end of lake, west of reeds",
+        "featureType": "water exit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.97714906802917,
+          53.064092240933
+        ]
+      },
+      "properties": {
+        "name": "Carnedd Cribau",
+        "notes": "East of fence",
+        "featureType": "summit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.93412403500322,
+          53.0731608418912
+        ]
+      },
+      "properties": {
+        "name": "Carnedd Moel Siabod",
+        "notes": "Trig point",
+        "featureType": "summit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.92809620372233,
+          53.0986117695259
+        ]
+      },
+      "properties": {
+        "name": "East of the narrows",
+        "notes": "Flat grassy bank east of the narrows, west of the woods - Watch out for bank holiday campers!",
+        "featureType": "water entry",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.92151967257059,
+          53.101864810347
+        ]
+      },
+      "properties": {
+        "name": "Llyn Mymbyr north edge",
+        "notes": "Where an overgrown wall meets the north edge of Llyn Mymbyr - Boulders on east of wall, may need brambles clearing for access.",
+        "featureType": "water exit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.94827379923406,
+          53.1484496585993
+        ]
+      },
+      "properties": {
+        "name": "Pen yr Helgi Du",
+        "notes": "Western cairn",
+        "featureType": "summit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.97035114624646,
+          53.1603132451794
+        ]
+      },
+      "properties": {
+        "name": "Carnedd Llyewelyn",
+        "notes": "Summit cairn",
+        "featureType": "summit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.00072678710581,
+          53.1476695084437
+        ]
+      },
+      "properties": {
+        "name": "Carnedd Dafydd",
+        "notes": "East cairn",
+        "featureType": "summit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.01072038659789,
+          53.1375216655022
+        ]
+      },
+      "properties": {
+        "name": "Pen yr Ole Wen",
+        "notes": "Summit cairn east of path",
+        "featureType": "summit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.01010371396808,
+          53.1243160294019
+        ]
+      },
+      "properties": {
+        "name": "Llyn Ogwen north shore",
+        "notes": "Where a wall with style meets north shore of Llyn Ogwen - Please give fisher-people a wide birth even if this means changing your entry and exit points for the swim. They pay to fish the Llyn so we need to maintain good relations!",
+        "featureType": "water entry",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.0052536630965,
+          53.1228694640721
+        ]
+      },
+      "properties": {
+        "name": "Llyn Ogwen south bank",
+        "notes": "Headland on centre of Llyn Ogwen’s south bank - Most prominent point on headland -",
+        "featureType": "water exit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.9975611181378,
+          53.1149073785633
+        ]
+      },
+      "properties": {
+        "name": "Tryfan",
+        "notes": "Adam and Eve boulders",
+        "featureType": "summit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.0085971771044,
+          53.1048320135086
+        ]
+      },
+      "properties": {
+        "name": "Glyder Fach",
+        "notes": "Highest rock on main summit boulders",
+        "featureType": "summit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.02935148553055,
+          53.101423041673
+        ]
+      },
+      "properties": {
+        "name": "Glyder Fawr",
+        "notes": "Summit cairn",
+        "featureType": "summit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.04721188818923,
+          53.1157717386458
+        ]
+      },
+      "properties": {
+        "name": "Y Garn",
+        "notes": "Summit point by wind shelter",
+        "featureType": "summit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.07617554539298,
+          53.1307337866127
+        ]
+      },
+      "properties": {
+        "name": "Elidir Fawr",
+        "notes": "Summit shelter",
+        "featureType": "summit",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.11881376661534,
+          53.1223402208885
+        ]
+      },
+      "properties": {
+        "name": "Llyn Padarn Pontoon",
+        "notes": "Pontoon at east end of Llyn Padarn - Through Gorsaf Ddu car park to pontoon",
+        "featureType": "water entry",
+        "ratify": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.12627108161385,
+          53.1220273931532
+        ]
+      },
+      "properties": {
+        "name": "Llanberis shore",
+        "notes": "Llanberis parking shore of Llyn Padarn - Near large sword",
+        "featureType": "finish checkpoint",
+        "ratify": true
+      }
+    }
+  ]
+}

@@ -18,10 +18,10 @@
 		},
 		{
 			"default": false,
-			"slug": "tadpole-cw",
-			"title": "The Tadpole Round CW",
+			"slug": "tadpole-round",
+			"title": "The Tadpole Round",
 			"description": "A great introduction to SwimRun",
-			"json": "/data/tadpole-cw.geo.json",
+			"json": "/data/tadpole.geo.json",
 			"logo": "/assets/frog-graham.jpg"
 		},
 		{
@@ -30,6 +30,14 @@
 			"title": "The Abraham's Tea Round CW",
 			"description": "George Fisher's Tea Round ",
 			"json": "/data/tearound-cw.geo.json",
+			"logo": "/assets/tea-round.jpg"
+		},
+		{
+			"default": false,
+			"slug": "puddle-buckley",
+			"title": "The Puddle Buckley Round",
+			"description": "A Snowdonian Run/Swim Adventure",
+			"json": "/data/puddle-buckley.geo.json",
 			"logo": "/assets/tea-round.jpg"
 		}
 	]
