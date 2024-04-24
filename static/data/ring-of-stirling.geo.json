@@ -1,0 +1,401 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "start checkpoint",
+        "name": "War memorial Shieldaig",
+        "notes": "Spare a moment’s thought for those who fell for our freedom",
+        "height_m": 25,
+        "distance_km": 0,
+        "cumulative_distance_km": 0
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.6492938,
+          57.525093
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "water entry",
+        "name": "Eilean a Chaoil Bay",
+        "notes": "Small bay and slipway north of Camas Ruadh. Tidal. Must be swum at slack water!",
+        "height_m": 0,
+        "distance_km": 2,
+        "cumulative_distance_km": 2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.6559995,
+          57.541980
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "water exit",
+        "name": "Leacan Bana",
+        "notes": "Exact location unimportant, though some points will be easier to climb out at.",
+        "height_m": 0,
+        "distance_km": 0.9,
+        "cumulative_distance_km": 2.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.6599635,
+          57.548158
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "summit",
+        "name": "Tom na Gruagaich",
+        "notes": "Trig point",
+        "height_m": 922,
+        "distance_km": 6.3,
+        "cumulative_distance_km": 9.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5828339,
+          57.580040
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "summit",
+        "name": "Sgurr Mor",
+        "notes": "Summit cairn",
+        "height_m": 986,
+        "distance_km": 1.5,
+        "cumulative_distance_km": 10.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5737883,
+          57.590185
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "water entry",
+        "name": "Bay south side of Loch a’ Bhealaich",
+        "notes": "East of narrowest point",
+        "height_m": 309,
+        "distance_km": 3.1,
+        "cumulative_distance_km": 13.8
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5693089,
+          57.612786
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "water exit",
+        "name": "Bay north side of Loch a’ Bhealaich",
+        "notes": "East of narrowest point",
+        "height_m": 309,
+        "distance_km": 0.6,
+        "cumulative_distance_km": 14.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5664076,
+          57.617363
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "summit",
+        "name": "Sgurr Dubh",
+        "notes": "Summit cairn",
+        "height_m": 875,
+        "distance_km": 1.2,
+        "cumulative_distance_km": 15.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5690464,
+          57.627177
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "water entry",
+        "name": "West shore of Loch na h-Oidhche",
+        "notes": "Tiny beach where stream enters Loch",
+        "height_m": 389,
+        "distance_km": 1.8,
+        "cumulative_distance_km": 17.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5403746,
+          57.625287
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "water exit",
+        "name": "East shore of Loch na h-Oidhche",
+        "notes": "Small beach at stream terminal",
+        "height_m": 389,
+        "distance_km": 0.9,
+        "cumulative_distance_km": 18.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5267448,
+          57.622972
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "summit",
+        "name": "Beinn an Eoin",
+        "notes": "Summit cairn",
+        "height_m": 852,
+        "distance_km": 1,
+        "cumulative_distance_km": 19.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5099480,
+          57.622541
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "water entry",
+        "name": "North west tip of Loch Coire Mhic Fhearchair",
+        "notes": "Headland south west of outflow",
+        "height_m": 585,
+        "distance_km": 5.1,
+        "cumulative_distance_km": 24.4
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.4483980,
+          57.591875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "water exit",
+        "name": "Southern tip of Loch Coire Mhic Fhearchair",
+        "notes": "Beach at inflow",
+        "height_m": 585,
+        "distance_km": 0.5,
+        "cumulative_distance_km": 24.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.4430496,
+          57.588425
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "summit",
+        "name": "Ruadh-stac Mor",
+        "notes": "Summit cairn",
+        "height_m": 1010,
+        "distance_km": 1,
+        "cumulative_distance_km": 25.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.248158,
+          57.637472
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "summit",
+        "name": "Stuc a Choire Dhuibh Bhig",
+        "notes": "Summit cairn",
+        "height_m": 915,
+        "distance_km": 4.3,
+        "cumulative_distance_km": 30.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.4301154,
+          57.593272
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "summit",
+        "name": "Spidean a Choire Leith",
+        "notes": "Summit cairn",
+        "height_m": 1055,
+        "distance_km": 1.3,
+        "cumulative_distance_km": 31.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.4426842,
+          57.566861
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "summit",
+        "name": "Mullach an Rathain",
+        "notes": "Summit cairn",
+        "height_m": 1023,
+        "distance_km": 2.1,
+        "cumulative_distance_km": 33.6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.4641195,
+          57.563578
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "summit",
+        "name": "Beinn Damh",
+        "notes": "South summit cairn",
+        "height_m": 903,
+        "distance_km": 10.9,
+        "cumulative_distance_km": 44.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.4938918,
+          57.560060
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "water entry",
+        "name": "East shore of Loch Damh",
+        "notes": "where stream flows into Loch (42m spot height)",
+        "height_m": 41,
+        "distance_km": 4.8,
+        "cumulative_distance_km": 49.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5190951,
+          57.491937
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "water exit",
+        "name": "West shore of Loch Damh",
+        "notes": "Bay south of narrows at north end of Loch",
+        "height_m": 41,
+        "distance_km": 0.7,
+        "cumulative_distance_km": 49.9
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5795639,
+          57.512708
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "summit",
+        "name": "Ben Sheildaig",
+        "notes": "North summit cairn near Loch nan Eun",
+        "height_m": 534,
+        "distance_km": 0.8,
+        "cumulative_distance_km": 51.7
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.6192765,
+          57.508877
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "finish checkpoint",
+        "name": "War memorial Shieldaig",
+        "notes": "Out of weakness were made strong…",
+        "height_m": 25,
+        "distance_km": 2.8,
+        "cumulative_distance_km": 54.5
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.6492938,
+          57.525093
+        ]
+      }
+    }
+  ]
+}
