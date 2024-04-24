@@ -14,7 +14,7 @@
 
 {#if isLoaded}
 	<h3 class="z-30 block sticky top-3 text-base font-normal text-stone-800 pointer-events-none">
-		{$route.features.length}Checkpoints
+		{$route.features.length}&nbsp;Checkpoints
 	</h3>
 	{#if isOpen}
 		<ol class="text-sm text-stone-500 mt-4">
@@ -22,7 +22,7 @@
 				<li class="-ml-2">
 					<button
 						on:click={() => handleOnMapFocus(feature.geometry.coordinates)}
-						class="px-2 py-1 hover:text-blue-500">{i + 1}:{feature.properties.name}</button
+						class="px-2 py-1 hover:text-blue-500">{i + 1}:&nbsp;{feature.properties.name}</button
 					>
 				</li>
 			{/each}
