@@ -2,18 +2,10 @@
 	"rounds": [
 		{
 			"default": true,
-			"slug": "frog-graham-cw",
-			"title": "Frog Graham Round CW",
+			"slug": "frog-graham",
+			"title": "Frog Graham Round",
 			"description": "Ultimate SwimRun Challenge",
 			"json": "/data/frog-graham-cw.geo.json",
-			"logo": "/assets/frog-graham.jpg"
-		},
-		{
-			"default": false,
-			"slug": "frog-graham-ccw",
-			"title": "Frog Graham Round CCW",
-			"description": "Ultimate SwimRun Challenge",
-			"json": "/data/frog-graham-ccw.geo.json",
 			"logo": "/assets/frog-graham.jpg"
 		},
 		{
@@ -26,7 +18,7 @@
 		},
 		{
 			"default": false,
-			"slug": "tea-round-cw",
+			"slug": "tea-round",
 			"title": "The Abraham's Tea Round CW",
 			"description": "George Fisher's Tea Round ",
 			"json": "/data/tearound-cw.geo.json",
@@ -46,6 +38,14 @@
 			"title": "The Ring Of Stirling",
 			"description": "The Wildest Run/Swim in the UK",
 			"json": "/data/ring-of-stirling.geo.json",
+			"logo": "/assets/tea-round.jpg"
+		},
+		{
+			"default": false,
+			"slug": "bob-graham-round",
+			"title": "Bob Graham Round",
+			"description": "Classic Memorial Circuit of the Lakeland Fells",
+			"json": "/data/bob-graham-round.json",
 			"logo": "/assets/tea-round.jpg"
 		}
 	]
