@@ -6,6 +6,7 @@
 			"title": "Frog Graham Round",
 			"description": "Ultimate SwimRun Challenge",
 			"json": "/data/frog-graham-cw.geo.json",
+			"example": "/data/example/frog-graham-round.gpx",
 			"logo": "/assets/frog-graham.jpg"
 		},
 		{
@@ -19,9 +20,10 @@
 		{
 			"default": false,
 			"slug": "tea-round",
-			"title": "The Abraham's Tea Round CW",
+			"title": "The Abraham's Tea Round",
 			"description": "George Fisher's Tea Round ",
 			"json": "/data/tearound-cw.geo.json",
+			"example": "/data/example/tea-round.gpx",
 			"logo": "/assets/tea-round.jpg"
 		},
 		{
@@ -30,7 +32,7 @@
 			"title": "The Puddle Buckley Round",
 			"description": "A Snowdonian Run/Swim Adventure",
 			"json": "/data/puddle-buckley.geo.json",
-			"logo": "/assets/tea-round.jpg"
+			"logo": "/assets/frog-graham.jpg"
 		},
 		{
 			"default": false,
@@ -38,7 +40,7 @@
 			"title": "The Ring Of Stirling",
 			"description": "The Wildest Run/Swim in the UK",
 			"json": "/data/ring-of-stirling.geo.json",
-			"logo": "/assets/tea-round.jpg"
+			"logo": "/assets/frog-graham.jpg"
 		},
 		{
 			"default": false,
@@ -46,7 +48,8 @@
 			"title": "Bob Graham Round",
 			"description": "Classic Memorial Circuit of the Lakeland Fells",
 			"json": "/data/bob-graham-round.json",
-			"logo": "/assets/tea-round.jpg"
+			"example": "/data/example/bob-graham-jack-kuenzle.gpx",
+			"logo": "/assets/frog-graham.jpg"
 		}
 	]
 }
