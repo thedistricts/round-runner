@@ -54,11 +54,11 @@
 		"@turf/turf": "^6.5.0",
 		"comlink": "^4.4.1",
 		"dayjs": "^1.11.7",
-		"filepond": "^4.30.4",
-		"filepond-plugin-file-validate-type": "^1.2.8",
+		"filepond": "^4.31.1",
+		"filepond-plugin-file-validate-type": "^1.2.9",
 		"lodash": "^4.17.21",
 		"maplibre-gl": "^2.4.0",
 		"randomcolor": "^0.6.2",
-		"svelte-filepond": "^0.2.0"
+		"svelte-filepond": "^0.2.2"
 	}
 }

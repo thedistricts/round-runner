@@ -96,9 +96,6 @@ export function ratify({ track, route }: RatifyProps): RatifyReturn {
 			valid: VALIDITY.FAIL,
 			time
 		};
-
-		console.log(JSON.stringify(point))
-
 		
 		if (!validityDistance) {
 			throw new Error('Route feature type is not valid');

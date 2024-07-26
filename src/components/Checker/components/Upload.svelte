@@ -42,17 +42,20 @@
 
 	async function handleAddFile(_err: unknown, fileItem: { file: File }) {
 		loadWorker();
-		console.log(fileItem.file)
+		
 		const data: GPXGeoJson = await load(fileItem.file, GPXLoader);
 		gpx.set(data);
 		fileName = fileItem.file.name;
+
 		const { ratify, debug } = Comlink.wrap<ExposeRatificationWorker>(ratificationWorker);
 		const ratificationResult = await ratify({ track: data, route: $route });
 		ratificationStore.set(ratificationResult);
+
 		if(isDebug) {
 			const ratificationDebugResult = await debug({ track: data, route: $route });
 			debugStore.set(ratificationDebugResult);
 		}
+		
 		terminateWorker();
 	}
 
@@ -74,7 +77,7 @@
 	async function fetchFileFromUrl(url: string) {
     const response = await fetch(url);
     const blob = await response.blob();
-    const file = new File([blob], "example.gpx", { type: blob.type });
+    const file = new File([blob], "Round Attempt Example", { type: blob.type });
     handleAddFile(null, { file });
   }
 
@@ -101,11 +104,12 @@
 			id={name}
 			oninit={handleFilePondInit}
 			onaddfile={handleAddFile}
-			allowFileTypeValidation={true}
 			acceptedFileTypes={['.gpx']}
-			dropOnElement
-			dropOnPage
-			dropValidation
+			allowDrop={true}
+			allowReplace={true}
+			dropOnElement={true}
+			dropOnPage={true}
+			dropValidation={false}
 			allowMultiple={false}
 			labelIdle={IDLE_MESSAGE}
 			credits={false}
@@ -115,12 +119,12 @@
 			No file? 
 			<button
 				class="
-					ml-2 py-1 px-3 rounded-md bg-neutral-50
+					ml-2 py-1 px-3 rounded-full bg-neutral-50
 				text-blue-700 border  border-neutral-50 hover:bg-blue-700 hover:text-white focus:ring-2 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500
 				"
 				on:click={() => handleLoadExample(pageRouteExampleURL)}
 			>
-				Load an example
+				See example
 			</button>
 		</div>
 		{/if}
