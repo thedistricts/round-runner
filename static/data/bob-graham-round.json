@@ -1,0 +1,741 @@
+  {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Moot Hall (Start)",
+          "featureType": "start checkpoint",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.13732,
+            54.600761
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Skiddaw",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.147711,
+            54.651363
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Great Calva",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.101108,
+            54.670768
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Blencathra",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.04977,
+            54.640025
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Threlkeld",
+          "featureType": "checkpoint",
+          "ratify": false,
+          "validityDistance": [
+            0.15,
+            0.25
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.047,
+            54.619105
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Clough Head",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.032248,
+            54.593712
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Great Dodd",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.019401,
+            54.575869
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Watson's Dodd",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.028783,
+            54.566908
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Stybarrow Dodd",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.017555,
+            54.561037
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Raise",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.01755,
+            54.547756
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "White Side",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.024996,
+            54.540953
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Lowerman",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.025454,
+            54.530725
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Helvelyn",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.017582,
+            54.526824
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Nethermost Pike",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.015417,
+            54.518814
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Dollywagon Pike",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.011351,
+            54.508629
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Fairfield",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -2.991931,
+            54.497101
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Seat Sandal",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.014568,
+            54.494765
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Dunmail Raise",
+          "featureType": "checkpoint",
+          "ratify": false,
+          "validityDistance": [
+            0.15,
+            0.25
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.039832,
+            54.495275
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Steel Fell",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.052235,
+            54.491155
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Calf Crag",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.079381,
+            54.484544
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "High Raise",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.111452,
+            54.47609
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Sergeant Man",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.102634,
+            54.470461
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Thunacar Knott",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.112707,
+            54.46221
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Harrison Stickle",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.109618,
+            54.456683
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Pike O' Stickle",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.121383,
+            54.456421
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Rossett Pike",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.159598,
+            54.457904
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "BowFell",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.166277,
+            54.447801
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Esk Pike",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.179248,
+            54.457185
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Great End",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.194787,
+            54.464749
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Ill Crag",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.199674,
+            54.455591
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Broad Crag",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.207034,
+            54.457345
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Scafell Pike",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.21136,
+            54.454261
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "ScaFell",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.224698,
+            54.447748
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Wasdale Campsite",
+          "featureType": "checkpoint",
+          "ratify": false,
+          "validityDistance": [
+            0.15,
+            0.25
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.262195419792679,
+            54.4556625391448
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Yewbarrow",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.276646,
+            54.465061
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Red Pike",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.289535,
+            54.483205
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Steeple",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.302225,
+            54.493373
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Pillar",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.281095,
+            54.497481
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Kirk Fell",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.244275,
+            54.483428
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Great Gable",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.219312,
+            54.482181
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Green Gable",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.21308,
+            54.486083
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Brandreth",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.213772,
+            54.496266
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Grey Knotts",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.207075,
+            54.502905
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Honister Pass",
+          "featureType": "checkpoint",
+          "ratify": false,
+          "validityDistance": [
+            0.15,
+            0.25
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.198723,
+            54.511516
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Dale Head",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.202109,
+            54.527269
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Hindscarth",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.213763,
+            54.537714
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Robinson",
+          "featureType": "summit",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.235122,
+            54.54079
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Moot Hall (Finish)",
+          "featureType": "finish checkpoint",
+          "ratify": true
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.13732,
+            54.600761
+          ]
+        }
+      }
+    ]
+  }

@@ -21,12 +21,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -3.30456,
-          54.55286
+          -3.25885,
+          54.529362
         ]
       },
       "properties": {
-        "name": "Low Ling Crag",
+        "name": "Crag Wood",
         "featureType": "water exit",
         "ratify": true
       }
@@ -51,12 +51,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -3.25885,
-          54.529362
+          -3.30456,
+          54.55286
         ]
       },
       "properties": {
-        "name": "Crag Wood",
+        "name": "Low Ling Crag",
         "featureType": "water exit",
         "ratify": true
       }
@@ -72,7 +72,7 @@
       },
       "properties": {
         "name": "Hause Point",
-        "featureType": "finish checkpoint",
+        "featureType": "end checkpoint",
         "ratify": true
       }
     }
