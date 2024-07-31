@@ -1,0 +1,350 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Village Hall, Broughton Mills (Start)",
+        "featureType": "start checkpoint",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1966758,
+          54.304878
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Great Stickle",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.213179,
+          54.313847
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Stickle Pike",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.213067,
+          54.324652
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Caw",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1858323,
+          54.339319
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "White Maiden",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.148816,
+          54.351409
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Brown Pike",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.138886,
+          54.359547
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dow Crag",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.136659,
+          54.3703
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Coniston Old Man",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.121445,
+          54.370658
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Swirl How",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.12153,
+          54.39523
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Great Carrs",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.124738,
+          54.398777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cold Pike",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.124738,
+          54.398777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Crinkle Crags",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.159813,
+          54.433704
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bowfell",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.166211,
+          54.447816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Esk Pike",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.179219,
+          54.457172
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Great End",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.194532,
+          54.464949
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Great Gable",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.219296,
+          54.482084
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Green Gable",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.219296,
+          54.482084
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Brandreth",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.213737,
+          54.496583
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grey Knotts",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.210186,
+          54.502362
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "High Spy",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.185141,
+          54.535559
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Maiden Moor",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.181585,
+          54.553183
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Catbells",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1708004,
+          54.567750
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Moot Hall, Keswick (Finish)",
+        "featureType": "finish checkpoint",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.136510,
+          54.599183
+        ]
+      }
+    }
+  ]
+}

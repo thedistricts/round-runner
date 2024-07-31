@@ -47,8 +47,17 @@
 			"slug": "bob-graham-round",
 			"title": "Bob Graham Round",
 			"description": "Classic Memorial Circuit of the Lakeland Fells",
-			"json": "/data/bob-graham-round.json",
+			"json": "/data/bob-graham-round.geo.json",
 			"example": "/data/example/bob-graham.gpx",
+			"logo": "/assets/runner.gif"
+		},
+		{
+			"default": false,
+			"slug": "cumbrian-traverse",
+			"title": "Cumbrian Traverse",
+			"description": "This is a south to north, high-level traverse of 21 Lakeland peaks involving over  30 miles and 12000 feet of ascent",
+			"json": "/data/cumbrian-traverse.geo.json",
+			"example": "/data/example/cumbrian-traverse.gpx",
 			"logo": "/assets/runner.gif"
 		}
 	]
