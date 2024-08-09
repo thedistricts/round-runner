@@ -10,28 +10,28 @@
 
 	onMount(() => {
 		const map = getMap();
-		map.addSource(ID_ROUTE, {
-			type: 'geojson',
-			data: features
-		});
-		map.addLayer({
-			id: ID_ROUTE,
-			type: 'line',
-			source: ID_ROUTE,
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			},
-			paint: {
-				'line-color': '#4F46E5',
-				'line-width': 3
-			}
-		});
+			map.addSource(ID_ROUTE, {
+				type: 'geojson',
+				data: features
+			});
+			map.addLayer({
+				id: ID_ROUTE,
+				type: 'line',
+				source: ID_ROUTE,
+				layout: {
+					'line-join': 'round',
+					'line-cap': 'round'
+				},
+				paint: {
+					'line-color': '#4F46E5',
+					'line-width': 3
+				}
+			});
 	});
 
 	onDestroy(() => {
 		const map = getMap();
-		map.removeLayer(ID_ROUTE);
-		map.removeSource(ID_ROUTE);
+		if (map.getLayer(ID_ROUTE)) map.removeLayer(ID_ROUTE);
+		if (map.getSource(ID_ROUTE)) map.removeSource(ID_ROUTE);
 	});
 </script>

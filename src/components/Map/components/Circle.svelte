@@ -21,50 +21,53 @@
 		units: 'kilometers' as Units
 	};
 
-	const map = getMap();
+	
 	const id = `${coordinates.toString()}:${radius}:${colour}`;
 	const innerCircleId = `location-radius:${id}`;
 	const outerCircleId = `location-radius-outline:${id}`;
 	const sourceId = `location-source:${id}`;
+	const map = getMap();
 
-	onMount(() => {
-		const hasCircleSource = map.getSource(sourceId);
-
-		if (!hasCircleSource) {
-			// TODO: is turf.buffer better?
-			const circle = turf.circle(coordinates, radius, DRAW_OPTIONS);
-
-			map.addSource(sourceId, {
-				type: 'geojson',
-				data: circle
-			});
-
-			map.addLayer({
-				id: innerCircleId,
-				type: 'fill',
-				source: sourceId,
-				paint: {
-					'fill-color': colour,
-					'fill-opacity': opacity
-				}
-			});
-
-			map.addLayer({
-				id: outerCircleId,
-				type: 'line',
-				source: sourceId,
-				paint: {
-					'line-color': colour,
-					'line-width': lineWidth,
-					'line-opacity': opacity
-				}
-			});
-		}
-	});
-
-	onDestroy(() => {
+	function cleanUp() {
 		if (map.getLayer(innerCircleId)) map.removeLayer(innerCircleId);
 		if (map.getLayer(outerCircleId)) map.removeLayer(outerCircleId);
 		if (map.getSource(sourceId)) map.removeSource(sourceId);
+	}
+
+	function addLayers() {
+		const circle = turf.circle(coordinates, radius, DRAW_OPTIONS);
+		map.addSource(sourceId, {
+			type: 'geojson',
+			data: circle
+		});
+
+		map.addLayer({
+			id: innerCircleId,
+			type: 'fill',
+			source: sourceId,
+			paint: {
+				'fill-color': colour,
+				'fill-opacity': opacity
+			}
+		});
+
+		map.addLayer({
+			id: outerCircleId,
+			type: 'line',
+			source: sourceId,
+			paint: {
+				'line-color': colour,
+				'line-width': lineWidth,
+				'line-opacity': opacity
+			}
+		});
+	}
+
+	onMount(() => {
+		setTimeout(() => {
+			addLayers() 
+		}, 100) 
 	});
+
+	onDestroy(cleanUp);
 </script>
