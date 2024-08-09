@@ -4,7 +4,7 @@ export interface MapContext {
 	getMap(): Map;
 }
 
-const ACCESS_TOKEN = 'vAj4p8zLweqLaTgqeczQUCqAAjep2E34';
+const ACCESS_TOKEN = 'V0tBS9icsk79SmCOaKeQ';
 
 const key = Symbol();
 

@@ -8,4 +8,5 @@ import type { RouteGeoJson } from './route.store.d';
 const EMPTY_COLLECTION: RouteGeoJson = featureCollection([]);
 export const route = writable<RouteGeoJson>(EMPTY_COLLECTION);
 export const routeFocus = writable<LngLatLike>(undefined);
+export const isRouteReversed = writable<boolean>(false);
 export const routeBBox = derived(route, ($route) => bbox($route));

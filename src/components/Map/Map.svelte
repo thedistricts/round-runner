@@ -1,24 +1,33 @@
 <script lang="ts">
 	import { onMount, onDestroy, setContext } from 'svelte';
-	import { Map, key } from './Map.context';
+	import { Map, key, ACCESS_TOKEN } from './Map.context';
 	import { NavigationControl } from 'maplibre-gl';
 	import { Route, Track, Results, Debug } from './components';
-	import style from './Map.style';
+	import type { ControlPosition } from 'maplibre-gl';
 
 	let map: Map;
 	let mapContainer: HTMLElement;
-
-	const initialState = { lng: -3.28, lat: 54.5, zoom: 12 };
+	const CTRL = { BOTTOM_RIGHT: 'bottom-right' }
+	const TILESET = { WINTER: 'winter-v2', OUTDOOR: 'outdoor-v2', ROAD: 'uk-openzoomstack-road' };
+	const INITIAL_STATE = { LNG: -3.3073, LAT: 54.5865, ZOOM: 11.29 };
 
 	function load() {
 		map = new Map({
 			container: mapContainer,
-			style,
-			center: [initialState.lng, initialState.lat],
-			zoom: initialState.zoom
+			style: `https://api.maptiler.com/maps/${TILESET.WINTER}/style.json?key=${ACCESS_TOKEN}`,
+			center: [INITIAL_STATE.LNG, INITIAL_STATE.LAT],
+			zoom: INITIAL_STATE.ZOOM,
+			hash: false,
 		});
 
-		map.addControl(new NavigationControl({}), 'bottom-right');
+		map.addControl(
+			new NavigationControl({
+				visualizePitch: true,
+				showZoom: true,
+				showCompass: true
+			}), 
+			CTRL.BOTTOM_RIGHT as ControlPosition
+		);
 	}
 
 	setContext(key, {

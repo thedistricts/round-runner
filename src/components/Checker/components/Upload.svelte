@@ -7,7 +7,7 @@
 	import { GPXLoader } from '@loaders.gl/kml';
 	import { load } from '@loaders.gl/core';
 	import { page } from '$app/stores';
-	import { route } from '$lib/stores/route.store';
+	import { route, isRouteReversed } from '$lib/stores/route.store';
 	import { gpx } from '$lib/stores/gpx.store';
 	import {
 		ratification as ratificationStore,
@@ -45,6 +45,7 @@
 		
 		const data: GPXGeoJson = await load(fileItem.file, GPXLoader);
 		gpx.set(data);
+
 		fileName = fileItem.file.name;
 
 		const { ratify, debug } = Comlink.wrap<ExposeRatificationWorker>(ratificationWorker);
@@ -72,6 +73,15 @@
 	function handleLoadExample(URL: string) {
 		console.log(URL)
 		fetchFileFromUrl(URL);
+	}
+
+	function reverseRoute() {
+		const reversedRoute = {
+			...$route,
+			features: $route.features.reverse()
+		};
+		isRouteReversed.set(!$isRouteReversed);
+		route.set(reversedRoute);
 	}
 
 	async function fetchFileFromUrl(url: string) {
@@ -119,13 +129,20 @@
 			No file? 
 			<button
 				class="
-					ml-2 py-1 px-3 rounded-full bg-neutral-50
+				ml-2 py-1 px-3 rounded-full bg-neutral-50
 				text-blue-700 border  border-neutral-50 hover:bg-blue-700 hover:text-white focus:ring-2 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500
 				"
 				on:click={() => handleLoadExample(pageRouteExampleURL)}
 			>
 				See example
 			</button>
+			<label class="ml-auto inline-flex items-center cursor-pointer">
+				<input type="checkbox" value="" class="sr-only peer" 
+					on:change={reverseRoute}
+				>
+				<div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+				<span class="ms-3 text-sm font-normal text-gray-600 dark:text-gray-300">CCW</span>
+			</label>
 		</div>
 		{/if}
 		
