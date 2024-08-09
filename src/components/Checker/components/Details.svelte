@@ -7,6 +7,8 @@
 	import { gpx } from '$lib/stores/gpx.store';
 	import { breakdown } from '$lib/stores/breakdown.store';
 	import { ratification, debug } from '$lib/stores/ratification.store';
+	import { isRouteReversed } from '$lib/stores/route.store';
+
 
 	export let fileName = '';
 
@@ -17,6 +19,7 @@
 	let elapsed = new Date(0);
 	let isValid = false;
 
+
 	const unsubscribe = gpx.subscribe((track) => {
 		const {
 			start: trackStart,
@@ -25,8 +28,8 @@
 			isValid: isTrackValid
 		} = getMetricsFrom(track);
 
-		start = trackStart;
-		end = trackEnd;
+		start = $isRouteReversed ? trackEnd : trackStart;
+		end = $isRouteReversed ? trackStart: trackEnd;
 		elapsed = trackElapsed;
 		isValid = isTrackValid;
 	});

@@ -3,23 +3,20 @@
 	import { Map, key, ACCESS_TOKEN } from './Map.context';
 	import { NavigationControl } from 'maplibre-gl';
 	import { Route, Track, Results, Debug } from './components';
-
 	import type { ControlPosition } from 'maplibre-gl';
 
 	let map: Map;
 	let mapContainer: HTMLElement;
-	const CTRL = {
-		BOTTOM_RIGHT: 'bottom-right',
-	} 
+	const CTRL = { BOTTOM_RIGHT: 'bottom-right' }
 	const TILESET = { WINTER: 'winter-v2', OUTDOOR: 'outdoor-v2', ROAD: 'uk-openzoomstack-road' };
-	const initialState = { lng: -3.3073, lat: 54.5865, zoom: 11.29 };
+	const INITIAL_STATE = { LNG: -3.3073, LAT: 54.5865, ZOOM: 11.29 };
 
 	function load() {
 		map = new Map({
 			container: mapContainer,
 			style: `https://api.maptiler.com/maps/${TILESET.WINTER}/style.json?key=${ACCESS_TOKEN}`,
-			center: [initialState.lng, initialState.lat],
-			zoom: initialState.zoom,
+			center: [INITIAL_STATE.LNG, INITIAL_STATE.LAT],
+			zoom: INITIAL_STATE.ZOOM,
 			hash: false,
 		});
 

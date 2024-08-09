@@ -35,6 +35,7 @@
 	}
 
 	function addLayers() {
+		cleanUp();
 		const circle = turf.circle(coordinates, radius, DRAW_OPTIONS);
 		map.addSource(sourceId, {
 			type: 'geojson',
@@ -64,9 +65,9 @@
 	}
 
 	onMount(() => {
-		setTimeout(() => {
-			addLayers() 
-		}, 100) 
+		map.isStyleLoaded() 
+			? setTimeout(addLayers, 100)
+			: map.on('load', addLayers);
 	});
 
 	onDestroy(cleanUp);

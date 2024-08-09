@@ -9,12 +9,18 @@
 	import { getMetricsFrom, getMetricsDefaults } from '$lib/utils';
 	import { submissionPoints } from '$lib/stores/ratification.store';
 	import { breakdown } from '$lib/stores/breakdown.store';
+	import { isRouteReversed } from '$lib/stores/route.store';
 
 	dayjs.extend(utc);
+	let start = dayjs();
+	let end = dayjs();
+	let submissionPointsGivenRouteDirection = $isRouteReversed ? $submissionPoints.reverse() : $submissionPoints;
 
 	let metrics = getMetricsDefaults();
 	const unsubscribe = gpx.subscribe((track) => {
 		metrics = getMetricsFrom(track);
+		start = metrics.start;
+		end = metrics.end;
 	});
 
 	onDestroy(unsubscribe);
@@ -72,9 +78,9 @@
 
 		<div class="px-6 print:p-0">
 			<div class="flex justify-between gap-3 pt-5 pb-6 text-gray-600">
-				<div>Date: {metrics.start.utc().format(DATE)}</div>
-				<div>Start: {metrics.start.utc().format(HOURS)}</div>
-				<div>End: {metrics.end.utc().format(HOURS)}</div>
+				<div>Date: {start.utc().format(DATE)}</div>
+				<div>Start: {start.utc().format(HOURS)}</div>
+				<div>End: {end.utc().format(HOURS)}</div>
 				<div>
 					Elapsed Time: {metrics.elapsed.getUTCHours()} hours
 					{metrics.elapsed.getUTCMinutes()} minutes
@@ -91,8 +97,8 @@
 							<th scope="col" class="px-6 py-4"> Notes </th>
 						</tr>
 					</thead>
-					<tbody>
-						{#each $submissionPoints as ratificationFeature, order}
+					<tbody>	
+						{#each submissionPointsGivenRouteDirection as ratificationFeature, order}
 							<tr class="bg-white border-b ">
 								<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
 									{getOrderLabel(order)}
