@@ -77,7 +77,8 @@
 			on:click={showBreakdown}
 			class="
 				flex justify-items-center items-center gap-2
-				absolute bottom-4 right-4 pl-2 pr-3 py-1 
+				md:absolute md:bottom-4 md:right-4 mt-5 md:mt-0 
+				pl-2 pr-3 py-1  
 				rounded bg-indigo-800 hover:bg-indigo-900 text-indigo-100 text-xs focus:ring-2 focus:ring-indigo-500
 				ease-out duration-200
 				leading-4
