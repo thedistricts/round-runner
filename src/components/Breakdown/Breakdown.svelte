@@ -14,7 +14,7 @@
 	dayjs.extend(utc);
 	let start = dayjs();
 	let end = dayjs();
-	let submissionPointsGivenRouteDirection = $isRouteReversed ? $submissionPoints.reverse() : $submissionPoints;
+	$: submissionPointsGivenRouteDirection = $isRouteReversed ? $submissionPoints.reverse() : $submissionPoints;
 
 	let metrics = getMetricsDefaults();
 	const unsubscribe = gpx.subscribe((track) => {
