@@ -55,7 +55,6 @@
 </div>
 
 <style>
-	/* TODO: Mobile styles */
 	.expanded {
 		@media (min-width: 768px) { 
 			display: grid;
