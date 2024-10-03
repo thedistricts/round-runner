@@ -7,7 +7,8 @@
 	import type { Position } from 'geojson';
 	import { HOURS } from '$lib/const';
 	import { kilometersToMeters } from '$lib/utils';
-
+	import { viewport } from '$lib/stores/viewport.store';
+	import { isOpen } from '$lib/stores/checker.store';
 	import { ratification, results, resultsFocus } from '$lib/stores/ratification.store';
 	import { Loader } from './';
 
@@ -26,12 +27,15 @@
 
 	function handleOnMapFocus(coordinates?: LngLatLike | Position) {
 		if (!coordinates) throw new Error('No coordinates provided');
+		if ($viewport.isMobile) {
+			$isOpen = false;
+		}
 		resultsFocus.set(coordinates as LngLatLike);
 	}
 </script>
 
 {#if hasRatificationResults}
-	<h3 class="z-30 block sticky top-3 text-base font-normal text-stone-800 pointer-events-none">
+	<h3 class="z-30 block md:sticky top-3 text-base font-normal text-stone-800 pointer-events-none">
 		Checkpoints
 	</h3>
 	<div class="pt-3">
@@ -41,7 +45,7 @@
 				{#each failed as failedFeature}
 					<button
 						class="
-							relative z-10 py-4 flex flex-col 
+							relative z-10 py-4 flex flex-col
 							bg-white border-2 border-red-500 rounded hover:bg-gray-100
 							shadow"
 						on:click={() => handleOnMapFocus(failedFeature.geometry.coordinates)}
@@ -54,11 +58,11 @@
 								nearest point: {kilometersToMeters(failedFeature.properties.dist)}m
 							</div>
 						</div>
-						{ #if failedFeature.properties.time }
+						{#if failedFeature.properties.time}
 							<div class="absolute top-4 right-3 text-sm text-neutral-400">
 								{dayjs(failedFeature.properties.time).utc().format(HOURS)}
 							</div>
-						{ /if }
+						{/if}
 					</button>
 				{/each}
 			</div>
@@ -69,7 +73,7 @@
 				<h4 class="text-sm font-semibold">Warnings</h4>
 				{#each warnings as warningFeature}
 					<button
-						class="relative z-10 py-4 flex flex-col 
+						class="relative z-10 py-4 flex flex-col
 							bg-white border-2 border-gray-200 rounded hover:bg-gray-100
 							shadow"
 						on:click={() => handleOnMapFocus(warningFeature.geometry.coordinates)}
@@ -82,11 +86,11 @@
 								nearest point: {kilometersToMeters(warningFeature.properties.dist)}m
 							</div>
 						</div>
-						{ #if warningFeature.properties.time }
+						{#if warningFeature.properties.time}
 							<div class="absolute top-4 right-3 text-sm text-neutral-400">
 								{dayjs(warningFeature.properties.time).utc().format(HOURS)}
 							</div>
-						{ /if }
+						{/if}
 					</button>
 				{/each}
 			</div>
@@ -107,11 +111,11 @@
 								{validFeature.properties.name}
 							</div>
 						</div>
-						{ #if validFeature.properties.time }
+						{#if validFeature.properties.time}
 							<div class="ml-auto px-3 text-sm text-neutral-400">
 								{dayjs(validFeature.properties.time).utc().format(HOURS)}
 							</div>
-						{ /if }
+						{/if}
 					</button>
 				{/each}
 			</div>

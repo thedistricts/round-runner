@@ -1,22 +1,25 @@
 <script lang="ts">
 	import type { LngLatLike } from 'maplibre-gl';
 	import type { Position } from 'geojson';
-
+	import { isOpen } from '$lib/stores/checker.store';
+	import { viewport } from '$lib/stores/viewport.store';
 	import { route, routeFocus } from '$lib/stores/route.store';
 	$: isLoaded = $route.features.length > 0;
-	export let isOpen = false;
 
 	function handleOnMapFocus(coordinates?: LngLatLike | Position) {
 		if (!coordinates) throw new Error('No coordinates provided');
+		if ($viewport.isMobile) {
+			$isOpen = false;
+		}
 		routeFocus.set(coordinates as LngLatLike);
 	}
 </script>
 
 {#if isLoaded}
-	<h3 class="z-30 block sticky top-3 text-base font-normal text-stone-800 pointer-events-none">
+	<h3 class="z-30 block md:sticky top-3 text-base font-normal text-stone-800 pointer-events-none">
 		{$route.features.length}&nbsp;Checkpoints
 	</h3>
-	{#if isOpen}
+	{#if $isOpen}
 		<ol class="text-sm text-stone-500 mt-4">
 			{#each $route.features as feature, i}
 				<li class="-ml-2">

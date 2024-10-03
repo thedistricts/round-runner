@@ -4,17 +4,17 @@
 	import { Upload, Checkpoints, Expander, Results, ExpandAction } from './components';
 	import { gpx } from '$lib/stores/gpx.store';
 	import { breakdown } from '$lib/stores/breakdown.store';
+	import { isOpen } from '$lib/stores/checker.store';
 
-	let isOpen = false;
 	let hasGpx = false;
 
 	function handleOnClick() {
-		isOpen = !isOpen;
+		$isOpen = !$isOpen;
 	}
 
 	const unsubscribe = gpx.subscribe((geojson) => {
 		hasGpx = geojson.features.length > 0;
-		isOpen = hasGpx;
+		$isOpen = hasGpx;
 	});
 
 	onDestroy(unsubscribe);
@@ -22,9 +22,9 @@
 
 <div class="md:h-screen print:h-auto">
 	<div
-		class:expanded={isOpen}
+		class:expanded={$isOpen}
 		class="
-			pointer-events-auto 
+			pointer-events-auto
 			bg-white rounded-md drop-shadow
 			divide-y divide-slate-200
 			m-8 mr-0
@@ -41,13 +41,13 @@
 			</div>
 		</div>
 
-		<Expander {isOpen}>
-			<div class:print:hidden={$breakdown}>
+		<Expander isOpen={$isOpen}>
+			<div class:print:hidden={$breakdown} class="mx-auto grow">
 				{#if hasGpx}
 					<Results />
 				{/if}
 				{#if !hasGpx}
-					<Checkpoints {isOpen} />
+					<Checkpoints />
 				{/if}
 			</div>
 		</Expander>
@@ -56,12 +56,12 @@
 
 <style>
 	.expanded {
-		@media (min-width: 768px) { 
+		@media (min-width: 768px) {
 			display: grid;
 			grid-template-rows: 4rem auto 1fr;
 			height: calc(100vh - 4rem);
 		}
-		
+
 		@media print {
 			display: block;
 			height: auto;
