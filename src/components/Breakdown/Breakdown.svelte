@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onDestroy } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import { gpx } from '$lib/stores/gpx.store';
 
 	import dayjs from 'dayjs';
@@ -14,13 +14,21 @@
 	dayjs.extend(utc);
 	let start = dayjs();
 	let end = dayjs();
-	$: submissionPointsGivenRouteDirection = $isRouteReversed ? $submissionPoints.reverse() : $submissionPoints;
+	let breakdownDomElement: HTMLElement;
+
+	$: submissionPointsGivenRouteDirection = $isRouteReversed
+		? $submissionPoints.reverse()
+		: $submissionPoints;
 
 	let metrics = getMetricsDefaults();
 	const unsubscribe = gpx.subscribe((track) => {
 		metrics = getMetricsFrom(track);
 		start = metrics.start;
 		end = metrics.end;
+	});
+
+	onMount(() => {
+		breakdownDomElement.scrollIntoView({ behavior: 'smooth' });
 	});
 
 	onDestroy(unsubscribe);
@@ -40,7 +48,10 @@
 	}
 </script>
 
-<article class="pl-8 pb-8 md:p-8 md:pl-0 md:h-full print:h-auto print:p-0">
+<article
+	class="pl-8 pb-8 md:p-8 md:pl-0 md:h-full print:h-auto print:p-0 scroll-mt-10"
+	bind:this={breakdownDomElement}
+>
 	<div
 		class="
 		bg-white rounded-md drop-shadow
@@ -97,9 +108,9 @@
 							<th scope="col" class="px-6 py-4"> Notes </th>
 						</tr>
 					</thead>
-					<tbody>	
+					<tbody>
 						{#each submissionPointsGivenRouteDirection as ratificationFeature, order}
-							<tr class="bg-white border-b ">
+							<tr class="bg-white border-b">
 								<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
 									{getOrderLabel(order)}
 								</th>
