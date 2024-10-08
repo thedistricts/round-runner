@@ -21,7 +21,6 @@
 		units: 'kilometers' as Units
 	};
 
-	
 	const id = `${coordinates.toString()}:${radius}:${colour}`;
 	const innerCircleId = `location-radius:${id}`;
 	const outerCircleId = `location-radius-outline:${id}`;
@@ -46,6 +45,7 @@
 			id: innerCircleId,
 			type: 'fill',
 			source: sourceId,
+			minzoom: 12,
 			paint: {
 				'fill-color': colour,
 				'fill-opacity': opacity
@@ -56,6 +56,7 @@
 			id: outerCircleId,
 			type: 'line',
 			source: sourceId,
+			minzoom: 10,
 			paint: {
 				'line-color': colour,
 				'line-width': lineWidth,
@@ -65,9 +66,7 @@
 	}
 
 	onMount(() => {
-		map.isStyleLoaded() 
-			? setTimeout(addLayers, 100)
-			: map.on('load', addLayers);
+		map.isStyleLoaded() ? setTimeout(addLayers, 100) : map.on('load', addLayers);
 	});
 
 	onDestroy(cleanUp);
