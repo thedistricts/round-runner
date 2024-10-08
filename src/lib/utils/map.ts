@@ -2,12 +2,14 @@ import * as maplibre from 'maplibre-gl';
 import type { Map, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import type { BBox } from 'geojson';
 
-const BOUNDS_PADDING_RATIO = { TOP: 0.05, RIGHT: 0.02, BOTTOM: 0.05, LEFT: 0.18 };
+const BOUNDS_PADDING_RATIO = { TOP: 0.95, RIGHT: 0.02, BOTTOM: 0.95, LEFT: 0.3 };
+const BOUNDS_PADDING_RATIO_MOBILE = { TOP: 0.3, RIGHT: 0.15, BOTTOM: 0, LEFT: 0.15 };
 
 interface FitUtilProps {
 	map?: Map;
 	animate?: boolean;
 	delay?: number;
+	isMobile?: boolean;
 }
 interface FitBoundsWithPaddingProps extends FitUtilProps {
 	bBox: BBox;
@@ -16,22 +18,24 @@ interface FitPositionWithOffsetProps extends FitUtilProps {
 	position?: LngLatLike;
 	maxZoom?: number;
 	duration?: number;
-	offset?: number;
 }
 
 export function fitBoundsWithPadding({
 	map,
 	bBox,
 	animate = true,
-	delay = 125
+	delay = 125, 
+	isMobile
 }: FitBoundsWithPaddingProps) {
 	if (!Number.isFinite(bBox[0]) || !map) return;
-	const { width, height } = map.getCanvas();
+	const width = window.innerWidth;
+	const height = window.innerHeight;
+
 	const padding = {
-		top: height * BOUNDS_PADDING_RATIO.TOP,
-		bottom: height * BOUNDS_PADDING_RATIO.BOTTOM,
-		left: width * BOUNDS_PADDING_RATIO.LEFT,
-		right: width * BOUNDS_PADDING_RATIO.RIGHT
+		top: isMobile ? (height * BOUNDS_PADDING_RATIO_MOBILE.TOP) :  height * BOUNDS_PADDING_RATIO.TOP,
+		bottom: isMobile ? (height * BOUNDS_PADDING_RATIO_MOBILE.BOTTOM) : (height * BOUNDS_PADDING_RATIO.BOTTOM),
+		left: isMobile ? (width * BOUNDS_PADDING_RATIO_MOBILE.LEFT) : (width * BOUNDS_PADDING_RATIO.LEFT),
+		right: isMobile ? (width * BOUNDS_PADDING_RATIO_MOBILE.RIGHT) : (width * BOUNDS_PADDING_RATIO.RIGHT),
 	};
 
 	setTimeout(() => {
@@ -48,13 +52,15 @@ export function fitPositionWithOffset({
 	animate = true,
 	maxZoom = 13,
 	duration = 1000,
-	offset = 0.3333,
-	delay = 125
+	delay = 125,
+	isMobile
 }: FitPositionWithOffsetProps) {
 	if (!position || !map) return;
-	const { width } = map.getCanvas();
+	const width = window.innerWidth;
+	const height = window.innerHeight;
 	const padding = {
-		left: width * offset
+		top: isMobile ? (height * 0.3) :  0,
+		left: isMobile ? 0 : (width * BOUNDS_PADDING_RATIO.LEFT),
 	};
 	const bounds = new maplibre.LngLatBounds().extend(position as LngLatLike);
 	setTimeout(() => {

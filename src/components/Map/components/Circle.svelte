@@ -21,7 +21,6 @@
 		units: 'kilometers' as Units
 	};
 
-	
 	const id = `${coordinates.toString()}:${radius}:${colour}`;
 	const innerCircleId = `location-radius:${id}`;
 	const outerCircleId = `location-radius-outline:${id}`;
@@ -37,6 +36,7 @@
 	function addLayers() {
 		cleanUp();
 		const circle = turf.circle(coordinates, radius, DRAW_OPTIONS);
+		const minzoom = 14;
 		map.addSource(sourceId, {
 			type: 'geojson',
 			data: circle
@@ -46,6 +46,7 @@
 			id: innerCircleId,
 			type: 'fill',
 			source: sourceId,
+			minzoom,
 			paint: {
 				'fill-color': colour,
 				'fill-opacity': opacity
@@ -56,6 +57,7 @@
 			id: outerCircleId,
 			type: 'line',
 			source: sourceId,
+			minzoom,
 			paint: {
 				'line-color': colour,
 				'line-width': lineWidth,
@@ -65,9 +67,7 @@
 	}
 
 	onMount(() => {
-		map.isStyleLoaded() 
-			? setTimeout(addLayers, 100)
-			: map.on('load', addLayers);
+		map.isStyleLoaded() ? setTimeout(addLayers, 100) : map.on('load', addLayers);
 	});
 
 	onDestroy(cleanUp);
