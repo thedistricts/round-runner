@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext, onMount, onDestroy } from 'svelte';
-	import { Marker } from 'maplibre-gl';
+	import { Marker, Popup } from 'maplibre-gl';
 	import { key } from '../Map.context';
 	import { MARKER } from '$lib/const';
 	import { POINT_FEATURE } from '$lib/enum/pointFeature';
@@ -38,6 +38,7 @@
 		el.style.backgroundRepeat = 'no-repeat';
 		el.style.borderRadius = '50%';
 		el.style.boxShadow = '1px 3px 4px 0 rgba(0,0,0,0.23)';
+		el.style.cursor = 'pointer';
 		return el;
 	}
 
@@ -47,7 +48,12 @@
 		const element = createDOM(elementFeatureType);
 
 		marker = new Marker({ element }).setLngLat(coordinates as [number, number]).addTo(map);
-		// marker.setPopup(new Popup().setHTML('<h1>TODO: Create popup</h1>'));
+		marker.setPopup(
+			new Popup({
+				closeButton: false,
+				offset: elementFeatureType.height / 2.5
+			}).setText(`${properties.name}`)
+		);
 	}
 
 	onMount(() => {

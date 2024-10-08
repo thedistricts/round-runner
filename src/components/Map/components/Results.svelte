@@ -4,7 +4,7 @@
 	import { fitPositionWithOffset } from '$lib/utils';
 	import { ratification, resultsFocus } from '$lib/stores/ratification.store';
 
-	import Icon from './Icon.svelte';
+	import TimeIcon from './TimeIcon.svelte';
 	import type { MapContext } from '../Map.context';
 	import { key } from '../Map.context';
 	const { getMap } = getContext<MapContext>(key);
@@ -20,7 +20,7 @@
 </script>
 
 {#each $ratification as point}
-	{#if point?.geometry?.coordinates.length > 0}
-		<Icon coordinates={turf.getCoord(point)} />
+	{#if point.properties.time && point?.geometry?.coordinates.length > 0}
+		<TimeIcon coordinates={turf.getCoord(point)} time={point.properties.time} />
 	{/if}
 {/each}
