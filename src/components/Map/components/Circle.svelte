@@ -36,6 +36,7 @@
 	function addLayers() {
 		cleanUp();
 		const circle = turf.circle(coordinates, radius, DRAW_OPTIONS);
+		const minzoom = 14;
 		map.addSource(sourceId, {
 			type: 'geojson',
 			data: circle
@@ -45,7 +46,7 @@
 			id: innerCircleId,
 			type: 'fill',
 			source: sourceId,
-			minzoom: 12,
+			minzoom,
 			paint: {
 				'fill-color': colour,
 				'fill-opacity': opacity
@@ -56,7 +57,7 @@
 			id: outerCircleId,
 			type: 'line',
 			source: sourceId,
-			minzoom: 10,
+			minzoom,
 			paint: {
 				'line-color': colour,
 				'line-width': lineWidth,
