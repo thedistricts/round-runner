@@ -51,6 +51,7 @@
 		marker.setPopup(
 			new Popup({
 				closeButton: false,
+				closeOnMove: true,
 				offset: elementFeatureType.height / 2.5
 			}).setText(`${properties.name}`)
 		);
