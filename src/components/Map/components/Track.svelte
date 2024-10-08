@@ -3,6 +3,7 @@
 	import Line from './Line.svelte';
 
 	import { getContext, onDestroy } from 'svelte';
+	import { viewport } from '$lib/stores/viewport.store';
 	import { fitBoundsWithPadding } from '$lib/utils';
 	import { gpxBBox } from '$lib/stores/gpx.store';
 
@@ -14,7 +15,8 @@
 
 	const unsubscribe = gpxBBox.subscribe((bBox) => {
 		const map = getMap();
-		fitBoundsWithPadding({ map, bBox, animate: true, delay: 250 });
+
+		fitBoundsWithPadding({ map, bBox, animate: true, delay: 250, isMobile: $viewport.isMobile });
 	});
 
 	onDestroy(unsubscribe);

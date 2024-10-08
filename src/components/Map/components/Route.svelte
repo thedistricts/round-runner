@@ -3,6 +3,7 @@
 
 	import { getContext, onDestroy } from 'svelte';
 	import { fitBoundsWithPadding, fitPositionWithOffset } from '$lib/utils';
+	import { viewport } from '$lib/stores/viewport.store';
 	import { route, routeBBox, routeFocus } from '$lib/stores/route.store';
 	import Marker from './Marker.svelte';
 	import ValidityBoundary from './ValidityBoundary.svelte';
@@ -13,12 +14,13 @@
 
 	const unsubscribeRouteBBox = routeBBox.subscribe((bBox) => {
 		const map = getMap();
-		fitBoundsWithPadding({ map, bBox, animate: true });
+
+		fitBoundsWithPadding({ map, bBox, animate: true, isMobile: $viewport.isMobile });
 	});
 
 	const unsubscribeRouteFocus = routeFocus.subscribe((position) => {
 		const map = getMap();
-		fitPositionWithOffset({ map, position, animate: true });
+		fitPositionWithOffset({ map, position, animate: true, isMobile: $viewport.isMobile });
 	});
 
 	onDestroy(() => {

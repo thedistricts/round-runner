@@ -3,6 +3,7 @@
 	import * as turf from '@turf/turf';
 	import { fitPositionWithOffset } from '$lib/utils';
 	import { ratification, resultsFocus } from '$lib/stores/ratification.store';
+	import { viewport } from '$lib/stores/viewport.store';
 
 	import TimeIcon from './TimeIcon.svelte';
 	import type { MapContext } from '../Map.context';
@@ -11,7 +12,13 @@
 
 	const unsubscribeRouteFocus = resultsFocus.subscribe((position) => {
 		const map = getMap();
-		fitPositionWithOffset({ map, position, animate: true, maxZoom: 17 });
+		fitPositionWithOffset({
+			map,
+			position,
+			animate: true,
+			maxZoom: 17,
+			isMobile: $viewport.isMobile
+		});
 	});
 
 	onDestroy(() => {
