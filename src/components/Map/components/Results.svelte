@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { getContext, onMount, onDestroy } from 'svelte';
+	import { getContext, onDestroy } from 'svelte';
 	import * as turf from '@turf/turf';
 	import { fitPositionWithOffset } from '$lib/utils';
 	import { ratification, resultsFocus } from '$lib/stores/ratification.store';
 
-	import Circle from './Circle.svelte';
+	import Icon from './Icon.svelte';
 	import type { MapContext } from '../Map.context';
 	import { key } from '../Map.context';
 	const { getMap } = getContext<MapContext>(key);
@@ -20,5 +20,7 @@
 </script>
 
 {#each $ratification as point}
-	{#if point?.geometry?.coordinates.length > 0}<Circle coordinates={turf.getCoord(point)} />{/if}
+	{#if point?.geometry?.coordinates.length > 0}
+		<Icon coordinates={turf.getCoord(point)} />
+	{/if}
 {/each}
