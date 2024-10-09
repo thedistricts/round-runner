@@ -1,3 +1,4 @@
+@import 'filepond/dist/filepond.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
