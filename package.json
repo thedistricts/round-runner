@@ -15,7 +15,7 @@
 		"prepack": "svelte-kit sync"
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.28.1",
+		"@playwright/test": "^1.48.0",
 		"@sveltejs/adapter-auto": "^3.2.5",
 		"@sveltejs/adapter-netlify": "^4.3.4",
 		"@sveltejs/kit": "^2.6.3",
