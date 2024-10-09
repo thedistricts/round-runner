@@ -58,6 +58,12 @@
 		.maplibregl-popup-tip {
 			border-width: 7px;
 		}
+
+		.maplibregl-popup__active {
+			background: #fd0602;
+			outline: 2px solid #ffffff;
+			box-shadow: 0 0 0 5px #1d4ed9 !important;
+		}
 	</style>
 </svelte:head>
 
