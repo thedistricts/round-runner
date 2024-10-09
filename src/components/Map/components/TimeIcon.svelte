@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getContext, onMount, onDestroy } from 'svelte';
-	import { Popup } from 'maplibre-gl';
+	import pkg from 'maplibre-gl';
+	const { Popup } = pkg;
 	import dayjs from 'dayjs';
 	import utc from 'dayjs/plugin/utc';
 	import { key } from '../Map.context';

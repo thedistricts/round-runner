@@ -1,4 +1,5 @@
-import { Map } from 'maplibre-gl';
+import pkg from 'maplibre-gl';
+const { Map } = pkg;
 
 export interface MapContext {
 	getMap(): Map;

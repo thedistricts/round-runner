@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getContext, onMount, onDestroy } from 'svelte';
-	import { Marker, Popup } from 'maplibre-gl';
+	import pkg from 'maplibre-gl';
+	const { Marker, Popup } = pkg;
 	import { key } from '../Map.context';
 	import { MARKER } from '$lib/const';
 	import { POINT_FEATURE } from '$lib/enum/pointFeature';

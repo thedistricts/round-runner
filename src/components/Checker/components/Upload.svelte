@@ -23,7 +23,6 @@
 	import type { ExposeRatificationWorker } from '$lib/workers/ratification.worker.d';
 	import type { PageData } from '../../../routes/[round=name]/$types';
 
-
 	let ratificationWorker: Worker;
 	$: isDebug = false;
 	$: pageRouteExampleURL = $page.data.example as PageData['example'];
@@ -42,7 +41,7 @@
 
 	async function handleAddFile(_err: unknown, fileItem: { file: File }) {
 		loadWorker();
-		
+
 		const data: GPXGeoJson = await load(fileItem.file, GPXLoader);
 		gpx.set(data);
 
@@ -52,11 +51,11 @@
 		const ratificationResult = await ratify({ track: data, route: $route });
 		ratificationStore.set(ratificationResult);
 
-		if(isDebug) {
+		if (isDebug) {
 			const ratificationDebugResult = await debug({ track: data, route: $route });
 			debugStore.set(ratificationDebugResult);
 		}
-		
+
 		terminateWorker();
 	}
 
@@ -69,7 +68,7 @@
 			ratificationWorker.terminate();
 		}
 	}
-	
+
 	function handleLoadExample(URL: string) {
 		fetchFileFromUrl(URL);
 	}
@@ -84,11 +83,11 @@
 	}
 
 	async function fetchFileFromUrl(url: string) {
-    const response = await fetch(url);
-    const blob = await response.blob();
-    const file = new File([blob], "Round Attempt Example", { type: blob.type });
-    handleAddFile(null, { file });
-  }
+		const response = await fetch(url);
+		const blob = await response.blob();
+		const file = new File([blob], 'Round Attempt Example', { type: blob.type });
+		handleAddFile(null, { file });
+	}
 
 	onMount(() => {
 		if (browser) {
@@ -124,33 +123,33 @@
 			credits={false}
 		/>
 		{#if pageRouteExampleURL}
-		<div class="flex flex-row items-center text-sm text-neutral-400">
-			No file? 
-			<button
-				class="
+			<div class="flex flex-row items-center text-sm text-neutral-400">
+				No file?
+				<button
+					class="
 				ml-2 py-1 px-3 rounded-full bg-neutral-50
-				text-blue-700 border  border-neutral-50 hover:bg-blue-700 hover:text-white focus:ring-2 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500
+				text-blue-700 border border-neutral-50 hover:bg-blue-700 hover:text-white focus:ring-2 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500
 				"
-				on:click={() => handleLoadExample(pageRouteExampleURL)}
-			>
-				See example
-			</button>
-			<label class="ml-auto inline-flex items-center cursor-pointer">
-				<input type="checkbox" value="" class="sr-only peer" 
-					on:change={reverseRoute}
-					checked={$isRouteReversed}
+					on:click={() => handleLoadExample(pageRouteExampleURL)}
 				>
-				<div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-				<span class="ms-3 text-sm font-normal text-gray-600 dark:text-gray-300">CCW</span>
-			</label>
-		</div>
+					See example
+				</button>
+				<label class="ml-auto inline-flex items-center cursor-pointer">
+					<input
+						type="checkbox"
+						value=""
+						class="sr-only peer"
+						on:change={reverseRoute}
+						checked={$isRouteReversed}
+					/>
+					<div
+						class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+					/>
+					<span class="ms-3 text-sm font-normal text-gray-600 dark:text-gray-300">CCW</span>
+				</label>
+			</div>
 		{/if}
-		
 	</div>
 {:else}
 	<Details {fileName} />
 {/if}
-
-<style global>
-	@import 'filepond/dist/filepond.css';
-</style>
