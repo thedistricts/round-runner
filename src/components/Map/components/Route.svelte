@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';    
 	import * as turf from '@turf/turf';
 
 	import { getContext, onDestroy } from 'svelte';
@@ -35,8 +36,9 @@
 		unsubscribeRouteFocus();
 	});
 </script>
-
-{#each $route.features as point (point.properties)}
-	<Marker coordinates={turf.getCoord(point)} properties={point.properties} />
-	<ValidityBoundary coordinates={turf.getCoord(point)} properties={point.properties} />
-{/each}
+{#if browser}
+	{#each $route.features as point (point.properties)}
+		<Marker coordinates={turf.getCoord(point)} properties={point.properties} />
+		<ValidityBoundary coordinates={turf.getCoord(point)} properties={point.properties} />
+	{/each}
+{/if}
