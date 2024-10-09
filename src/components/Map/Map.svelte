@@ -49,6 +49,7 @@
 			color: #565656;
 			font-size: 14px;
 			letter-spacing: 0.39px;
+			margin: -1px;
 			padding: 6px 12px;
 			border-radius: 2rem;
 			box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);

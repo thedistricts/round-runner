@@ -38,9 +38,6 @@ export function fitBoundsWithPadding({
 		right: isMobile ? (width * BOUNDS_PADDING_RATIO_MOBILE.RIGHT) : (width * BOUNDS_PADDING_RATIO.RIGHT),
 	};
 
-	console.log(padding)
-
-
 	setTimeout(() => {
 		map.fitBounds(bBox as LngLatBoundsLike, {
 			padding,

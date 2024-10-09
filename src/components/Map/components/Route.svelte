@@ -11,16 +11,23 @@
 	import type { MapContext } from '../Map.context';
 	import { key } from '../Map.context';
 	const { getMap } = getContext<MapContext>(key);
+	let isFirstRender = true;
 
 	const unsubscribeRouteBBox = routeBBox.subscribe((bBox) => {
 		const map = getMap();
-
-		fitBoundsWithPadding({ map, bBox, animate: true, isMobile: $viewport.isMobile });
+		const isValidBBox = !bBox.includes(Infinity);
+		if (isValidBBox) {
+			fitBoundsWithPadding({ map, bBox, animate: !isFirstRender, isMobile: $viewport.isMobile });
+			isFirstRender = false;
+		}
 	});
 
 	const unsubscribeRouteFocus = routeFocus.subscribe((position) => {
 		const map = getMap();
-		fitPositionWithOffset({ map, position, animate: true, isMobile: $viewport.isMobile });
+		const isValidPosition = !!position;
+		if (isValidPosition) {
+			fitPositionWithOffset({ map, position, animate: true, isMobile: $viewport.isMobile });
+		}
 	});
 
 	onDestroy(() => {
