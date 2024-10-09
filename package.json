@@ -29,7 +29,7 @@
 		"autoprefixer": "^10.4.14",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
-		"eslint-plugin-svelte3": "^4.0.0",
+		"eslint-plugin-svelte": "^2.44.1",
 		"jsdom": "^22.1.0",
 		"postcss": "^8.4.31",
 		"postcss-nesting": "^11.3.0",
