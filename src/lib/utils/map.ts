@@ -2,7 +2,7 @@ import * as maplibre from 'maplibre-gl';
 import type { Map, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import type { BBox } from 'geojson';
 
-const BOUNDS_PADDING_RATIO = { TOP: 0.95, RIGHT: 0.02, BOTTOM: 0.95, LEFT: 0.3 };
+const BOUNDS_PADDING_RATIO = { TOP: 0.15, RIGHT: 0.025, BOTTOM: 0.15, LEFT: 0.32 };
 const BOUNDS_PADDING_RATIO_MOBILE = { TOP: 0.3, RIGHT: 0.15, BOTTOM: 0, LEFT: 0.15 };
 
 interface FitUtilProps {
@@ -37,6 +37,9 @@ export function fitBoundsWithPadding({
 		left: isMobile ? (width * BOUNDS_PADDING_RATIO_MOBILE.LEFT) : (width * BOUNDS_PADDING_RATIO.LEFT),
 		right: isMobile ? (width * BOUNDS_PADDING_RATIO_MOBILE.RIGHT) : (width * BOUNDS_PADDING_RATIO.RIGHT),
 	};
+
+	console.log(padding)
+
 
 	setTimeout(() => {
 		map.fitBounds(bBox as LngLatBoundsLike, {
