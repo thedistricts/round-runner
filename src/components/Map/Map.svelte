@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onMount, onDestroy, setContext } from 'svelte';
 	import { Map, key, ACCESS_TOKEN } from './Map.context';
-	import { NavigationControl } from 'maplibre-gl';
+	import pkg from 'maplibre-gl';
+	const { NavigationControl } = pkg;
 	import { Route, Track, Results, Debug } from './components';
 	import type { ControlPosition } from 'maplibre-gl';
 
