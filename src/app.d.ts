@@ -8,7 +8,10 @@ declare global {
 		}
 		// interface Locals {}
 		// interface PageData {}
-		// interface Platform {}
+		// interface Platform {},
+		interface PageState {
+			routeInformation: boolean;
+	}
 	}
 }
 

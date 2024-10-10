@@ -9,6 +9,10 @@ function getRoundPages() {
 			<loc>${DOMAIN}/${round.slug}</loc>
 			<changefreq>monthly</changefreq>
 		</url>
+		<url>
+			<loc>${DOMAIN}/${round.slug}?route-information=true</loc>
+			<changefreq>monthly</changefreq>
+		</url>
 	`);
 	return rounds.join("");
 }

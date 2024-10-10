@@ -3,38 +3,27 @@
 	import { pushState } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
-	import RouteSelector from '../RouteSelector/RouteSelector.svelte';
-	import { Upload, Checkpoints, Expander, Results, ExpandAction } from './components';
 	import { gpx } from '$lib/stores/gpx.store';
 	import { breakdown } from '$lib/stores/breakdown.store';
 	import { isOpen } from '$lib/stores/checker.store';
+	import { getUrlWithParams } from '$lib/utils/params';
+	import { URL_PARAM, DOM_EVENTS } from '$lib/enum';
 
-	const ROUTE_INFORMATION_PARAM = 'route-information';
+	import RouteSelector from '../RouteSelector/RouteSelector.svelte';
+	import { Upload, Checkpoints, Expander, Results, ExpandAction } from './components';
+
 	let hasGpx = false;
-	let urlParams = browser ? new URLSearchParams(window.location.search) : new URLSearchParams();
 
 	function handlePopState() {
-		console.log('handlePopState', $page.state.ROUTE_INFORMATION_PARAM);
-		$isOpen = $page.state.ROUTE_INFORMATION_PARAM;
-	}
-
-	function getParams() {
-		let newUrl = '';
-		if (browser) {
-			let params = new URLSearchParams();
-			if ($isOpen) params.set(ROUTE_INFORMATION_PARAM, 'open');
-			else params.delete(ROUTE_INFORMATION_PARAM);
-			newUrl = `${window.location.pathname}?${params.toString()}`;
-		}
-		return newUrl;
+		$isOpen = !$page.state.routeInformation;
 	}
 
 	function handleOnClick() {
 		$isOpen = !$isOpen;
+		const newUrl = getUrlWithParams({ when: $isOpen, with: URL_PARAM.ROUTE_INFORMATION });
 
-		const newUrl = getParams();
 		pushState(newUrl, {
-			ROUTE_INFORMATION_PARAM: $isOpen
+			routeInformation: $isOpen
 		});
 	}
 
@@ -44,18 +33,12 @@
 	});
 
 	onMount(() => {
-		$isOpen = $page.state.ROUTE_INFORMATION_PARAM;
-		if (browser) {
-			$isOpen = urlParams.has(ROUTE_INFORMATION_PARAM);
-			window.addEventListener('popstate', handlePopState);
-		}
+		if (browser) window.addEventListener(DOM_EVENTS.POPSTATE, handlePopState);
 	});
 
 	onDestroy(() => {
 		unsubscribeGpx();
-		if (browser) {
-			window.removeEventListener('popstate', handlePopState);
-		}
+		if (browser) window.removeEventListener(DOM_EVENTS.POPSTATE, handlePopState);
 	});
 </script>
 
