@@ -31,7 +31,12 @@
 	function addLayers() {
 		cleanUp();
 		const image = new Image(28, 28);
-		image.onload = () => map.addImage(imageId, image);
+		image.onload = () => {
+			if (map.getImage(imageId)) {
+				map.removeImage(imageId);
+			}
+			map.addImage(imageId, image);
+		};
 		image.src = TimePoint;
 
 		map.addSource(sourceId, {
@@ -65,7 +70,7 @@
 			undefined
 		);
 
-		map.on('mouseenter', id, (e) => {
+		map.on('mouseenter', id, (e: { lngLat: { lng: number } }) => {
 			map.getCanvas().style.cursor = 'pointer';
 			while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
 				coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
@@ -88,7 +93,9 @@
 	}
 
 	onMount(() => {
-		map.isStyleLoaded() ? setTimeout(addLayers, 100) : map.on('load', addLayers);
+		map.once('idle', () => {
+			addLayers();
+		});
 	});
 
 	onDestroy(cleanUp);
