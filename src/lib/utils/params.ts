@@ -22,10 +22,10 @@ export function getUrlWithParams({ when: isActive, with: key }: GetUrlWithParams
 }
 
 interface GetUrlParamsWithNewProps {
-  location: string;
+  location?: string;
 }
 
-export function getUrlParamsWithNew({ location }: GetUrlParamsWithNewProps): [string, boolean] {
+export function getUrlParamsWithNew({ location = "" }: GetUrlParamsWithNewProps): [string, boolean] {
   let newUrl = '';
   let hasParams = false;
   if (browser) {
