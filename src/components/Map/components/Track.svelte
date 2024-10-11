@@ -15,7 +15,6 @@
 
 	const unsubscribe = gpxBBox.subscribe((bBox) => {
 		const map = getMap();
-
 		fitBoundsWithPadding({ map, bBox, animate: true, delay: 250, isMobile: $viewport.isMobile });
 	});
 

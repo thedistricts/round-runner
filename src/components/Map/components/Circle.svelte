@@ -67,7 +67,9 @@
 	}
 
 	onMount(() => {
-		map.isStyleLoaded() ? setTimeout(addLayers, 100) : map.on('load', addLayers);
+		map.once('idle', () => {
+			addLayers();
+		});
 	});
 
 	onDestroy(cleanUp);

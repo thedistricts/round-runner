@@ -66,6 +66,7 @@
 	}
 
 	function addMarker() {
+		if (marker) marker.remove();
 		const elementFeatureType = POINT_FEATURE_TO_MARKER.get(properties.featureType);
 		if (!elementFeatureType) return;
 		const element = createDOM(elementFeatureType);
@@ -93,7 +94,7 @@
 
 	onMount(() => {
 		map = getMap();
-		map.isStyleLoaded() ? addMarker() : map.on('load', () => addMarker());
+		addMarker();
 	});
 
 	onDestroy(() => {

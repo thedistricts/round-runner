@@ -49,6 +49,9 @@
 		.maplibregl-popup-content {
 			color: #565656;
 			font-size: 14px;
+			text-align: center;
+			text-wrap: balance;
+			text-wrap: pretty;
 			letter-spacing: 0.39px;
 			margin: -1px;
 			padding: 6px 12px;

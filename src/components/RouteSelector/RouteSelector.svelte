@@ -6,6 +6,8 @@
 	import { gpx } from '$lib/stores/gpx.store';
 	import { breakdown } from '$lib/stores/breakdown.store';
 	import { ratification } from '$lib/stores/ratification.store';
+	import { isOpen } from '$lib/stores/checker.store';
+	import { getUrlParamsWithNew } from '$lib/utils';
 
 	function reset() {
 		gpx.reset();
@@ -18,11 +20,12 @@
 	$: pageUrlSlug = $page.data.slug as PageData['slug'];
 	$: rounds = $page.data.rounds as PageData['rounds'];
 
-
 	function handleRouteSelectChange(event: Event) {
-		const target = event.target as HTMLSelectElement;
 		reset();
-		goto(target.value);
+		const target = event.target as HTMLSelectElement;
+		const [newUrl, hasParams] = getUrlParamsWithNew({ location: target.value });
+		$isOpen = hasParams;
+		goto(newUrl);
 	}
 </script>
 
@@ -30,7 +33,7 @@
 	<img src={logoImgSrc} alt={`${logoAltText} logo`} class="h-16" />
 	<div class="group relative flex w-full pr-3">
 		<span
-			class="pointer-events-none transition text-gray-500 group-hover:text-gray-900  absolute inset-y-0 right-4 ml-3 flex items-center pr-2"
+			class="pointer-events-none transition text-gray-500 group-hover:text-gray-900 absolute inset-y-0 right-4 ml-3 flex items-center pr-2"
 		>
 			<svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 				<path
@@ -45,11 +48,11 @@
 			id="rounds"
 			class="
 				appearance-none cursor-pointer
-				w-full 
+				w-full
 				transition
-				text-gray-900 text-lg 
+				text-gray-900 text-lg
 				group-hover:bg-neutral-100
-				rounded-lg focus:ring-blue-500 focus:border-blue-500 
+				rounded-lg focus:ring-blue-500 focus:border-blue-500
 				block p-2.5 pl-4 ml-3"
 		>
 			{#each rounds as round}
