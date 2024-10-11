@@ -18,18 +18,22 @@
 		$isOpen = !$page.state.routeInformation;
 	}
 
+	function handlePushState(active: boolean) {
+		const newUrl = getUrlWithParams({ when: active, with: URL_PARAM.ROUTE_INFORMATION });
+		pushState(newUrl, {
+			routeInformation: active
+		});
+	}
+
 	function handleOnClick() {
 		$isOpen = !$isOpen;
-		const newUrl = getUrlWithParams({ when: $isOpen, with: URL_PARAM.ROUTE_INFORMATION });
-
-		pushState(newUrl, {
-			routeInformation: $isOpen
-		});
+		if (browser) handlePushState($isOpen);
 	}
 
 	const unsubscribeGpx = gpx.subscribe((geojson) => {
 		hasGpx = geojson.features.length > 0;
 		$isOpen = hasGpx;
+		if (browser && hasGpx) handlePushState(false);
 	});
 
 	onMount(() => {
