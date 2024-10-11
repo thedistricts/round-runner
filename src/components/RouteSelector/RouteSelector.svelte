@@ -7,7 +7,7 @@
 	import { breakdown } from '$lib/stores/breakdown.store';
 	import { ratification } from '$lib/stores/ratification.store';
 	import { isOpen } from '$lib/stores/checker.store';
-	import { getUrlParamsWithNew } from '$lib/utils';
+	import { URL_PARAM } from '$lib/enum';
 
 	function reset() {
 		gpx.reset();
@@ -23,8 +23,10 @@
 	function handleRouteSelectChange(event: Event) {
 		reset();
 		const target = event.target as HTMLSelectElement;
-		const [newUrl, hasParams] = getUrlParamsWithNew({ location: target.value });
-		$isOpen = hasParams;
+		const newUrl = !!$page.params.info
+			? `/${target.value}/${URL_PARAM.ROUTE_INFORMATION}`
+			: `/${target.value}`;
+		$isOpen = !!$page.params.info;
 		goto(newUrl);
 	}
 </script>
@@ -44,6 +46,7 @@
 			</svg>
 		</span>
 		<select
+			aria-label="Routes"
 			on:change={handleRouteSelectChange}
 			id="rounds"
 			class="
