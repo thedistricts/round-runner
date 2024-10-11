@@ -1,24 +1,28 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import type { PageData } from './$types';
+	import type { PageData } from '../$types';
 	import { onMount, beforeUpdate } from 'svelte';
-	import { URL_PARAM } from '$lib/enum';
 	import { breakdown } from '$lib/stores/breakdown.store';
 	import { route } from '$lib/stores/route.store';
 	import { isOpen } from '$lib/stores/checker.store';
 	import type { RouteGeoJson } from '$lib/stores/route.store.d';
-	import Checker from '../../components/Checker/Checker.svelte';
-	import { Breakdown } from '../../components/Breakdown';
+	import Checker from '../../../components/Checker/Checker.svelte';
+	import { Breakdown } from '../../../components/Breakdown';
 	export let data: PageData;
 
+	let currentRouteSlug = '';
+
 	beforeUpdate(async () => {
-		const res = await fetch(data.json);
-		const routeGeoJson: RouteGeoJson = await res.json();
-		route.set(routeGeoJson);
+		if (data.slug !== currentRouteSlug) {
+			const res = await fetch(data.json);
+			const routeGeoJson: RouteGeoJson = await res.json();
+			route.set(routeGeoJson);
+			currentRouteSlug = data.slug;
+		}
 	});
 
 	onMount(() => {
-		$isOpen = new URLSearchParams(data.searchParams).has(URL_PARAM.ROUTE_INFORMATION);
+		$isOpen = !!data.showInfo;
 	});
 </script>
 

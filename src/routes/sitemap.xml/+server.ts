@@ -10,7 +10,7 @@ function getRoundPages() {
 			<changefreq>monthly</changefreq>
 		</url>
 		<url>
-			<loc>${DOMAIN}/${round.slug}?route-information=true</loc>
+			<loc>${DOMAIN}/${round.slug}/route-information</loc>
 			<changefreq>monthly</changefreq>
 		</url>
 	`);

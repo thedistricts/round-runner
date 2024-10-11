@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
-	import { pushState } from '$app/navigation';
+	import { goto } from '$app/navigation';
+
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
 	import { gpx } from '$lib/stores/gpx.store';
 	import { breakdown } from '$lib/stores/breakdown.store';
 	import { isOpen } from '$lib/stores/checker.store';
-	import { getUrlWithParams } from '$lib/utils/params';
 	import { URL_PARAM, DOM_EVENTS } from '$lib/enum';
 
 	import RouteSelector from '../RouteSelector/RouteSelector.svelte';
@@ -14,30 +14,31 @@
 
 	let hasGpx = false;
 
-	function handlePopState() {
-		$isOpen = !$page.state.routeInformation;
-	}
-
-	function handlePushState(active: boolean) {
-		const newUrl = getUrlWithParams({ when: active, with: URL_PARAM.ROUTE_INFORMATION });
-		pushState(newUrl, {
-			routeInformation: active
-		});
+	function handlePopState(e: PopStateEvent) {
+		if (browser) {
+			gpx.reset();
+			$isOpen = (e.currentTarget as Window).location?.pathname.includes(
+				URL_PARAM.ROUTE_INFORMATION
+			);
+		}
 	}
 
 	function handleOnClick() {
 		$isOpen = !$isOpen;
-		if (browser) handlePushState($isOpen);
+		if (browser) {
+			if ($isOpen) goto(`/${$page.params.round}/${URL_PARAM.ROUTE_INFORMATION}`);
+			else goto(`/${$page.params.round}`);
+		}
 	}
 
 	const unsubscribeGpx = gpx.subscribe((geojson) => {
 		hasGpx = geojson.features.length > 0;
 		$isOpen = hasGpx;
-		if (browser && hasGpx) handlePushState(false);
 	});
 
 	onMount(() => {
 		if (browser) window.addEventListener(DOM_EVENTS.POPSTATE, handlePopState);
+		$isOpen = !!$page.params.showInfo;
 	});
 
 	onDestroy(() => {
