@@ -8,7 +8,7 @@
 			"json": "/data/frog-graham-cw.geo.json",
 			"example": "/data/example/frog-graham-round.gpx",
 			"logo": "/assets/frog-graham.jpg",
-			"info": "Where fell running meets open water swimming, and sanity takes a vacation! This 42-mile adventure in the Lake District isn’t just a test of endurance; it’s a way to fully question your life choices. With 13 summits, nearly 10,000 feet of ascent, and four lake swims, this route will make you wish you’d just stayed home with a hot chocolate. But hey, if you’re into swimming, scrambling up mountains, and getting some weird looks from sheep, then the Frog Graham Round might just be the wild day out you’ve been looking for! Grab your gear, bring your sense of humor, and prepare to brag about this one for years.",
+			"info": "The Frog Graham Round: Where fell running meets open water swimming, and sanity takes a vacation! This 42-mile adventure in the Lake District isn’t just a test of endurance; it’s a way to fully question your life choices. With 13 summits, nearly 10,000 feet of ascent, and four lake swims, this route will make you wish you’d just stayed home with a hot chocolate. But hey, if you’re into swimming, scrambling up mountains, and getting some weird looks from sheep, then the Frog Graham Round might just be the wild day out you’ve been looking for! Grab your gear, bring your sense of humor, and prepare to brag about this one for years.",
 			"link": "https://www.froggrahamround.co.uk/"
 		},
 		{
@@ -18,18 +18,18 @@
 			"description": "A Great Introduction to SwimRun",
 			"json": "/data/tadpole.geo.json",
 			"logo": "/assets/frog-graham.jpg",
-			"info": "",
+			"info": "The Tadpole Round: a bite-sized version of the Frog Graham Round, perfect for those who want the adventure without quite as much lung-busting! This charming little route in the Lake District covers 30 miles, taking in 9 summits and a respectable 7,000 feet of ascent, with a couple of refreshing swims thrown in for good measure. It’s got all the excitement of its bigger sibling, just with fewer miles and a bit more time to enjoy the views. Whether you're warming up for the full Frog or just fancy a cracking day out in the hills, the Tadpole Round offers the perfect blend of trail running, hill climbing, and wild swimming—no ice baths, just good, honest fun. Expect plenty of laughs, some glorious scenery, and a chance to test your legs without testing your sanity!",
 			"link": "https://www.froggrahamround.co.uk/tadpole"
 		},
 		{
 			"default": false,
 			"slug": "tea-round",
 			"title": "The Tea Round",
-			"description": "George Fisher's Tea Round ",
+			"description": "George Fisher's Tea Round",
 			"json": "/data/tearound-cw.geo.json",
 			"example": "/data/example/tea-round.gpx",
 			"logo": "/assets/tea-round.jpg",
-			"info": "",
+			"info": "The George Fisher's Tea Round: the perfect excuse to earn your cake and cuppa! This 30-mile Lake District adventure is all about tackling 10 of Keswick’s finest fells, climbing a respectable 12,000 feet, and then returning in time for a well-deserved brew at George Fisher’s café. It’s got all the challenge of a proper fell run, but with a dash of civility—after all, what's a British adventure without a good cup of tea at the end? Whether you’re out to set a new PB or just keen to enjoy some cracking views before your afternoon snack, the Tea Round offers a brilliant mix of hills, thrills, and some very welcome tea and cake. Expect steep climbs, spectacular scenery, and the satisfaction of knowing there's a hot drink waiting for you at the finish!",
 			"link": "https://www.georgefisher.co.uk/tearound"
 		},
 		{
@@ -39,7 +39,7 @@
 			"description": "A Snowdonian Run/Swim Adventure",
 			"json": "/data/puddle-buckley.geo.json",
 			"logo": "/assets/runner.gif",
-			"info": "",
+			"info": "The Puddle Buckley Round: a 64km adventure that takes fell running and wild swimming to new heights—literally! Set in the stunning mountains of Snowdonia, this challenge covers 16 summits with over 5,000m of ascent, offering some of the best views (and climbs!) in Wales. Along the way, you’ll swim across 4 beautiful llyns (lakes), adding a refreshing twist to this already epic journey. It’s completely up to you how and when you take on the Puddle Buckley, making it as personal as it is challenging. Expect steep climbs, scenic swims, and plenty of Snowdonian magic as you craft your own adventure through some of the most breathtaking landscapes Wales has to offer.",
 			"link": "https://puddlebuckley.wordpress.com/"
 		},
 		{
@@ -49,7 +49,7 @@
 			"description": "The Wildest Run/Swim in the UK",
 			"json": "/data/ring-of-stirling.geo.json",
 			"logo": "/assets/runner.gif",
-			"info": "",
+			"info": "The Ring of Stirling: the wildest run-swim challenge in the UK, for those who crave the ultimate test of endurance and adventure. This remote and rugged 55km loop, inspired by the Frog Graham Round, starts and finishes in the tiny village of Shieldaig and demands everything you've got. With over 5,600m of ascent spread across ten unforgiving mountains, and 3.5km of wild swimming through five lochs, this is no ordinary challenge—it's a true journey into the wild heart of the Scottish Highlands. The isolation, the brutal climbs, and the icy lochs make the Ring of Stirling a raw and relentless adventure, perfect for those seeking the hardest and most remote run-swim experience the UK has to offer. If you're up for pushing your limits in one of the most untamed landscapes in Britain, this is the one.",
 			"link": "https://ringofstirling.wordpress.com/"
 		},
 		{
@@ -60,7 +60,7 @@
 			"json": "/data/bob-graham-round.geo.json",
 			"example": "/data/example/bob-graham.gpx",
 			"logo": "/assets/runner.gif",
-			"info": "",
+			"info": "The Bob Graham Round: the ultimate classic in UK fell running, and a rite of passage for those who dare to take it on. This legendary 106km loop through the Lake District is as tough as they come, with a staggering 8,200m of ascent spread across 42 iconic peaks, including Skiddaw, Helvellyn, and Scafell Pike. The challenge? To complete the entire round in under 24 hours. It’s a brutal test of stamina, navigation, and sheer determination, making it the gold standard for fell runners. The rugged terrain, unpredictable weather, and relentless climbs are all part of what makes the Bob Graham Round one of the most coveted endurance feats in the UK. If you're ready to push your limits on the fells and join an elite club of finishers, this is the challenge of a lifetime.",
 			"link": "https://bobgrahamclub.org.uk/"
 		},
 		{
@@ -71,7 +71,7 @@
 			"json": "/data/cumbrian-traverse.geo.json",
 			"example": "/data/example/cumbrian-traverse.gpx",
 			"logo": "/assets/runner.gif",
-			"info": "",
+			"info": "The Cumbrian Traverse: a stunning south-to-north high-level journey across 21 of the Lake District’s finest peaks, offering over 30 miles of challenging terrain and 12,000 feet of ascent. Devised by Sue and Dick Courchee and first completed in 2005, this informal traverse starts at Broughton Mills in Dunnerdale and finishes at the iconic Moot Hall in Keswick—though it can be done in either direction. Unlike its more time-pressured counterparts, the Cumbrian Traverse is meant to be a more relaxed, no-time-limit adventure, making it ideal for those who want to savour the beauty of the fells without the ticking clock. A complement to the Joss Naylor Challenge, it offers a different line through the Lakeland peaks, delivering epic views, tough climbs, and a true sense of freedom in the hills.",
 			"link": "https://gofar997.wixsite.com/gofar/cumbrian-traverse"
 		}
 	]
