@@ -44,6 +44,7 @@
 			</svg>
 		</span>
 		<select
+			aria-label="Routes"
 			on:change={handleRouteSelectChange}
 			id="rounds"
 			class="
