@@ -13,7 +13,7 @@ export type ExposeRatificationWorker = {
 	debug: Debug;
 };
 
-interface RatifyProps {
+export interface RatifyProps {
 	track: GPXGeoJson;
 	route: RouteGeoJson;
 }
@@ -73,7 +73,7 @@ export type CoordWithDistance = {
 	properties: {
 			order?: number;
 			time?: string;
-			dist: number | undefined;
+			dist: number;
 			index: number;
 			isStart: boolean;
 			isEnd: boolean;
