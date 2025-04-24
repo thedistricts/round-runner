@@ -7,7 +7,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import Checkpoints from './Checkpoints.svelte';
 import { route, routeFocus } from '$lib/stores/route.store';
 import type { Feature, Point, FeatureCollection } from 'geojson';
-import type { RouteGeoJson, PointProperties } from '$lib/stores/route.store.d';
+import type { PointProperties } from '$lib/stores/route.store.d';
 import { POINT_FEATURE } from '$lib/enum';
 
 // Mock the stores with proper Svelte store contract implementation
@@ -159,7 +159,6 @@ describe('Checkpoints component', () => {
   });
 
   it('should handle non-checkpoint features in route data', async () => {
-    const currentRoute = get(route);
     route.set({
       type: 'FeatureCollection',
       features: [

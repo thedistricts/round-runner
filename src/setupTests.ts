@@ -101,6 +101,7 @@ vi.mock('@loaders.gl/core', () => ({
   load: vi.fn()
 }));
 
+
 vi.mock('@loaders.gl/worker-utils', () => ({
   __esModule: true,
   default: {

@@ -128,14 +128,6 @@ vi.mock('./Details.svelte', () => ({
   }))
 }));
 
-vi.mock('@loaders.gl/core', () => ({
-  load: vi.fn()
-}));
-
-vi.mock('@loaders.gl/kml', () => ({
-  GPXLoader: {}
-}));
-
 vi.mock('comlink', () => {
   const mockRatify = vi.fn();
   const mockDebug = vi.fn();

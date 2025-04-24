@@ -33,6 +33,70 @@ const mockPageData = {
   state: { routeInformation: false }
 };
 
+vi.mock('$lib/stores/route.store', () => {
+  const createStore = () => {
+    const defaultValue = {
+      type: 'FeatureCollection',
+      features: [
+        {
+          type: 'Feature',
+          properties: { name: 'Checkpoint 1', leg: 1, featureType: 'checkpoint' },
+          geometry: { type: 'Point', coordinates: [-122.4194, 37.7749] },
+        },
+        {
+          type: 'Feature',
+          properties: { name: 'Checkpoint 2', leg: 1, featureType: 'checkpoint' },
+          geometry: { type: 'Point', coordinates: [-122.4192, 37.7751] },
+        },
+      ],
+    };
+
+    return {
+      value: defaultValue,
+      subscribers: new Set<(value: any) => void>(),
+      subscribe(callback: (value: any) => void) {
+        callback(this.value);
+        this.subscribers.add(callback);
+        return {
+          unsubscribe: () => this.subscribers.delete(callback)
+        };
+      },
+      set(value: any) {
+        this.value = value;
+        this.subscribers.forEach(cb => cb(this.value));
+      },
+      update(fn: (value: any) => any) {
+        this.value = fn(this.value);
+        this.subscribers.forEach(cb => cb(this.value));
+      }
+    };
+  };
+
+  return {
+    route: createStore(),
+    routeFocus: createStore()
+  };
+});
+
+vi.mock('$lib/stores/checker.store', () => {
+  const store = {
+    value: true, // Set isOpen to true by default
+    subscribers: new Set<(value: boolean) => void>(),
+    subscribe(callback: (value: boolean) => void) {
+      callback(this.value);
+      this.subscribers.add(callback);
+      return {
+        unsubscribe: () => this.subscribers.delete(callback)
+      };
+    },
+    set(value: boolean) {
+      this.value = value;
+      this.subscribers.forEach(cb => cb(this.value));
+    }
+  };
+  return { isOpen: store };
+});
+
 vi.mock('$app/navigation', () => ({
   goto: vi.fn()
 }));
