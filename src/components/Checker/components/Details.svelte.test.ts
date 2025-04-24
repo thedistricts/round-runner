@@ -7,7 +7,63 @@ import Details from './Details.svelte';
 import { get } from "svelte/store";
 import { gpx } from '$lib/stores/gpx.store';
 import { breakdown } from '$lib/stores/breakdown.store';
+import { ratification } from '$lib/stores/ratification.store';
+import { debug } from '$lib/stores/ratification.store';
 import type { GPXGeoJson } from '$lib/stores/gpx.store.d';
+
+vi.mock('$lib/stores/breakdown.store', () => {
+  const store = {
+    value: false,
+    subscribers: new Set<(value: boolean) => void>(),
+    subscribe(callback: (value: boolean) => void) {
+      callback(this.value);
+      this.subscribers.add(callback);
+      return {
+        unsubscribe: () => this.subscribers.delete(callback)
+      };
+    },
+    update(fn: (value: boolean) => boolean) {
+      this.value = fn(this.value);
+      this.subscribers.forEach(cb => cb(this.value));
+    },
+    reset: vi.fn()
+  };
+  return { breakdown: store };
+});
+
+vi.mock('$lib/stores/ratification.store', () => {
+  const createStore = () => ({
+    value: {},
+    subscribers: new Set<(value: any) => void>(),
+    subscribe(callback: (value: any) => void) {
+      callback(this.value);
+      this.subscribers.add(callback);
+      return {
+        unsubscribe: () => this.subscribers.delete(callback)
+      };
+    },
+    reset: vi.fn()
+  });
+  return {
+    ratification: createStore(),
+    debug: createStore()
+  };
+});
+
+vi.mock('$lib/stores/route.store', () => {
+  const store = {
+    value: false,
+    subscribers: new Set<(value: boolean) => void>(),
+    subscribe(callback: (value: boolean) => void) {
+      callback(this.value);
+      this.subscribers.add(callback);
+      return {
+        unsubscribe: () => this.subscribers.delete(callback)
+      };
+    }
+  };
+  return { isRouteReversed: store };
+});
 
 const stubGpxData: GPXGeoJson = {
   type: 'FeatureCollection',
@@ -35,19 +91,14 @@ const stubGpxData: GPXGeoJson = {
   ],
 };
 
-
 describe('Details component', () => {
   beforeEach(() => {
-    vi.mock('$lib/stores/breakdown.store', () => ({
-      breakdown: {
-        reset: vi.fn(),
-      },
-    }));
     gpx.set(stubGpxData);
   });
 
   afterEach(() => {
     cleanup();
+    vi.clearAllMocks();
   });
 
   it('should render the file name and date', async () => {
@@ -87,10 +138,18 @@ describe('Details component', () => {
   });
 
   it('should call the handleOnResetClick function when the reset button is clicked', async () => {
+    const gpxReset = vi.spyOn(gpx, 'reset');
+    const ratificationReset = vi.spyOn(ratification, 'reset');
     const breakdownReset = vi.spyOn(breakdown, 'reset');
+    const debugReset = vi.spyOn(debug, 'reset');
+
     render(Details, { fileName: 'test.gpx' });
     const resetButtonElement = screen.getByText('Reset');
     await fireEvent.click(resetButtonElement);
+    
+    expect(gpxReset).toHaveBeenCalledTimes(1);
+    expect(ratificationReset).toHaveBeenCalledTimes(1);
     expect(breakdownReset).toHaveBeenCalledTimes(1);
+    expect(debugReset).toHaveBeenCalledTimes(1);
   });
 });

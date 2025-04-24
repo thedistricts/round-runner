@@ -6,13 +6,22 @@
 	import { isOpen } from '$lib/stores/checker.store';
 	import { viewport } from '$lib/stores/viewport.store';
 	import { route, routeFocus } from '$lib/stores/route.store';
-	import { URL_PARAM } from '$lib/enum';
+	import { URL_PARAM, POINT_FEATURE } from '$lib/enum';
 
 	$: pageUrlSlug = $page.data.slug as PageData['slug'];
 	$: rounds = $page.data.rounds as PageData['rounds'];
 
 	$: isLoaded = $route.features.length > 0;
 	$: activeRound = rounds.find((round) => pageUrlSlug === round.slug);
+	$: checkpointFeatures = $route.features.filter((feature) => {
+		const featureType = feature.properties.featureType;
+		return (
+			featureType === POINT_FEATURE.CHECKPOINT ||
+			featureType === POINT_FEATURE.CHECKPOINT_START ||
+			featureType === POINT_FEATURE.CHECKPOINT_FINISH ||
+			featureType === POINT_FEATURE.WATER_CHECKPOINT
+		);
+	});
 	$: routeInformationUrl = $isOpen
 		? `/${activeRound?.slug}/${URL_PARAM.ROUTE_INFORMATION}`
 		: `/${activeRound?.slug}`;
@@ -44,7 +53,7 @@
 		<h3>
 			<span class="font-medium text-stone-900 group-hover:text-black">Route&nbsp;Information</span>
 			{#if !$isOpen}
-				({$route.features.length}&nbsp;Checkpoints)
+				({checkpointFeatures.length}&nbsp;Checkpoints)
 			{/if}
 		</h3>
 	</a>
@@ -100,10 +109,10 @@
 
 		<div class="py-6">
 			<h4 class="text-sm font-medium text-stone-900">
-				{$route.features.length}&nbsp;Checkpoints
+				{checkpointFeatures.length}&nbsp;Checkpoints
 			</h4>
 			<ol class="text-sm text-stone-500 mt-4">
-				{#each $route.features as feature, i}
+				{#each checkpointFeatures as feature, i}
 					<li class="-ml-2">
 						<button
 							on:click={() => handleOnMapFocus(feature.geometry.coordinates)}

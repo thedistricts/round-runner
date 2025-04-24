@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as Comlink from 'comlink';
 	import { onMount, onDestroy } from 'svelte';
+	import { writable } from 'svelte/store';
 	import { browser } from '$app/environment';
 
 	// TODO: also allow .KML files?
@@ -76,7 +77,7 @@
 	function reverseRoute() {
 		const reversedRoute = {
 			...$route,
-			features: $route.features.reverse()
+			features: []
 		};
 		isRouteReversed.set(!$isRouteReversed);
 		route.set(reversedRoute);
@@ -106,6 +107,7 @@
 		class:!h-28={pageRouteExampleURL}
 		class:!h-20={!pageRouteExampleURL}
 		class="transition-opacity duration-500 delay-200 print:hidden"
+		data-testid="filepond-wrapper"
 	>
 		<FilePond
 			{name}

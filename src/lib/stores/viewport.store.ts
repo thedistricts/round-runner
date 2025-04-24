@@ -1,13 +1,11 @@
 import { writable } from 'svelte/store'
-enum Orientation {
-    LANDSCAPE = 'landscape',
-    PORTRAIT = 'portrait'
-}
+import { ORIENTATION } from '$lib/enum'
+
 const { subscribe, update  } = writable ({
     innerWidth: 1600, 
     innerHeight: 1200,
     ratio: 16/12, 
-    orientation: Orientation.LANDSCAPE,   
+    orientation: ORIENTATION.LANDSCAPE,   
     wide: false,
     isMobile: false
 })
@@ -19,7 +17,7 @@ interface ViewportProps {
 
 function register({ innerWidth, innerHeight }: ViewportProps) {
     const ratio = innerWidth / innerHeight
-    const orientation = ratio >= 1 ? Orientation.LANDSCAPE : Orientation.PORTRAIT
+    const orientation = ratio >= 1 ? ORIENTATION.LANDSCAPE : ORIENTATION.PORTRAIT
     const wide = (ratio > 2) || (ratio < 0.5)
     const isMobile = innerWidth <= 640
 

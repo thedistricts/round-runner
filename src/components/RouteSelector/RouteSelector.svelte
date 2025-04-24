@@ -32,7 +32,9 @@
 </script>
 
 <header class="flex items-center text-xl">
-	<img src={logoImgSrc} alt={`${logoAltText} logo`} class="h-16" />
+	<a href="/" class="w-[5rem]" >
+		<img src={logoImgSrc} alt={`${logoAltText} logo`} class="h-[4rem]" />
+	</a>
 	<div class="group relative flex w-full pr-3">
 		<span
 			class="pointer-events-none transition text-gray-500 group-hover:text-gray-900 absolute inset-y-0 right-4 ml-3 flex items-center pr-2"

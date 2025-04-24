@@ -1,21 +1,12 @@
 import { expose } from 'comlink';
 import sortBy from 'lodash/sortBy';
 import * as turf from '@turf/turf';
-import type { Feature, LineString, Point } from 'geojson';
-import type { LineStringProperties } from '$lib/stores/gpx.store.d';
-import type { PointProperties } from '$lib/stores/route.store.d';
-
 import { VALIDITY } from '$lib/enum';
-import { VALIDITY_DISTANCE } from '$lib/const';
-import type {
-	RatifyProps,
-	RatifyReturn,
-	NearestPointOnLineWithValidity,
-	Distances,
-	CoordWithDistance,
-	ValidityPointProperties,
-	ValidityDistance
-} from './ratification.worker.d';
+import type { Feature, LineString, Point } from 'geojson';
+import type { GPXGeoJson } from '$lib/stores/gpx.store.d';
+import type { LineStringProperties } from '$lib/stores/gpx.store.d';
+import type { ValidityPointProperties, ValidityDistance, CoordWithDistance } from './ratification.worker.d';
+import type { Distances } from './ratification.worker.d';
 
 export function getValidCoordinate(coords: Distances, validityDistance: ValidityDistance): CoordWithDistance | null {
 
@@ -54,7 +45,7 @@ export function getValidityStatus(distance: number, validityDistance: ValidityDi
 
 export function getNearestTimePointOnLine(
 	line: Feature<LineString, LineStringProperties>,
-	point: Feature<Point, PointProperties>,
+	point: Feature<Point, ValidityPointProperties>,
 	validityDistance: ValidityDistance,
 	pointIndex: number,
 	routeLength: number
@@ -64,7 +55,8 @@ export function getNearestTimePointOnLine(
 	const lineMidIndex = Math.floor(line.geometry.coordinates.length / 2);
 
 	const nearestPoint = turf.nearestPointOnLine(line, point);
-	const index = nearestPoint.properties.index || 0;
+	let index = nearestPoint.properties.index || 0;
+	let distance = nearestPoint.properties.dist || 0;
 
 	// For start/end points, we need to ensure they're in the correct half of the line
 	if ((isStart && index >= lineMidIndex) || (isEnd && index < lineMidIndex)) {
@@ -73,13 +65,13 @@ export function getNearestTimePointOnLine(
 			isStart ? i < lineMidIndex : i >= lineMidIndex
 		);
 		const distances = validCoords.map((coord, i) => ({
-			dist: turf.distance(point, coord, { units: 'kilometers' }),
+			dist: turf.distance(point.geometry.coordinates, coord, { units: 'kilometers' }),
 			index: isStart ? i : i + lineMidIndex
 		}));
 		const nearest = sortBy(distances, 'dist')[0];
 		if (nearest) {
-			nearestPoint.properties.dist = nearest.dist;
-			nearestPoint.properties.index = nearest.index;
+			distance = nearest.dist;
+			index = nearest.index;
 			nearestPoint.geometry.coordinates = line.geometry.coordinates[nearest.index];
 		}
 	}
@@ -92,8 +84,8 @@ export function getNearestTimePointOnLine(
 		},
 		properties: {
 			...point.properties,
-			dist: nearestPoint.properties.dist || 0,
-			index: nearestPoint.properties.index || 0,
+			dist: distance,
+			index,
 			isStart,
 			isEnd,
 			valid: VALIDITY.FAIL,
@@ -103,56 +95,81 @@ export function getNearestTimePointOnLine(
 		}
 	};
 
-	result.properties.valid = getValidityStatus(result.properties.dist, validityDistance);
+	result.properties.valid = getValidityStatus(distance, validityDistance);
 
 	return result;
 }
 
-export function ratify({ track, route }: RatifyProps): RatifyReturn {
-	const trackLineString = track.features.find((feature) => feature.geometry.type === 'LineString');
+export function ratify(
+	gpx: GPXGeoJson,
+	checkpoints: Feature<Point, ValidityPointProperties>[],
+	validityDistance: number
+): Feature<Point, ValidityPointProperties>[] {
+	const trackLineString = gpx.features.find((feature) => feature.geometry.type === 'LineString');
 	if (!trackLineString) {
 		throw new Error('Feature Collection does not contain a LineString');
 	}
 
-	const nearestRoutePoints = route.features.map((routePoint, index) => {
-		const validityDistance = VALIDITY_DISTANCE.get(routePoint.properties.featureType);
-		if (!validityDistance) {
-			throw new Error('Route feature type is not valid');
-		}
-
-		const target = getNearestTimePointOnLine(trackLineString, routePoint, validityDistance, index, route.features.length);
-		const interpolatedTarget = turf.nearestPointOnLine(trackLineString, routePoint);
-		const distanceAway = interpolatedTarget.properties.dist ?? Infinity;
-	
-		const point = target ? {
-			...target,
-			properties: {
-				...target.properties,
-				dist: distanceAway
-			}
-		} : {
-			...routePoint,
-			properties: {
-				...routePoint.properties,
-				dist: Infinity
-			} as ValidityPointProperties
-		};
-
-		const time = trackLineString?.properties?.coordinateProperties?.times[point.properties.index];
+	const nearestRoutePoints = checkpoints.map((routePoint, index) => {
+		const target = getNearestTimePointOnLine(trackLineString, routePoint, {
+			[VALIDITY.VALID]: validityDistance,
+			[VALIDITY.WARN]: validityDistance,
+			[VALIDITY.FAIL]: validityDistance
+		}, index, checkpoints.length);
+		const time = trackLineString?.properties?.coordinateProperties?.times[target.properties.index];
 				
-		point.properties = {
-			...point.properties,           
+		target.properties = {
+			...target.properties,           
 			...routePoint.properties,      
-			dist: distanceAway,
 			order: index + 1,
 			time,
-			valid: getValidityStatus(distanceAway, validityDistance)
+			valid: getValidityStatus(target.properties.dist, {
+				[VALIDITY.VALID]: validityDistance,
+				[VALIDITY.WARN]: validityDistance,
+				[VALIDITY.FAIL]: validityDistance
+			})
 		};
 
-		return point;
+		return target;
 	});
 
-	return nearestRoutePoints as NearestPointOnLineWithValidity[];
+	return nearestRoutePoints as Feature<Point, ValidityPointProperties>[];
+}
+
+export function debug(
+	gpx: Feature<LineString, LineStringProperties>,
+	checkpoints: Feature<Point, ValidityPointProperties>[],
+	validityDistance: number
+): Feature<Point, ValidityPointProperties>[] {
+	const trackLineString = gpx;
+	if (!trackLineString) {
+		throw new Error('Feature Collection does not contain a LineString');
+	}
+
+	const nearestRoutePoints = checkpoints.map((routePoint, index) => {
+		const target = getNearestTimePointOnLine(trackLineString, routePoint, {
+			[VALIDITY.VALID]: validityDistance,
+			[VALIDITY.WARN]: validityDistance,
+			[VALIDITY.FAIL]: validityDistance
+		}, index, checkpoints.length);
+		const time = trackLineString?.properties?.coordinateProperties?.times[target.properties.index];
+				
+		target.properties = {
+			...target.properties,           
+			...routePoint.properties,      
+			order: index + 1,
+			time,
+			valid: getValidityStatus(target.properties.dist, {
+				[VALIDITY.VALID]: validityDistance,
+				[VALIDITY.WARN]: validityDistance,
+				[VALIDITY.FAIL]: validityDistance
+			})
+		};
+
+		return target;
+	});
+
+	return nearestRoutePoints as Feature<Point, ValidityPointProperties>[];
 }
 
 expose({ ratify });

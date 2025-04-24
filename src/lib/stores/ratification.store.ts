@@ -1,6 +1,6 @@
 import type { LngLatLike } from 'maplibre-gl';
 import { featureCollection } from '@turf/helpers';
-import type { FeatureCollection } from '@turf/helpers';
+import type { FeatureCollection } from 'geojson';
 
 import { writable, derived } from 'svelte/store';
 import type { RatificationResults, FilteredRatificationResults } from './ratification.store.d';
@@ -45,7 +45,7 @@ export const submissionPoints = derived(ratification, ($ratification) => {
 	return $ratification.filter((feature) => feature.properties.ratify);
 });
 
-export const resultsFocus = writable<LngLatLike>(undefined);
+export const resultsFocus = writable<LngLatLike | undefined>(undefined);
 
 function createDebug() {
 	const debug = writable<FeatureCollection>(undefined);
