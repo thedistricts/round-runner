@@ -9,6 +9,8 @@
 		"test": "vitest run && playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"test:e2e": "playwright test",
+		"test:e2e:ui": "playwright test --ui --project=chromium",
 		"test:unit": "vitest run",
 		"test:unit:watch": "vitest watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
