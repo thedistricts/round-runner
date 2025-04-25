@@ -51,30 +51,6 @@ vi.mock('$app/stores', async () => {
 	};
 });
 
-// Mock Browser Support
-if (typeof window === 'undefined') {
-  global.window = {
-    URL: {
-      createObjectURL: vi.fn(),
-      revokeObjectURL: vi.fn()
-    }
-  } as any;
-}
-
-// Mock window object
-vi.stubGlobal('window', {
-  URL: {
-    createObjectURL: vi.fn(),
-    revokeObjectURL: vi.fn()
-  },
-  addEventListener: vi.fn(),
-  removeEventListener: vi.fn(),
-  getComputedStyle: vi.fn(() => ({
-    getPropertyValue: vi.fn(),
-    setProperty: vi.fn()
-  }))
-});
-
 // Mock Web Worker
 class Worker {
   constructor(stringUrl: string) {
@@ -109,23 +85,20 @@ vi.mock('@loaders.gl/worker-utils', () => ({
   }
 }));
 
-// Mock maplibre-gl
-vi.mock('maplibre-gl', () => ({
-  default: {
-    Map: vi.fn(() => ({
-      on: vi.fn(),
-      remove: vi.fn(),
-      addControl: vi.fn(),
-      addSource: vi.fn(),
-      addLayer: vi.fn(),
-      getSource: vi.fn(() => ({
-        setData: vi.fn()
-      })),
-      fitBounds: vi.fn(),
-      setCenter: vi.fn()
-    }))
-  }
-}));
+const windowMock = {
+  URL: {
+    createObjectURL: vi.fn(() => 'blob:mock-url'),
+    revokeObjectURL: vi.fn()
+  },
+  addEventListener: vi.fn(),
+  removeEventListener: vi.fn(),
+  getComputedStyle: vi.fn(() => ({
+    getPropertyValue: vi.fn(),
+    setProperty: vi.fn()
+  }))
+};
+
+vi.stubGlobal('window', windowMock);
 
 // Mock ratification worker
 vi.mock('$lib/workers/ratification.worker', () => ratificationWorker); 

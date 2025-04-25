@@ -7,6 +7,8 @@
 	import { viewport } from '$lib/stores/viewport.store';
 	import { route, routeFocus } from '$lib/stores/route.store';
 	import { URL_PARAM } from '$lib/enum';
+	import { convertToGPX } from '$lib/utils/gpx.utils';
+	import { cleanUrlForDisplay } from '$lib/utils/string.utils';
 
 	$: pageUrlSlug = $page.data.slug as PageData['slug'];
 	$: rounds = $page.data.rounds as PageData['rounds'];
@@ -28,6 +30,21 @@
 
 	function handleOnClick() {
 		$isOpen = !$isOpen;
+	}
+
+	function downloadGPX() {
+		if (!activeRound || !isLoaded) return;
+
+		const gpxContent = convertToGPX($route, activeRound.title, activeRound.info);
+		const blob = new Blob([gpxContent], { type: 'application/gpx+xml' });
+		const url = URL.createObjectURL(blob);
+		const a = document.createElement('a');
+		a.href = url;
+		a.download = `${activeRound.slug}.gpx`;
+		document.body.appendChild(a);
+		a.click();
+		document.body.removeChild(a);
+		URL.revokeObjectURL(url);
 	}
 </script>
 
@@ -57,16 +74,17 @@
 						{activeRound.info}
 					</p>
 				{/if}
+
 				{#if activeRound.link}
 					<a
 						href={activeRound.link}
 						target="_blank"
 						class="
-						inline-flex items-baseline gap-2
-						text-xs my-2 first-letter:py-1 px-5 py-2 rounded-full outline-none
-						bg-blue-700 text-white border-2 border-white
-						hover:bg-white-700 hover:text-blue
-						focus:ring-2 focus:outline-none focus:ring-blue-300"
+							inline-flex gap-2 items-center
+							text-xs mt-1 px-5 py-2 rounded-full outline-none
+							bg-blue-700 text-white border-2 border-white
+							hover:bg-white-700 hover:text-blue
+							focus:ring-2 focus:outline-none focus:ring-blue-300"
 					>
 						<svg
 							width="20px"
@@ -92,9 +110,35 @@
 								</g>
 							</g>
 						</svg>
-						<i>{activeRound.link}</i>
+						<i>{cleanUrlForDisplay(activeRound.link)}</i>
 					</a>
 				{/if}
+				<button
+					on:click={downloadGPX}
+					class="
+							inline-flex items-center gap-2
+							text-xs my-2 px-5 py-[0.35rem] rounded-full outline-none
+							bg-white text-blue-700 border-2 border-grey-100
+							hover:bg-white-700 hover:text-blue
+							focus:ring-2 focus:outline-none focus:ring-blue-300 focus:border-white-100"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="20px"
+						height="20px"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+						<polyline points="7 10 12 15 17 10" />
+						<line x1="12" y1="15" x2="12" y2="3" />
+					</svg>
+					Download GPX waypoints
+				</button>
 			</div>
 			<hr class="my-3" />
 		{/if}

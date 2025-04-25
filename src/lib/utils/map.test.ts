@@ -1,18 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { fitBoundsWithPadding, fitPositionWithOffset } from './map';
 import type { Map } from 'maplibre-gl';
-
-vi.mock('maplibre-gl', async (importOriginal) => {
-	const actual = await importOriginal();
-	return {
-		...actual,
-		LngLatBounds: class {
-			extend() {
-				return this;
-			}
-		}
-	};
-});
+vi.mock('maplibregl', { spy: true })
 
 describe('map', () => {
 	beforeEach(() => {
@@ -21,6 +10,7 @@ describe('map', () => {
 
 	afterEach(() => {
 		vi.useRealTimers();
+		vi.clearAllMocks();
 	});
 
 	describe('fitBoundsWithPadding', () => {

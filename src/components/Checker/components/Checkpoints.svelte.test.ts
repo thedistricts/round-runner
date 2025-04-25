@@ -112,22 +112,36 @@ vi.mock('$lib/stores/viewport.store', () => ({
 }));
 
 describe('Checkpoints component', () => {
+  let container: HTMLElement;
+
   beforeEach(() => {
     vi.clearAllMocks();
+    // Mock URL.createObjectURL and URL.revokeObjectURL
+    global.URL.createObjectURL = vi.fn(() => 'blob:mock-url');
+    global.URL.revokeObjectURL = vi.fn();
+    
+    // Create a fresh container for each test
+    container = document.createElement('div');
+    document.body.appendChild(container);
   });
 
   afterEach(() => {
     cleanup();
+    vi.restoreAllMocks();
+    if (container.parentNode) {
+      container.parentNode.removeChild(container);
+    }
   });
 
   it('should render the correct number of checkpoints', () => {
-    render(Checkpoints);
+    render(Checkpoints, { target: container });
     const checkpointElements = screen.getAllByRole('button');
-    expect(checkpointElements.length).toBe(2);
+    // Account for the download button
+    expect(checkpointElements.length).toBe(3);
   });
 
   it('should render checkpoints with correct names and leg numbers', () => {
-    render(Checkpoints);
+    render(Checkpoints, { target: container });
     const checkpoint1 = screen.getByText('1: Checkpoint 1');
     const checkpoint2 = screen.getByText('2: Checkpoint 2');
     
@@ -136,7 +150,7 @@ describe('Checkpoints component', () => {
   });
 
   it('should call handleOnMapFocus with the correct coordinates when a checkpoint button is clicked', async () => {
-    render(Checkpoints);
+    render(Checkpoints, { target: container });
     const checkpoint1Button = screen.getByText('1: Checkpoint 1');
     const checkpoint2Button = screen.getByText('2: Checkpoint 2');
     
@@ -153,7 +167,7 @@ describe('Checkpoints component', () => {
       features: []
     } as FeatureCollection<Point, PointProperties>);
     
-    render(Checkpoints);
+    render(Checkpoints, { target: container });
     const checkpointElements = screen.queryAllByRole('button');
     expect(checkpointElements.length).toBe(0);
   });
@@ -180,8 +194,88 @@ describe('Checkpoints component', () => {
       ]
     } as FeatureCollection<Point, PointProperties>);
     
-    render(Checkpoints);
+    render(Checkpoints, { target: container });
     const checkpointElements = screen.getAllByRole('button');
-    expect(checkpointElements.length).toBe(3);
+    // Account for the download button
+    expect(checkpointElements.length).toBe(4);
+  });
+
+  describe('GPX download functionality', () => {
+    // beforeEach(() => {
+    //   // Mock document.createElement and other DOM methods
+    //   const mockAnchor = {
+    //     href: '',
+    //     download: '',
+    //     click: vi.fn(),
+    //   };
+    //   global.document.createElement = vi.fn(() => mockAnchor as any);
+    //   global.document.body.appendChild = vi.fn();
+    //   global.document.body.removeChild = vi.fn();
+    // });
+
+    it('should render download GPX button when route is loaded', () => {
+      render(Checkpoints, { target: container });
+      const downloadButton = screen.getByText('Download GPX waypoints');
+      expect(downloadButton).toBeInTheDocument();
+    });
+
+    it('should not render download button when route is empty', () => {
+      route.set({
+        type: 'FeatureCollection',
+        features: []
+      } as FeatureCollection<Point, PointProperties>);
+      
+      render(Checkpoints, { target: container });
+      const downloadButton = screen.queryByText('Download GPX waypoints');
+      expect(downloadButton).not.toBeInTheDocument();
+    });
+
+    it('should trigger GPX download when button is clicked', async () => {
+
+      vi.spyOn(document, 'createElement');
+      vi.spyOn(document.body, 'removeChild');
+      vi.spyOn(document.body, 'appendChild');
+      
+      route.set({
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            properties: { name: 'Not a checkpoint', leg: 1, featureType: POINT_FEATURE.SUMMIT },
+            geometry: { type: 'Point', coordinates: [-122.4194, 37.7749] },
+          } as Feature<Point, PointProperties>,
+          {
+            type: 'Feature',
+            properties: { name: 'Checkpoint 1', leg: 1, featureType: 'checkpoint' },
+            geometry: { type: 'Point', coordinates: [-122.4194, 37.7749] },
+          },
+          {
+            type: 'Feature',
+            properties: { name: 'Checkpoint 2', leg: 1, featureType: 'checkpoint' },
+            geometry: { type: 'Point', coordinates: [-122.4192, 37.7751] },
+          }
+        ]
+      } as FeatureCollection<Point, PointProperties>);
+      
+      render(Checkpoints, { target: container });
+      const downloadButton = screen.getByText('Download GPX waypoints');
+      
+      await fireEvent.click(downloadButton);
+
+      // Verify Blob creation
+      const createObjectURL = global.URL.createObjectURL as jest.Mock;
+      expect(createObjectURL).toHaveBeenCalled();
+      const blobCall = createObjectURL.mock.calls[0][0];
+      expect(blobCall).toBeInstanceOf(Blob);
+      expect(blobCall.type).toBe('application/gpx+xml');
+
+      expect(document.createElement).toHaveBeenCalledWith('a');
+      expect(document.body.appendChild).toHaveBeenCalled();
+
+      expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:mock-url');
+      expect(document.body.removeChild).toHaveBeenCalled();
+    });
+
+  
   });
 });
