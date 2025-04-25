@@ -1,12 +1,15 @@
 import { expose } from 'comlink';
 import sortBy from 'lodash/sortBy';
 import * as turf from '@turf/turf';
-import { VALIDITY } from '$lib/enum';
+import { POINT_FEATURE, VALIDITY } from '$lib/enum';
 import type { Feature, LineString, Point } from 'geojson';
 import type { GPXGeoJson } from '$lib/stores/gpx.store.d';
 import type { LineStringProperties } from '$lib/stores/gpx.store.d';
+import type { RouteGeoJson, PointProperties } from '$lib/stores/route.store.d';
 import type { ValidityPointProperties, ValidityDistance, CoordWithDistance } from './ratification.worker.d';
 import type { Distances } from './ratification.worker.d';
+import { VALIDITY_DISTANCE } from '$lib/const';
+
 
 export function getValidCoordinate(coords: Distances, validityDistance: ValidityDistance): CoordWithDistance | null {
 
@@ -45,7 +48,7 @@ export function getValidityStatus(distance: number, validityDistance: ValidityDi
 
 export function getNearestTimePointOnLine(
 	line: Feature<LineString, LineStringProperties>,
-	point: Feature<Point, ValidityPointProperties>,
+	point: Feature<Point, PointProperties>,
 	validityDistance: ValidityDistance,
 	pointIndex: number,
 	routeLength: number
@@ -91,7 +94,8 @@ export function getNearestTimePointOnLine(
 			valid: VALIDITY.FAIL,
 			order: pointIndex + 1,
 			notes: point.properties.notes,
-			ratify: point.properties.ratify
+			ratify: point.properties.ratify,
+			time: "Infinity"
 		}
 	};
 
@@ -102,20 +106,20 @@ export function getNearestTimePointOnLine(
 
 export function ratify(
 	gpx: GPXGeoJson,
-	checkpoints: Feature<Point, ValidityPointProperties>[],
-	validityDistance: number
+	checkpoints: RouteGeoJson
 ): Feature<Point, ValidityPointProperties>[] {
 	const trackLineString = gpx.features.find((feature) => feature.geometry.type === 'LineString');
 	if (!trackLineString) {
 		throw new Error('Feature Collection does not contain a LineString');
 	}
 
-	const nearestRoutePoints = checkpoints.map((routePoint, index) => {
-		const target = getNearestTimePointOnLine(trackLineString, routePoint, {
-			[VALIDITY.VALID]: validityDistance,
-			[VALIDITY.WARN]: validityDistance,
-			[VALIDITY.FAIL]: validityDistance
-		}, index, checkpoints.length);
+	const nearestRoutePoints = checkpoints.features.map((routePoint, index) => {
+
+		const validityDistance = VALIDITY_DISTANCE.get(routePoint.properties.featureType as POINT_FEATURE);
+		if (!validityDistance) {
+			throw new Error('Route feature type is not valid');
+		}
+		const target = getNearestTimePointOnLine(trackLineString, routePoint, validityDistance, index, checkpoints.features.length);
 		const time = trackLineString?.properties?.coordinateProperties?.times[target.properties.index];
 				
 		target.properties = {
@@ -123,47 +127,7 @@ export function ratify(
 			...routePoint.properties,      
 			order: index + 1,
 			time,
-			valid: getValidityStatus(target.properties.dist, {
-				[VALIDITY.VALID]: validityDistance,
-				[VALIDITY.WARN]: validityDistance,
-				[VALIDITY.FAIL]: validityDistance
-			})
-		};
-
-		return target;
-	});
-
-	return nearestRoutePoints as Feature<Point, ValidityPointProperties>[];
-}
-
-export function debug(
-	gpx: Feature<LineString, LineStringProperties>,
-	checkpoints: Feature<Point, ValidityPointProperties>[],
-	validityDistance: number
-): Feature<Point, ValidityPointProperties>[] {
-	const trackLineString = gpx;
-	if (!trackLineString) {
-		throw new Error('Feature Collection does not contain a LineString');
-	}
-
-	const nearestRoutePoints = checkpoints.map((routePoint, index) => {
-		const target = getNearestTimePointOnLine(trackLineString, routePoint, {
-			[VALIDITY.VALID]: validityDistance,
-			[VALIDITY.WARN]: validityDistance,
-			[VALIDITY.FAIL]: validityDistance
-		}, index, checkpoints.length);
-		const time = trackLineString?.properties?.coordinateProperties?.times[target.properties.index];
-				
-		target.properties = {
-			...target.properties,           
-			...routePoint.properties,      
-			order: index + 1,
-			time,
-			valid: getValidityStatus(target.properties.dist, {
-				[VALIDITY.VALID]: validityDistance,
-				[VALIDITY.WARN]: validityDistance,
-				[VALIDITY.FAIL]: validityDistance
-			})
+			valid: getValidityStatus(target.properties.dist, validityDistance)
 		};
 
 		return target;

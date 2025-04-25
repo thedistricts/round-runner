@@ -110,7 +110,7 @@ describe('ratification worker', () => {
 				isEnd: false,
 				valid: VALIDITY.VALID,
 				leg: 0,
-				notes: [],
+				notes: "",
 				ratify: true
 			}) as Feature<Point, ValidityPointProperties>
 		];

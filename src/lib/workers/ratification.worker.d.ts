@@ -32,14 +32,15 @@ export interface ValidityPointProperties extends Properties {
 	isEnd: boolean;
 	valid: VALIDITY;
 	order: number;
-	notes: string[];
+	notes: string;
 	ratify: boolean;
 	leg: number;
 	featureType: string;
 	name: string;
-	validityDistance: number;
+	validityDistance: [number, number];
 	time: string;
 }
+
 
 export type PointFeature = Feature<Point, ValidityPointProperties>;
 

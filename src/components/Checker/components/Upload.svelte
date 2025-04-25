@@ -1,7 +1,6 @@
 <script lang="ts">
 	import * as Comlink from 'comlink';
 	import { onMount, onDestroy } from 'svelte';
-	import { writable } from 'svelte/store';
 	import { browser } from '$app/environment';
 
 	// TODO: also allow .KML files?
@@ -11,8 +10,8 @@
 	import { route, isRouteReversed } from '$lib/stores/route.store';
 	import { gpx } from '$lib/stores/gpx.store';
 	import {
-		ratification as ratificationStore,
-		debug as debugStore
+		ratification as ratificationStore
+		// debug as debugStore
 	} from '$lib/stores/ratification.store';
 	import type { GPXGeoJson } from '$lib/stores/gpx.store.d';
 
@@ -47,15 +46,14 @@
 		gpx.set(data);
 
 		fileName = fileItem.file.name;
-
 		const { ratify, debug } = Comlink.wrap<ExposeRatificationWorker>(ratificationWorker);
-		const ratificationResult = await ratify({ track: data, route: $route });
+		const ratificationResult = await ratify(data, $route);
 		ratificationStore.set(ratificationResult);
 
-		if (isDebug) {
-			const ratificationDebugResult = await debug({ track: data, route: $route });
-			debugStore.set(ratificationDebugResult);
-		}
+		// if (isDebug) {
+		// 	const ratificationDebugResult = await debug(data, $route);
+		// 	debugStore.set(ratificationDebugResult);
+		// }
 
 		terminateWorker();
 	}
