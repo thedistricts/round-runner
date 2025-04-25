@@ -6,22 +6,14 @@
 	import { isOpen } from '$lib/stores/checker.store';
 	import { viewport } from '$lib/stores/viewport.store';
 	import { route, routeFocus } from '$lib/stores/route.store';
-	import { URL_PARAM, POINT_FEATURE } from '$lib/enum';
+	import { URL_PARAM } from '$lib/enum';
 
 	$: pageUrlSlug = $page.data.slug as PageData['slug'];
 	$: rounds = $page.data.rounds as PageData['rounds'];
 
 	$: isLoaded = $route.features.length > 0;
 	$: activeRound = rounds.find((round) => pageUrlSlug === round.slug);
-	$: checkpointFeatures = $route.features.filter((feature) => {
-		const featureType = feature.properties.featureType;
-		return (
-			featureType === POINT_FEATURE.CHECKPOINT ||
-			featureType === POINT_FEATURE.CHECKPOINT_START ||
-			featureType === POINT_FEATURE.CHECKPOINT_FINISH ||
-			featureType === POINT_FEATURE.WATER_CHECKPOINT
-		);
-	});
+	$: checkpointFeatures = $route.features;
 	$: routeInformationUrl = $isOpen
 		? `/${activeRound?.slug}/${URL_PARAM.ROUTE_INFORMATION}`
 		: `/${activeRound?.slug}`;

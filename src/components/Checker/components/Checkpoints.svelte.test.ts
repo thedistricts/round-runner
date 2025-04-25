@@ -158,7 +158,7 @@ describe('Checkpoints component', () => {
     expect(checkpointElements.length).toBe(0);
   });
 
-  it('should handle non-checkpoint features in route data', async () => {
+  it('should handle features in route data', async () => {
     route.set({
       type: 'FeatureCollection',
       features: [
@@ -182,6 +182,6 @@ describe('Checkpoints component', () => {
     
     render(Checkpoints);
     const checkpointElements = screen.getAllByRole('button');
-    expect(checkpointElements.length).toBe(2);
+    expect(checkpointElements.length).toBe(3);
   });
 });
