@@ -155,6 +155,21 @@
     {
       "type": "Feature",
       "properties": {
+        "name": "Barrow",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.19703436745186,
+          54.58579997742778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "name": "George Fisher (Finish)",
         "featureType": "finish checkpoint",
         "ratify": true

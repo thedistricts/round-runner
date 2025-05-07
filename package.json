@@ -1,15 +1,19 @@
 {
 	"name": "round-checker",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"test": "playwright test",
+		"test": "vitest run && playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"test:unit": "vitest",
+		"test:e2e": "playwright test --project=chromium",
+		"test:e2e:full": "playwright test",
+		"test:e2e:ui": "playwright test --ui --project=chromium",
+		"test:unit": "vitest run",
+		"test:unit:watch": "vitest watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
 		"prepack": "svelte-kit sync"
@@ -28,6 +32,7 @@
 		"@types/randomcolor": "^0.5.7",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
+		"@vitest/coverage-v8": "^3.1.2",
 		"autoprefixer": "^10.4.14",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
@@ -44,7 +49,7 @@
 		"tslib": "^2.4.1",
 		"typescript": "^5.6.3",
 		"vite": "^5.0.3",
-		"vitest": "^0.25.8"
+		"vitest": "^3.1.2"
 	},
 	"type": "module",
 	"dependencies": {

@@ -10,8 +10,8 @@
 	import { route, isRouteReversed } from '$lib/stores/route.store';
 	import { gpx } from '$lib/stores/gpx.store';
 	import {
-		ratification as ratificationStore,
-		debug as debugStore
+		ratification as ratificationStore
+		// debug as debugStore
 	} from '$lib/stores/ratification.store';
 	import type { GPXGeoJson } from '$lib/stores/gpx.store.d';
 
@@ -46,15 +46,14 @@
 		gpx.set(data);
 
 		fileName = fileItem.file.name;
-
 		const { ratify, debug } = Comlink.wrap<ExposeRatificationWorker>(ratificationWorker);
-		const ratificationResult = await ratify({ track: data, route: $route });
+		const ratificationResult = await ratify(data, $route);
 		ratificationStore.set(ratificationResult);
 
-		if (isDebug) {
-			const ratificationDebugResult = await debug({ track: data, route: $route });
-			debugStore.set(ratificationDebugResult);
-		}
+		// if (isDebug) {
+		// 	const ratificationDebugResult = await debug(data, $route);
+		// 	debugStore.set(ratificationDebugResult);
+		// }
 
 		terminateWorker();
 	}
@@ -76,7 +75,7 @@
 	function reverseRoute() {
 		const reversedRoute = {
 			...$route,
-			features: $route.features.reverse()
+			features: []
 		};
 		isRouteReversed.set(!$isRouteReversed);
 		route.set(reversedRoute);
@@ -106,6 +105,7 @@
 		class:!h-28={pageRouteExampleURL}
 		class:!h-20={!pageRouteExampleURL}
 		class="transition-opacity duration-500 delay-200 print:hidden"
+		data-testid="filepond-wrapper"
 	>
 		<FilePond
 			{name}

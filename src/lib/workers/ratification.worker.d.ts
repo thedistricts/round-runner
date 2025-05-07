@@ -1,7 +1,8 @@
 import { ratify, debug } from './ratification.worker';
-import type { Point, Feature } from '@turf/turf';
+import type { Point, Feature, Properties } from '@turf/helpers';
 import type { GPXGeoJson } from '$lib/stores/gpx.store.d';
 import type { LineStringProperties } from '$lib/stores/gpx.store.d';
+import { VALIDITY } from '$lib/enum';
 
 import type { RouteGeoJson, PointProperties } from '$lib/stores/route.store.d';
 
@@ -13,7 +14,7 @@ export type ExposeRatificationWorker = {
 	debug: Debug;
 };
 
-interface RatifyProps {
+export interface RatifyProps {
 	track: GPXGeoJson;
 	route: RouteGeoJson;
 }
@@ -24,19 +25,28 @@ interface NearestPointOnLineProperties extends PointProperties {
 	location: number;
 }
 
-interface ValidityPointProperties extends NearestPointOnLineProperties {
-	valid: VALIDITY;
-	time?: string;
-	dist: number | undefined;
-	order: number;
-	notes?: string;
-	ratify?: boolean;
+export interface ValidityPointProperties extends Properties {
+	dist: number;
+	index: number;
 	isStart: boolean;
 	isEnd: boolean;
-	index: number;
+	valid: VALIDITY;
+	order: number;
+	notes: string;
+	ratify: boolean;
+	leg: number;
+	featureType: string;
+	name: string;
+	validityDistance: [number, number];
+	time: string;
 }
 
-export type ValidityDistance = { 0: number, 1: number };
+
+export type PointFeature = Feature<Point, ValidityPointProperties>;
+
+export interface ValidityDistance {
+	[key: number]: number;
+}
 
 export type NearestPointOnLineWithValidity = Feature<Point, ValidityPointProperties>;
 type RatifyReturn = NearestPointOnLineWithValidity[];
@@ -73,7 +83,7 @@ export type CoordWithDistance = {
 	properties: {
 			order?: number;
 			time?: string;
-			dist: number | undefined;
+			dist: number;
 			index: number;
 			isStart: boolean;
 			isEnd: boolean;

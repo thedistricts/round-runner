@@ -20,7 +20,7 @@
 		"
 	>
 		<div class="h-full print:h-auto">
-			<div class="px-6 py-3 print:p-0">
+			<div class="px-6 py-3 print:p-0" id="expander-content">
 				<slot />
 			</div>
 		</div>

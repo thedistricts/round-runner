@@ -132,11 +132,25 @@ const ratificationResults: RatificationResults = [{
 
 describe('Breakdown component', () => {
   beforeEach(() => {
-    vi.mock('$lib/stores/breakdown.store', () => ({
-      breakdown: {
-        reset: vi.fn(),
-      },
-    }));
+    vi.mock('$lib/stores/breakdown.store', () => {
+      const store = {
+        value: false,
+        subscribers: new Set<(value: boolean) => void>(),
+        subscribe(callback: (value: boolean) => void) {
+          callback(this.value);
+          this.subscribers.add(callback);
+          return {
+            unsubscribe: () => this.subscribers.delete(callback)
+          };
+        },
+        set(value: boolean) {
+          this.value = value;
+          this.subscribers.forEach(cb => cb(this.value));
+        },
+        reset: vi.fn()
+      };
+      return { breakdown: store };
+    });
     gpx.set(stubGpxData);
   });
 

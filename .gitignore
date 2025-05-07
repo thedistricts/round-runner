@@ -10,3 +10,5 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 /static/data/test
+playwright-report/index.html
+test-results/.last-run.json

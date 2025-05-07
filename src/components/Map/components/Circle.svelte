@@ -1,6 +1,5 @@
 <script lang="ts">
 	import * as turf from '@turf/turf';
-	import type { Units } from '@turf/turf';
 
 	import { getContext, onMount, onDestroy } from 'svelte';
 	import { key } from '../Map.context';
@@ -18,7 +17,7 @@
 
 	const DRAW_OPTIONS = {
 		steps: 128,
-		units: 'kilometers' as Units
+		units: 'kilometers' as const
 	};
 
 	const id = `${coordinates.toString()}:${radius}:${colour}`;

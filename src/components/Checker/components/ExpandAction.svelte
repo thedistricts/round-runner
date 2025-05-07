@@ -10,15 +10,19 @@
 <button
 	on:click={handleOnClick}
 	type="button"
+	aria-expanded={$isOpen}
+	aria-controls="expander-content"
 	class={`relative z-30 border ${buttonClass} focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-1.5 text-center inline-flex items-center`}
 >
 	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		height="16px"
+		viewBox="0 -960 960 960"
+		width="16px"
+		fill="currentColor"
 		aria-hidden="true"
-		class="fill-current w-4 h-4"
-		xmlns="https://www.w3.org/2000/svg"
-		viewBox="0 96 960 960"
 	>
-		<path d="M450 856V606H200v-60h250V296h60v250h250v60H510v250h-60Z" />
+		<path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
 	</svg>
 	<span class="sr-only">View Checkpoints</span>
 </button>
