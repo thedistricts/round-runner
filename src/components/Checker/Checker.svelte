@@ -10,7 +10,7 @@
 	import { URL_PARAM, DOM_EVENTS } from '$lib/enum';
 
 	import RouteSelector from '../RouteSelector/RouteSelector.svelte';
-	import { Upload, Checkpoints, Expander, Results, ExpandAction } from './components';
+	import { Upload, Expander, ExpandAction } from './components';
 
 	let hasGpx = false;
 
@@ -36,13 +36,22 @@
 		$isOpen = hasGpx;
 	});
 
+	const unsubscribeOpen = isOpen.subscribe((isOpenBoolen) => {
+		$isOpen = isOpenBoolen;
+		console.log($isOpen, isOpenBoolen);
+	});
+
 	onMount(() => {
 		if (browser) window.addEventListener(DOM_EVENTS.POPSTATE, handlePopState);
-		$isOpen = !!$page.params.showInfo;
+		// $isOpen = !!$page.params.showInfo;
+
+		// $isOpen = window.location?.pathname.includes(URL_PARAM.ROUTE_INFORMATION);
+		// console.log($isOpen);
 	});
 
 	onDestroy(() => {
 		unsubscribeGpx();
+		unsubscribeOpen();
 		if (browser) window.removeEventListener(DOM_EVENTS.POPSTATE, handlePopState);
 	});
 </script>
@@ -70,12 +79,7 @@
 
 		<Expander isOpen={$isOpen}>
 			<div class:print:hidden={$breakdown} class="mx-auto grow">
-				{#if hasGpx}
-					<Results />
-				{/if}
-				{#if !hasGpx}
-					<Checkpoints />
-				{/if}
+				<slot />
 			</div>
 		</Expander>
 	</div>

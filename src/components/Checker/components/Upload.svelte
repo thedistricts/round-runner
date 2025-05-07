@@ -1,7 +1,9 @@
 <script lang="ts">
 	import * as Comlink from 'comlink';
 	import { onMount, onDestroy } from 'svelte';
+	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
+	import { URL_PARAM } from '$lib/enum';
 
 	// TODO: also allow .KML files?
 	import { GPXLoader } from '@loaders.gl/kml';
@@ -39,7 +41,14 @@
 		isVisible = true;
 	}
 
+	function handleOnClick() {
+		if (browser) {
+			goto(`/${$page.params.round}/${URL_PARAM.RATIFICATION}`);
+		}
+	}
+
 	async function handleAddFile(_err: unknown, fileItem: { file: File }) {
+		handleOnClick();
 		loadWorker();
 
 		const data: GPXGeoJson = await load(fileItem.file, GPXLoader);
