@@ -2,7 +2,7 @@ import * as maplibre from 'maplibre-gl';
 import type { Map, LngLatBoundsLike, LngLatLike } from 'maplibre-gl';
 import type { BBox } from 'geojson';
 
-const BOUNDS_PADDING_RATIO = { TOP: 0.15, RIGHT: 0.025, BOTTOM: 0.15, LEFT: 0.32 };
+const BOUNDS_PADDING_RATIO = { TOP: 0.15, RIGHT: 0.05, BOTTOM: 0.15, LEFT: 0.37 };
 const BOUNDS_PADDING_RATIO_MOBILE = { TOP: 0.4, RIGHT: 0.15, BOTTOM: 0.1, LEFT: 0.15 };
 
 interface FitUtilProps {

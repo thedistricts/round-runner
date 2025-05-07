@@ -5,8 +5,10 @@
 	const { NavigationControl } = pkg;
 	import { Route, Track, Results, Debug } from './components';
 	import type { ControlPosition } from 'maplibre-gl';
+	import { mapStore } from '$lib/stores/map.store';
+	import type { Map as MapLibreMap } from 'maplibre-gl';
 
-	let map: Map;
+	let map: MapLibreMap;
 	let mapContainer: HTMLElement;
 	const CTRL = { BOTTOM_RIGHT: 'bottom-right' };
 	const TILESET = { WINTER: 'winter-v2', OUTDOOR: 'outdoor-v2', ROAD: 'uk-openzoomstack-road' };
@@ -20,6 +22,8 @@
 			zoom: INITIAL_STATE.ZOOM,
 			hash: false
 		});
+
+		mapStore.set(map);
 
 		map.addControl(
 			new NavigationControl({

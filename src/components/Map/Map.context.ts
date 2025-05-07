@@ -1,8 +1,9 @@
 import pkg from 'maplibre-gl';
+import type { Map as MapLibreMap } from 'maplibre-gl';
 const { Map } = pkg;
 
 export interface MapContext {
-	getMap(): Map;
+	getMap(): MapLibreMap;
 }
 
 const ACCESS_TOKEN = 'V0tBS9icsk79SmCOaKeQ';

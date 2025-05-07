@@ -1,4 +1,4 @@
-const MARKER_SIZE = 36;
+export const MARKER_SIZE = 36;
 
 export type MarkerType = {
   width: number;
