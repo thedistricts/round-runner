@@ -3,7 +3,7 @@
 	import { isOpen } from '$lib/stores/checker.store';
 	import { gpx } from '$lib/stores/gpx.store';
 	import { Checkpoints } from '../../components/Checker/components';
-	let hasGpx = false;
+	$: hasGpx = false;
 
 	const unsubscribeGpx = gpx.subscribe((geojson) => {
 		hasGpx = geojson.features.length > 0;
@@ -18,6 +18,4 @@
 	});
 </script>
 
-{#if !hasGpx}
-	<Checkpoints />
-{/if}
+<Checkpoints />

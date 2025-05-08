@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { isOpen } from '$lib/stores/checker.store';
-	import { beforeUpdate } from 'svelte';
+	import { onMount } from 'svelte';
 	import { Checkpoints } from '../../../components/Checker/components';
 
-	beforeUpdate(() => {
+	onMount(() => {
 		isOpen.set(true);
 	});
 </script>

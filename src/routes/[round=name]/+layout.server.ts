@@ -7,7 +7,7 @@ export const load = (async ({ params, parent }) => {
 
 	const matchingRound = rounds.find((round) => round.slug === params.round);
 
-	if (matchingRound) return { ...matchingRound};
+	if (matchingRound) return { ...matchingRound, slug: params.round };
 
 	throw error(404);
 });
