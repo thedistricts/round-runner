@@ -38,15 +38,10 @@
 
 	const unsubscribeOpen = isOpen.subscribe((isOpenBoolen) => {
 		$isOpen = isOpenBoolen;
-		console.log($isOpen, isOpenBoolen);
 	});
 
 	onMount(() => {
 		if (browser) window.addEventListener(DOM_EVENTS.POPSTATE, handlePopState);
-		// $isOpen = !!$page.params.showInfo;
-
-		// $isOpen = window.location?.pathname.includes(URL_PARAM.ROUTE_INFORMATION);
-		// console.log($isOpen);
 	});
 
 	onDestroy(() => {

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import type { PageData } from '../$types';
+	// import type { PageData } from '../$types';
 	import { onMount, beforeUpdate } from 'svelte';
 	import { breakdown } from '$lib/stores/breakdown.store';
 	import { route } from '$lib/stores/route.store';
@@ -8,16 +8,16 @@
 	import type { RouteGeoJson } from '$lib/stores/route.store.d';
 	import Checker from '../../components/Checker/Checker.svelte';
 	import { Breakdown } from '../../components/Breakdown';
-	export let data: PageData;
+	export let data: any;
 
 	let currentRouteSlug = '';
 
 	beforeUpdate(async () => {
-		if (data.rounds[0].slug !== currentRouteSlug) {
-			const res = await fetch(data.rounds[0].json);
+		if (data.slug !== currentRouteSlug) {
+			const res = await fetch(data.json);
 			const routeGeoJson: RouteGeoJson = await res.json();
 			route.set(routeGeoJson);
-			currentRouteSlug = data.rounds[0].slug;
+			currentRouteSlug = data.slug;
 		}
 	});
 
@@ -27,21 +27,19 @@
 </script>
 
 <svelte:head>
-	<title
-		>{`Round Runner: ${data.rounds[0].title} - Validate Your ${data.rounds[0].description} ratification`}</title
-	>
+	<title>{`Round Runner: Validate Your ${data.description} ratification`}</title>
 	<meta
 		name="description"
-		content={`Round Runner is an online tool designed to verify and validate your long-distance ${data.rounds[0].description} ${data.rounds[0].title}`}
+		content={`Round Runner is an online tool designed to verify and validate your long-distance ${data.description} ${data.title}`}
 	/>
 	<meta
 		name="keywords"
-		content={`Ultra Running, Long-Distance Ultras, Ultra Challenges, Run Tracking, Performance, ${data.rounds[0].title}, SwimRun Challenge, Swim Run`}
+		content={`Ultra Running, Long-Distance Ultras, Ultra Challenges, Run Tracking, Performance, ${data.title}, SwimRun Challenge, Swim Run`}
 	/>
 
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content={$page.url.href} />
-	<meta property="og:title" content={`${data.rounds[0].title}`} />
+	<meta property="og:title" content={`${data.title}`} />
 	<meta
 		property="og:description"
 		content="Round Runner is an online tool designed to verify and validate your long-distance challenges."
@@ -49,7 +47,7 @@
 
 	<meta property="twitter:card" content="summary_large_image" />
 	<meta property="twitter:url" content={$page.url.href} />
-	<meta property="twitter:title" content={`${data.rounds[0].title}`} />
+	<meta property="twitter:title" content={`${data.title}`} />
 	<meta
 		property="twitter:description"
 		content="Round Runner is an online tool designed to verify and validate your long-distance challenges."
