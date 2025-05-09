@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+
 	import type { PageData } from '../../../routes/[round=name]/$types';
 	import type { LngLatLike } from 'maplibre-gl';
 	import type { Position } from 'geojson';
@@ -24,6 +26,7 @@
 		if (!coordinates) throw new Error('No coordinates provided');
 		if ($viewport.isMobile) {
 			$isOpen = false;
+			goto(`/${activeRound?.slug}`);
 		}
 		routeFocus.set(coordinates as LngLatLike);
 	}
