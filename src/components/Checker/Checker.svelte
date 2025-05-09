@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
-	import { goto } from '$app/navigation';
+	import { goto, beforeNavigate } from '$app/navigation';
 
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
@@ -10,13 +10,13 @@
 	import { URL_PARAM, DOM_EVENTS } from '$lib/enum';
 
 	import RouteSelector from '../RouteSelector/RouteSelector.svelte';
-	import { Upload, Checkpoints, Expander, Results, ExpandAction } from './components';
+	import { Upload, Expander, ExpandAction } from './components';
 
-	let hasGpx = false;
+	$: hasGpx = false;
 
 	function handlePopState(e: PopStateEvent) {
+		gpx.reset();
 		if (browser) {
-			gpx.reset();
 			$isOpen = (e.currentTarget as Window).location?.pathname.includes(
 				URL_PARAM.ROUTE_INFORMATION
 			);
@@ -36,13 +36,21 @@
 		$isOpen = hasGpx;
 	});
 
+	const unsubscribeOpen = isOpen.subscribe((isOpenBoolen) => {
+		$isOpen = isOpenBoolen;
+	});
+
+	beforeNavigate(() => {
+		gpx.reset();
+	});
+
 	onMount(() => {
 		if (browser) window.addEventListener(DOM_EVENTS.POPSTATE, handlePopState);
-		$isOpen = !!$page.params.showInfo;
 	});
 
 	onDestroy(() => {
 		unsubscribeGpx();
+		unsubscribeOpen();
 		if (browser) window.removeEventListener(DOM_EVENTS.POPSTATE, handlePopState);
 	});
 </script>
@@ -70,12 +78,7 @@
 
 		<Expander isOpen={$isOpen}>
 			<div class:print:hidden={$breakdown} class="mx-auto grow">
-				{#if hasGpx}
-					<Results />
-				{/if}
-				{#if !hasGpx}
-					<Checkpoints />
-				{/if}
+				<slot />
 			</div>
 		</Expander>
 	</div>

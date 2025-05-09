@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import type { PageData } from '../$types';
+	// import type { PageData } from '../$types';
 	import { onMount, beforeUpdate } from 'svelte';
 	import { breakdown } from '$lib/stores/breakdown.store';
 	import { route } from '$lib/stores/route.store';
 	import { isOpen } from '$lib/stores/checker.store';
 	import type { RouteGeoJson } from '$lib/stores/route.store.d';
-	import Checker from '../../../components/Checker/Checker.svelte';
-	import { Breakdown } from '../../../components/Breakdown';
-	export let data: PageData;
+	import Checker from '../../components/Checker/Checker.svelte';
+	import { Breakdown } from '../../components/Breakdown';
+	export let data: any;
 
 	let currentRouteSlug = '';
 
@@ -22,12 +22,12 @@
 	});
 
 	onMount(() => {
-		$isOpen = !!data.showInfo;
+		isOpen.set(false);
 	});
 </script>
 
 <svelte:head>
-	<title>{`Round Runner: ${data.title} - Validate Your ${data.description} ratification`}</title>
+	<title>{`Round Runner: Validate Your ${data.description} ratification`}</title>
 	<meta
 		name="description"
 		content={`Round Runner is an online tool designed to verify and validate your long-distance ${data.description} ${data.title}`}
@@ -62,7 +62,9 @@
 	z-10 pointer-events-none
 	print:block print:h-auto"
 >
-	<Checker />
+	<Checker>
+		<slot />
+	</Checker>
 
 	{#if $breakdown}
 		<div
@@ -74,6 +76,4 @@
 			<Breakdown />
 		</div>
 	{/if}
-
-	<slot />
 </div>

@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import dayjs from 'dayjs';
 	import utc from 'dayjs/plugin/utc';
 	import { HOURS, DATE } from '$lib/const';
@@ -8,7 +10,6 @@
 	import { breakdown } from '$lib/stores/breakdown.store';
 	import { ratification, debug } from '$lib/stores/ratification.store';
 	import { isRouteReversed } from '$lib/stores/route.store';
-
 
 	export let fileName = '';
 
@@ -19,7 +20,6 @@
 	let elapsed = new Date(0);
 	let isValid = false;
 
-
 	const unsubscribe = gpx.subscribe((track) => {
 		const {
 			start: trackStart,
@@ -29,7 +29,7 @@
 		} = getMetricsFrom(track);
 
 		start = $isRouteReversed ? trackEnd : trackStart;
-		end = $isRouteReversed ? trackStart: trackEnd;
+		end = $isRouteReversed ? trackStart : trackEnd;
 		elapsed = trackElapsed;
 		isValid = isTrackValid;
 	});
@@ -39,6 +39,7 @@
 		ratification.reset();
 		breakdown.reset();
 		debug.reset();
+		goto(`/${$page.params.round}`);
 	}
 
 	function showBreakdown() {
@@ -77,8 +78,8 @@
 			on:click={showBreakdown}
 			class="
 				flex justify-items-center items-center gap-2
-				md:absolute md:bottom-4 md:right-4 mt-5 md:mt-0 
-				pl-2 pr-3 py-1  
+				md:absolute md:bottom-4 md:right-4 mt-5 md:mt-0
+				pl-2 pr-3 py-1
 				rounded bg-indigo-800 hover:bg-indigo-900 text-indigo-100 text-xs focus:ring-2 focus:ring-indigo-500
 				ease-out duration-200
 				leading-4

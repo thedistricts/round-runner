@@ -23,16 +23,17 @@
 	function handleRouteSelectChange(event: Event) {
 		reset();
 		const target = event.target as HTMLSelectElement;
-		const newUrl = !!$page.params.info
+		const isRouteInformation = $page.route.id?.includes(URL_PARAM.ROUTE_INFORMATION);
+		const newUrl = isRouteInformation
 			? `/${target.value}/${URL_PARAM.ROUTE_INFORMATION}`
 			: `/${target.value}`;
-		$isOpen = !!$page.params.info;
+		$isOpen = !!isRouteInformation;
 		goto(newUrl);
 	}
 </script>
 
 <header class="flex items-center text-xl">
-	<a href="/" class="w-[5rem]" >
+	<a href="/" class="w-[5rem]">
 		<img src={logoImgSrc} alt={`${logoAltText} logo`} class="h-[4rem]" />
 	</a>
 	<div class="group relative flex w-full pr-3">
