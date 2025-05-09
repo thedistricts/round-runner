@@ -215,7 +215,9 @@ describe('Checkpoints component', () => {
 
     it('should render download GPX button when route is loaded', () => {
       render(Checkpoints, { target: container });
-      const downloadButton = screen.getByText('Download GPX waypoints');
+      const downloadButton = screen.getByText((content, element) =>
+        /download gpx waypoints/i.test(content)
+      );
       expect(downloadButton).toBeInTheDocument();
     });
 
@@ -226,12 +228,13 @@ describe('Checkpoints component', () => {
       } as FeatureCollection<Point, PointProperties>);
       
       render(Checkpoints, { target: container });
-      const downloadButton = screen.queryByText('Download GPX waypoints');
+      const downloadButton = screen.queryByText((content, element) =>
+        /download gpx waypoints/i.test(content)
+      );
       expect(downloadButton).not.toBeInTheDocument();
     });
 
     it('should trigger GPX download when button is clicked', async () => {
-
       vi.spyOn(document, 'createElement');
       vi.spyOn(document.body, 'removeChild');
       vi.spyOn(document.body, 'appendChild');
@@ -258,7 +261,9 @@ describe('Checkpoints component', () => {
       } as FeatureCollection<Point, PointProperties>);
       
       render(Checkpoints, { target: container });
-      const downloadButton = screen.getByText('Download GPX waypoints');
+      const downloadButton = screen.getByText((content, element) =>
+        /download gpx waypoints/i.test(content)
+      );
       
       await fireEvent.click(downloadButton);
 

@@ -236,7 +236,7 @@ describe('RouteSelector component', () => {
     vi.mocked(page.subscribe).mockImplementation((callback) => {
       callback({
         ...mockPageData,
-        params: { info: 'route-information' },
+        route: { id: 'round-1/route-information' },
         state: { routeInformation: true }
       });
       return () => {};
