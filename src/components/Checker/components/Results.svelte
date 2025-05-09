@@ -1,8 +1,11 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import dayjs from 'dayjs';
 	import utc from 'dayjs/plugin/utc';
 
+	import type { PageData } from '../../../routes/[round=name]/$types';
 	import type { LngLatLike } from 'maplibre-gl';
 	import type { Position } from 'geojson';
 	import { HOURS } from '$lib/const';
@@ -12,12 +15,16 @@
 	import { ratification, results, resultsFocus } from '$lib/stores/ratification.store';
 	import { Loader } from './';
 
+	$: pageUrlSlug = $page.data.slug as PageData['slug'];
+	$: rounds = $page.data.rounds as PageData['rounds'];
+
 	dayjs.extend(utc);
 
 	let hasRatificationResults = false;
 	$: warnings = $results?.warnings ?? [];
 	$: failed = $results?.invalids ?? [];
 	$: valids = $results?.valids ?? [];
+	$: activeRound = rounds.find((round) => pageUrlSlug === round.slug);
 
 	const unsubscribe = ratification.subscribe((results) => {
 		hasRatificationResults = results.length > 0;
@@ -29,6 +36,7 @@
 		if (!coordinates) throw new Error('No coordinates provided');
 		if ($viewport.isMobile) {
 			$isOpen = false;
+			goto(`/${activeRound?.slug}`);
 		}
 		resultsFocus.set(coordinates as LngLatLike);
 	}
