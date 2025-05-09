@@ -27,14 +27,14 @@
 </script>
 
 <svelte:head>
-	<title>{`Round Runner: Validate Your ${data.description} ratification`}</title>
+	<title>{`Round Runner: Validate Your ${data.title} ratification`}</title>
 	<meta
 		name="description"
 		content={`Round Runner is an online tool designed to verify and validate your long-distance ${data.description} ${data.title}`}
 	/>
 	<meta
 		name="keywords"
-		content={`Ultra Running, Long-Distance Ultras, Ultra Challenges, Run Tracking, Performance, ${data.title}, SwimRun Challenge, Swim Run`}
+		content={`Ultra Running, Long-Distance Ultras, Ultra Challenges, Run Tracking, Performance, ${data.title}, SwimRun Challenge, Swim Run, RunSwim`}
 	/>
 
 	<meta property="og:type" content="website" />
