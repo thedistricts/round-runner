@@ -3,6 +3,16 @@ import { DOMAIN } from '$env/static/private';
 import manifast from '$lib/data/round-manifest.json';
 export const prerender = true;
 
+function getContentPages() {
+	const homepage = `
+		<url>
+			<loc>${DOMAIN}</loc>
+			<changefreq>monthly</changefreq>
+		</url>
+	`
+	return homepage;
+}
+
 function getRoundPages() {
 	const rounds = manifast.rounds.map((round) => `
 		<url>
@@ -29,6 +39,7 @@ export async function GET() {
 			xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
 			xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
 		>
+			${getContentPages()}
 			${getRoundPages()}
 		</urlset>`.trim(),
 		{

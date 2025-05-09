@@ -6,7 +6,7 @@ test.describe('Frog Graham Round Page', () => {
   });
 
   test('should load with correct title and metadata', async ({ page }) => {
-    await expect(page).toHaveTitle(/Round Runner: Frog Graham Round/);
+    await expect(page).toHaveTitle(/Round Runner: Validate Your Frog Graham Round ratification/);
     
     const metaDescription = page.locator('meta[name="description"]');
     await expect(metaDescription).toHaveAttribute('content', /Round Runner is an online tool/);

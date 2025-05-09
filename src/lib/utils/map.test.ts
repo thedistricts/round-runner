@@ -56,8 +56,8 @@ describe('map', () => {
 					padding: {
 						top: 120, // 800 * 0.15
 						bottom: 120, // 800 * 0.15
-						left: 320, // 1000 * 0.32
-						right: 25 // 1000 * 0.025
+						left: 370, // 1000 * 0.37
+						right: 50 // 1000 * 0.05
 					},
 					animate: false
 				}
@@ -141,7 +141,7 @@ describe('map', () => {
 					maxZoom: 13,
 					padding: {
 						top: 0,
-						left: 320 // 1000 * 0.32
+						left: 370 // 1000 * 0.37
 					},
 					duration: 1000,
 					animate: false

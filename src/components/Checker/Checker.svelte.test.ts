@@ -2,9 +2,9 @@
  * @vitest-environment jsdom
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent, cleanup } from '@testing-library/svelte';
+import { render, screen, cleanup } from '@testing-library/svelte';
 import { featureCollection } from '@turf/turf';
-import type { Feature, LineString, FeatureCollection } from 'geojson';
+import type { FeatureCollection } from 'geojson';
 import { gpx } from '$lib/stores/gpx.store';
 import { breakdown } from '$lib/stores/breakdown.store';
 import { isOpen } from '$lib/stores/checker.store';
@@ -12,6 +12,7 @@ import * as navigation from '$app/navigation';
 import { page } from '$app/stores';
 import type { Page } from '@sveltejs/kit';
 import Checker from './Checker.svelte';
+import CheckerSlotTest from './CheckerSlotTest.svelte';
 
 // Mock components
 vi.mock('../RouteSelector/RouteSelector.svelte', () => ({
@@ -61,55 +62,6 @@ vi.mock('./components/Upload.svelte', () => ({
     $destroy: () => {}
   }))
 }));
-
-vi.mock('./components/Checkpoints.svelte', () => ({
-  default: vi.fn().mockImplementation(() => ({
-    $$: {
-      fragment: {
-        c: () => {},
-        m: (target: HTMLElement) => {
-          const div = document.createElement('div');
-          div.setAttribute('data-testid', 'checkpoints-component');
-          div.textContent = 'Checkpoints';
-          target.appendChild(div);
-        },
-        d: () => {},
-        l: () => {}
-      },
-      ctx: [],
-      after_update: [],
-      on_mount: [],
-      on_destroy: []
-    },
-    $set: () => {},
-    $destroy: () => {}
-  }))
-}));
-
-vi.mock('./components/Results.svelte', () => ({
-  default: vi.fn().mockImplementation(() => ({
-    $$: {
-      fragment: {
-        c: () => {},
-        m: (target: HTMLElement) => {
-          const div = document.createElement('div');
-          div.setAttribute('data-testid', 'results-component');
-          div.textContent = 'Results';
-          target.appendChild(div);
-        },
-        d: () => {},
-        l: () => {}
-      },
-      ctx: [],
-      after_update: [],
-      on_mount: [],
-      on_destroy: []
-    },
-    $set: () => {},
-    $destroy: () => {}
-  }))
-}));
-
 
 describe('Checker component', () => {
   beforeEach(() => {
@@ -169,13 +121,7 @@ describe('Checker component', () => {
     expect(screen.getByTestId('upload-component')).toBeTruthy();
   });
 
-  it('should render the Checkpoints component when no GPX is loaded and isOpen is true', () => {
-    isOpen.set(true);
-    render(Checker);
-    expect(screen.getByTestId('checkpoints-component')).toBeTruthy();
-  });
-
-  it('should render the Results component when GPX is loaded', () => {
+  it('should render the component pass as the default slot', () => {
     gpx.set(featureCollection([{
       type: 'Feature',
       properties: {},
@@ -185,7 +131,7 @@ describe('Checker component', () => {
       }
     }]));
     isOpen.set(true);
-    render(Checker);
+    render(CheckerSlotTest);
     expect(screen.getByTestId('results-component')).toBeTruthy();
   });
 

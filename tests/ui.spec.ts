@@ -44,7 +44,7 @@ test.describe('UI Tests', () => {
 
   test('should display round information', async ({ page }) => {
     const firstRoundCard = page.getByRole('heading', { level: 3 }).first();
-    const roundInfo = firstRoundCard.locator('..').getByText(/^The/);
+    const roundInfo = firstRoundCard.locator('..').getByText(/^Frog Graham Round/);
     await expect(roundInfo).toBeVisible();
   });
 
