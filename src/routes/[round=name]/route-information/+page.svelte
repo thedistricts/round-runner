@@ -6,7 +6,6 @@
 	import { page } from '$app/stores';
 	isOpen.set(true);
 	onMount(() => {
-		isOpen.set(true);
 		const unsubscribe = page.subscribe(($page) => {
 			if ($page.data.geojson) {
 				route.set($page.data.geojson);
