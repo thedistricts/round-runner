@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { getContext, onMount, onDestroy } from 'svelte';
 	import pkg from 'maplibre-gl';
-	const { Popup } = pkg;
 	import dayjs from 'dayjs';
 	import utc from 'dayjs/plugin/utc';
 	import { key } from '../Map.context';
 	import { HOURS } from '$lib/const';
 	import TimePoint from '../assets/time-icon.svg';
 
+	import type { Popup } from 'maplibre-gl';
 	import type { Position } from 'geojson';
 	import type { MapContext } from '../Map.context';
 	export let coordinates: Position;
@@ -36,60 +36,60 @@
 				map.removeImage(imageId);
 			}
 			map.addImage(imageId, image);
+
+			map.addSource(sourceId, {
+				type: 'geojson',
+				data: {
+					type: 'FeatureCollection',
+					features: [
+						{
+							type: 'Feature',
+							geometry: {
+								type: 'Point',
+								coordinates
+							},
+							properties: null
+						}
+					]
+				}
+			});
+
+			map.addLayer(
+				{
+					id,
+					type: 'symbol',
+					source: sourceId,
+					minzoom: 16,
+					layout: {
+						'icon-image': imageId,
+						'icon-size': 1
+					}
+				},
+				undefined
+			);
+
+			map.on('mouseenter', id, (e: { lngLat: { lng: number } }) => {
+				map.getCanvas().style.cursor = 'pointer';
+				while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+					coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+				}
+
+				popup = new pkg.Popup({
+					closeButton: false,
+					closeOnMove: true,
+					offset: 16
+				})
+					.setLngLat(coordinates as [number, number])
+					.setHTML(dayjs(time).utc().format(HOURS))
+					.addTo(map);
+			});
+
+			map.on('mouseleave', id, () => {
+				map.getCanvas().style.cursor = '';
+				if (popup) popup.remove();
+			});
 		};
 		image.src = TimePoint;
-
-		map.addSource(sourceId, {
-			type: 'geojson',
-			data: {
-				type: 'FeatureCollection',
-				features: [
-					{
-						type: 'Feature',
-						geometry: {
-							type: 'Point',
-							coordinates
-						},
-						properties: null
-					}
-				]
-			}
-		});
-
-		map.addLayer(
-			{
-				id,
-				type: 'symbol',
-				source: sourceId,
-				minzoom: 16,
-				layout: {
-					'icon-image': imageId,
-					'icon-size': 1
-				}
-			},
-			undefined
-		);
-
-		map.on('mouseenter', id, (e: { lngLat: { lng: number } }) => {
-			map.getCanvas().style.cursor = 'pointer';
-			while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-				coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-			}
-
-			popup = new Popup({
-				closeButton: false,
-				closeOnMove: true,
-				offset: 16
-			})
-				.setLngLat(coordinates as [number, number])
-				.setHTML(dayjs(time).utc().format(HOURS))
-				.addTo(map);
-		});
-
-		map.on('mouseleave', id, () => {
-			map.getCanvas().style.cursor = '';
-			if (popup) popup.remove();
-		});
 	}
 
 	onMount(() => {
