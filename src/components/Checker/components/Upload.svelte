@@ -16,9 +16,7 @@
 		// debug as debugStore
 	} from '$lib/stores/ratification.store';
 	import type { GPXGeoJson } from '$lib/stores/gpx.store.d';
-
-	import FilePond, { registerPlugin } from 'svelte-filepond';
-	import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+	import FilePondComponent from './Filepond.svelte';
 	import Details from './Details.svelte';
 
 	import RatificationWorker from '$lib/workers/ratification.worker?worker';
@@ -26,20 +24,9 @@
 	import type { PageData } from '../../../routes/[round=name]/$types';
 
 	let ratificationWorker: Worker;
+	let fileName = '';
 	$: isDebug = false;
 	$: pageRouteExampleURL = $page.data.example as PageData['example'];
-
-	let name = 'filepond';
-	let isVisible = false;
-	let fileName = '';
-	const IDLE_MESSAGE =
-		"Drag & Drop your attempt or <span class='filepond--label-action'> Browse </span>";
-
-	registerPlugin(FilePondPluginFileValidateType);
-
-	function handleFilePondInit() {
-		isVisible = true;
-	}
 
 	function handleOnClick() {
 		if (browser) {
@@ -51,7 +38,7 @@
 		handleOnClick();
 		loadWorker();
 
-		const data: GPXGeoJson = await load(fileItem.file, GPXLoader);
+		const data = (await load(fileItem.file, GPXLoader)) as unknown as GPXGeoJson;
 		gpx.set(data);
 
 		fileName = fileItem.file.name;
@@ -104,41 +91,22 @@
 		}
 	});
 
-	onDestroy(terminateWorker);
+	onDestroy(() => {
+		terminateWorker();
+	});
 </script>
 
 {#if $gpx.features.length === 0}
-	<div
-		class:!opacity-1={isVisible}
-		class:!opacity-0={!isVisible}
-		class:!h-28={pageRouteExampleURL}
-		class:!h-20={!pageRouteExampleURL}
-		class="transition-opacity duration-500 delay-200 print:hidden"
-		data-testid="filepond-wrapper"
-	>
-		<FilePond
-			{name}
-			id={name}
-			oninit={handleFilePondInit}
-			onaddfile={handleAddFile}
-			acceptedFileTypes={['.gpx']}
-			allowDrop={true}
-			allowReplace={true}
-			dropOnElement={true}
-			dropOnPage={true}
-			dropValidation={false}
-			allowMultiple={false}
-			labelIdle={IDLE_MESSAGE}
-			credits={false}
-		/>
+	<div class:!h-28={pageRouteExampleURL} class:!h-20={!pageRouteExampleURL} class="print:hidden">
+		<FilePondComponent {handleAddFile} />
 		{#if pageRouteExampleURL}
 			<div class="flex flex-row items-center text-sm text-neutral-400">
 				No file?
 				<button
 					class="
-				ml-2 py-1 px-3 rounded-full bg-neutral-50
-				text-blue-700 border border-neutral-50 hover:bg-blue-700 hover:text-white focus:ring-2 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500
-				"
+						ml-2 py-1 px-3 rounded-full bg-neutral-50
+					text-blue-700 border border-neutral-50 hover:bg-blue-700 hover:text-white focus:ring-2 focus:outline-none focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500
+					"
 					on:click={() => handleLoadExample(pageRouteExampleURL)}
 				>
 					See example
