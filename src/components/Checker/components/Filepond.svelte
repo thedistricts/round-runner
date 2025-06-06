@@ -10,6 +10,7 @@
 
 	let isVisible = false;
 	let pond: FilePond | undefined;
+	let inputElement: HTMLInputElement;
 
 	function handleFilePondInit() {
 		isVisible = true;
@@ -35,7 +36,6 @@
 		"Drag & Drop your attempt or <span class='filepond--label-action'> Browse </span>";
 
 	onMount(() => {
-		const inputElement = document.querySelector('input[type="file"]');
 		if (inputElement) {
 			pond = FilePondUpload.create(inputElement, {
 				oninit: handleFilePondInit,
@@ -70,7 +70,7 @@
 		class:!opacity-0={!isVisible}
 		class="filepond__wrapper transition-opacity duration-500 delay-200 print:hidden"
 	>
-		<input type="file" class="filepond" />
+		<input type="file" class="filepond" bind:this={inputElement} />
 	</div>
 </div>
 
