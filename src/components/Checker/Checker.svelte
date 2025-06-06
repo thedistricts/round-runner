@@ -24,11 +24,9 @@
 	}
 
 	function handleOnClick() {
+		if (!$isOpen) goto(`/${$page.params.round}/${URL_PARAM.ROUTE_INFORMATION}`);
+		else goto(`/${$page.params.round}`);
 		$isOpen = !$isOpen;
-		if (browser) {
-			if ($isOpen) goto(`/${$page.params.round}/${URL_PARAM.ROUTE_INFORMATION}`);
-			else goto(`/${$page.params.round}`);
-		}
 	}
 
 	const unsubscribeGpx = gpx.subscribe((geojson) => {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let isOpen = false;
+	export let isOpen = true;
 </script>
 
 {#if !isOpen}

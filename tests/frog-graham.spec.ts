@@ -37,7 +37,7 @@ test.describe('Frog Graham Round Page', () => {
   });
 
   test('should handle route information toggle', async ({ page }) => {
-    const routeInfoLink = page.getByRole('link', { name: /Route Information/i });
+    const routeInfoLink = page.getByRole('link', { name: /Route Information \(\d+ Checkpoints\)/i });
     await routeInfoLink.click();
     
     await expect(page).toHaveURL(/\/frog-graham\/route-information/);
