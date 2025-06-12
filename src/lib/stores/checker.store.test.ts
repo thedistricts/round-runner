@@ -3,8 +3,8 @@ import { get } from 'svelte/store';
 import { isOpen } from './checker.store';
 
 describe('checker store', () => {
-  it('should initialize with false', () => {
-    expect(get(isOpen)).toBe(false);
+  it('should initialise with true', () => {
+    expect(get(isOpen)).toBe(true);
   });
 
   it('should update the value when set', () => {

@@ -70,7 +70,7 @@
 		class:!opacity-0={!isVisible}
 		class="filepond__wrapper transition-opacity duration-500 delay-200 print:hidden"
 	>
-		<input type="file" class="filepond" bind:this={inputElement} />
+		<input type="file" class="filepond" bind:this={inputElement} data-testid="filepond-input" />
 	</div>
 </div>
 
