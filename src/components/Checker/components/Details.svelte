@@ -31,24 +31,66 @@
 	const worker = new ValidationWorker();
 	const { validateTrack, validateTimeIntervals } = wrap<ExposeValidationWorker>(worker);
 
+	let currentValidationId = 0;
+
 	const unsubscribe = gpx.subscribe(async (track) => {
+		const validationId = ++currentValidationId;
+
 		const { start: trackStart, end: trackEnd, elapsed: trackElapsed } = getMetricsFrom(track);
 
 		start = $isRouteReversed ? trackEnd : trackStart;
 		end = $isRouteReversed ? trackStart : trackEnd;
 		elapsed = trackElapsed;
+
+		validity = {
+			isValid: false,
+			isProcessed: false,
+			track: { isValid: true },
+			timeInterval: { isValid: true, percentileInterval: 0 }
+		};
+
 		if (!track) {
 			validity = { ...validity, isProcessed: true, isValid: false };
 			return;
 		}
-		if (track) {
-			validity.track = await validateTrack(track);
-			if (validity.track.isValid) {
-				validity.timeInterval = await validateTimeIntervals(track);
-				validity.isValid = validity.track.isValid && validity.timeInterval.isValid;
+
+		try {
+			const trackValidation = await validateTrack(track);
+
+			if (validationId !== currentValidationId) {
+				return;
+			}
+
+			validity = { ...validity, track: trackValidation };
+
+			if (trackValidation.isValid) {
+				const timeIntervalValidation = await validateTimeIntervals(track);
+
+				validity = {
+					...validity,
+					timeInterval: timeIntervalValidation,
+					isValid: trackValidation.isValid && timeIntervalValidation.isValid,
+					isProcessed: true
+				};
+			} else {
+				validity = {
+					...validity,
+					isValid: false,
+					isProcessed: true
+				};
+			}
+		} catch (error) {
+			console.error('Validation error:', error);
+
+			if (validationId === currentValidationId) {
+				validity = {
+					isValid: false,
+					isProcessed: true,
+					track: { isValid: false },
+					timeInterval: { isValid: false, percentileInterval: 0 }
+				};
 			}
 		}
-		validity.isProcessed = true;
 	});
 
 	function handleOnResetClick() {
