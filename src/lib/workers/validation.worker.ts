@@ -1,7 +1,7 @@
 import { expose } from 'comlink';
 import type { GPXGeoJson } from '$lib/stores/gpx.store.d';
 
-const IS_VALID_INTERVAL = 15;
+const IS_VALID_INTERVAL = 121;
 
 function calculatePercentile(numbers: number[], percentile: number): number {
 	const sorted = [...numbers].sort((a, b) => a - b);
@@ -28,7 +28,7 @@ export function validateTimeIntervals(gpx: GPXGeoJson): { isValid: boolean; perc
 		intervals.push(interval);
 	}
 
-	const percentileInterval = calculatePercentile(intervals, 90) / 1000; // Convert to seconds
+	const percentileInterval = calculatePercentile(intervals, 90) / 1000;
 	const isValid = percentileInterval < IS_VALID_INTERVAL;
 
 	return {

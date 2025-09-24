@@ -142,7 +142,7 @@
 					href="https://support.strava.com/hc/en-us/articles/216917947-Uploading-GPS-Files-without-Time-Information"
 					target="_blank"
 				>
-					Low recording interval ({validity.timeInterval.percentileInterval}hz)
+					GPS recording interval too low ({validity.timeInterval.percentileInterval}hz)
 				</a>
 			{/if}
 		{/if}
