@@ -41,8 +41,8 @@ test.describe('Frog Graham Round Page', () => {
     await routeInfoLink.click();
     
     await expect(page).toHaveURL(/\/frog-graham\/route-information/);
-    
-    await routeInfoLink.click();
+    const routeInfoTitleLink = page.getByRole('link', { name: /Route Information/i });
+    await routeInfoTitleLink.click();
     await expect(page).toHaveURL(/\/frog-graham$/);
   });
 

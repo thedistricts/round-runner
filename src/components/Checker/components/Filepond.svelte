@@ -84,7 +84,7 @@
 	});
 </script>
 
-<div class="filepond__wrapper">
+<div class="filepond__wrapper" data-testid="filepond-wrapper">
 	<div
 		class:!opacity-1={isVisible}
 		class:!opacity-0={!isVisible}
