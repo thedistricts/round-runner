@@ -37,7 +37,10 @@
 		start = $isRouteReversed ? trackEnd : trackStart;
 		end = $isRouteReversed ? trackStart : trackEnd;
 		elapsed = trackElapsed;
-
+		if (!track) {
+			validity = { ...validity, isProcessed: true, isValid: false };
+			return;
+		}
 		if (track) {
 			validity.track = await validateTrack(track);
 			if (validity.track.isValid) {
@@ -60,7 +63,10 @@
 		breakdown.update((isOpen) => !isOpen);
 	}
 
-	onDestroy(unsubscribe);
+	onDestroy(() => {
+		unsubscribe();
+		worker.terminate();
+	});
 </script>
 
 {#if !validity.isProcessed}

@@ -20,6 +20,7 @@ vi.mock('$lib/workers/validation.worker?worker', () => ({
   default: class {
     validateTrack = mockValidateTrack;
     validateTimeIntervals = mockValidateTimeIntervals;
+    terminate = vi.fn()
   }
 }));
 
