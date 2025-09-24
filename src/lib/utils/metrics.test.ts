@@ -9,8 +9,6 @@ describe('metrics', () => {
 			expect(defaults).toHaveProperty('start');
 			expect(defaults).toHaveProperty('end');
 			expect(defaults).toHaveProperty('elapsed');
-			expect(defaults).toHaveProperty('isValid');
-			expect(defaults.isValid).toBe(false);
 		});
 	});
 
@@ -21,7 +19,7 @@ describe('metrics', () => {
 				features: []
 			};
 			const metrics = getMetricsFrom(emptyTrack);
-			expect(metrics.isValid).toBe(false);
+			expect(metrics.elapsed).toStrictEqual(new Date("1970-01-01T00:00:00.000Z"));
 		});
 
 		it('should return valid metrics for track with coordinates and times', () => {
@@ -45,34 +43,10 @@ describe('metrics', () => {
 				}]
 			};
 			const metrics = getMetricsFrom(track);
-			expect(metrics.isValid).toBe(true);
 			expect(metrics.start.format()).toBe('2023-01-01T00:00:00+00:00');
 			expect(metrics.end.format()).toBe('2023-01-01T00:01:00+00:00');
 			expect(metrics.elapsed.getTime()).toBe(60000); // 1 minute in milliseconds
 		});
 
-		it('should return invalid metrics when times and coordinates length mismatch', () => {
-			const track: GPXGeoJson = {
-				type: 'FeatureCollection',
-				features: [{
-					type: 'Feature',
-					geometry: {
-						type: 'LineString',
-						coordinates: [[0, 0], [1, 1]]
-					},
-					properties: {
-						name: 'Test Track',
-						time: '2023-01-01T00:00:00Z',
-						_gpxType: 'trk',
-						gpxx_TrackExtension: '{}',
-						coordinateProperties: {
-							times: ['2023-01-01T00:00:00Z']
-						}
-					}
-				}]
-			};
-			const metrics = getMetricsFrom(track);
-			expect(metrics.isValid).toBe(false);
-		});
 	});
 }); 

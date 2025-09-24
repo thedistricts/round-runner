@@ -166,7 +166,7 @@ describe('Upload component', () => {
 
   it('should render the file upload interface', () => {
     render(Upload);
-    const filePondWrapper = screen.getByTestId('filepond-wrapper');
+    const filePondWrapper = screen.getByTestId('filepond-input');
     expect(filePondWrapper).toBeInTheDocument();
   });
 

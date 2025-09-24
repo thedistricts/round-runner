@@ -72,7 +72,7 @@ export const ratify = vi.fn((
 });
 
 export const debug = vi.fn((
-  gpx: Feature<LineString>,
+  gpx: Feature<LineString, any>,
   checkpoints: Feature<Point, PointProperties>[],
   validityDistance: number
 ) => {

@@ -1,7 +1,8 @@
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import type { Subscriber } from 'svelte/store';
-import * as ratificationWorker from '$mocks/workers/ratification.worker';
+import * as ratificationWorker from './mocks/workers/ratification.worker';
+import * as validationWorker from './mocks/workers/validation.worker';
 
 // Mock SvelteKit stores
 vi.mock('$app/stores', async () => {
@@ -64,9 +65,11 @@ class Worker {
   postMessage(msg: any) {
     this.onmessage({ data: msg });
   }
+  addEventListener() {}
+  removeEventListener() {}
 }
 
-global.Worker = Worker as any;
+globalThis.Worker = Worker as any;
 
 // Mock @loaders.gl modules
 vi.mock('@loaders.gl/kml', () => ({
@@ -101,4 +104,7 @@ const windowMock = {
 vi.stubGlobal('window', windowMock);
 
 // Mock ratification worker
-vi.mock('$lib/workers/ratification.worker', () => ratificationWorker); 
+vi.mock('$lib/workers/ratification.worker', () => ratificationWorker);
+
+// Mock validation worker
+vi.mock('$lib/workers/validation.worker', () => validationWorker); 
