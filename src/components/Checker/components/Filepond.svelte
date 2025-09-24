@@ -18,8 +18,15 @@
 
 	async function handleFileValidateTypeDetectType(source: File, type: string) {
 		const fileName = source.name;
+
+		if (!type || type === '' || type === 'application/octet-stream') {
+			const extension = fileName.split('.').pop()?.toLowerCase();
+			if (extension === 'gpx') {
+				return 'application/gpx+xml';
+			}
+		}
 		if (fileName.toLowerCase().endsWith('.gpx')) {
-			type = 'application/gpx+xml';
+			return 'application/gpx+xml';
 		}
 		return type;
 	}
@@ -27,6 +34,16 @@
 	async function handleOnAddFile(error: FilePondErrorDescription | null, file: FilePondFile) {
 		if (error) {
 			console.error('Error adding file:', error);
+			console.error('File details:', file);
+			return;
+		}
+
+		const fileName = file.file.name;
+		if (!fileName.toLowerCase().endsWith('.gpx')) {
+			console.error('Only GPX files are allowed');
+			if (pond) {
+				pond.removeFile(file.id);
+			}
 			return;
 		}
 		handleAddFile(error, { file: file.file as File });
@@ -39,7 +56,7 @@
 		if (inputElement) {
 			pond = FilePondUpload.create(inputElement, {
 				oninit: handleFilePondInit,
-				acceptedFileTypes: ['application/gpx+xml'],
+				acceptedFileTypes: ['application/gpx+xml', 'application/xml', '.gpx'],
 				allowFileTypeValidation: true,
 				labelFileTypeNotAllowed: 'Please upload a GPX file',
 				fileValidateTypeLabelExpectedTypes: 'Only GPX files are allowed',
@@ -48,11 +65,14 @@
 				allowReplace: true,
 				dropOnElement: true,
 				dropOnPage: true,
-				dropValidation: true,
+				dropValidation: false,
 				allowMultiple: false,
 				labelIdle: IDLE_MESSAGE,
 				credits: false,
-				onaddfile: handleOnAddFile
+				onaddfile: handleOnAddFile,
+				onerror: (error) => {
+					console.error('FilePond error:', error);
+				}
 			});
 		}
 	});
