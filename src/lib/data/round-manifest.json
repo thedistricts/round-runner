@@ -129,8 +129,8 @@
 			"checkpointSummary": {
 				"start checkpoint": 1,
 				"water exit": 2,
-				"water entry": 1,
-				"end checkpoint": 1
+				"water entry": 2,
+				"finish checkpoint": 1
 			}
 		}
 	]
