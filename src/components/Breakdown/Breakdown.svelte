@@ -9,16 +9,11 @@
 	import { getMetricsFrom, getMetricsDefaults } from '$lib/utils';
 	import { submissionPoints } from '$lib/stores/ratification.store';
 	import { breakdown } from '$lib/stores/breakdown.store';
-	import { isRouteReversed } from '$lib/stores/route.store';
 
 	dayjs.extend(utc);
 	let start = dayjs();
 	let end = dayjs();
 	let breakdownDomElement: HTMLElement;
-
-	$: submissionPointsGivenRouteDirection = $isRouteReversed
-		? $submissionPoints.reverse()
-		: $submissionPoints;
 
 	let metrics = getMetricsDefaults();
 	const unsubscribe = gpx.subscribe((track) => {
@@ -41,6 +36,10 @@
 			return 'Finish';
 		}
 		return order;
+	}
+
+	function removeDescriptiveLabel(label: string) {
+		return label.replace('(Start)', '').replace('(Finish)', '');
 	}
 
 	function handleOnBreakdownCloseClick() {
@@ -109,12 +108,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						{#each submissionPointsGivenRouteDirection as ratificationFeature, order}
+						{#each $submissionPoints as ratificationFeature, order}
 							<tr class="bg-white border-b">
 								<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
 									{getOrderLabel(order)}
 								</th>
-								<td class="px-6 py-5"> {ratificationFeature.properties.name} </td>
+								<td class="px-6 py-5">
+									{removeDescriptiveLabel(ratificationFeature.properties.name)}
+								</td>
 								<td class="px-6 py-5">
 									{#if ratificationFeature.properties.time}
 										{dayjs(ratificationFeature.properties.time).utc().format(HOURS)}

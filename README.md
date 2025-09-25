@@ -43,10 +43,13 @@ To add a new round to the application:
 
 1. Clone the repository
 2. Install dependencies:
+
    ```bash
    npm install
    ```
+
 3. Start the development server:
+
    ```bash
    npm run dev -- --open
    ```
@@ -85,4 +88,4 @@ You can preview the production build with `npm run preview`.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the Non-Profit OSL - see the LICENSE file for details.
