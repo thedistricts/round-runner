@@ -3,7 +3,7 @@
  */
 import { render, screen, fireEvent } from '@testing-library/svelte';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
 import { featureCollection } from '@turf/turf';
 import type { Feature, LineString } from 'geojson';
 import type { RouteGeoJson } from '$lib/stores/route.store.d';
@@ -50,18 +50,8 @@ vi.mock('$lib/stores/route.store', () => {
   const mockRouteStore = writable<RouteGeoJson>(featureCollection([]));
   const mockIsReversedStore = writable<boolean>(false);
   return {
-    route: {
-      ...mockRouteStore,
-      set: vi.fn()
-    },
-    isRouteReversed: {
-      ...mockIsReversedStore,
-      set: vi.fn(),
-      subscribe: vi.fn((fn) => {
-        fn(false);
-        return () => {};
-      })
-    }
+    route: mockRouteStore,
+    isRouteReversed: mockIsReversedStore
   };
 });
 
@@ -212,17 +202,23 @@ describe('Upload component', () => {
       ]
     };
     
+    // Set the initial route in the store
+    route.set(initialRoute);
+    
     render(Upload);
     
     // Click the CCW toggle
     const ccwToggle = screen.getByRole('checkbox');
     await fireEvent.click(ccwToggle);
     
-    // Verify that the stores were updated
-    expect(isRouteReversed.set).toHaveBeenCalledWith(true);
-    expect(route.set).toHaveBeenCalledWith({
+    // Verify that the isRouteReversed store was updated
+    expect(get(isRouteReversed)).toBe(true);
+    
+    // Verify that the route store was updated with reversed features
+    const expectedReversedRoute = {
       ...initialRoute,
-      features: []
-    });
+      features: [...initialRoute.features].reverse()
+    };
+    expect(get(route)).toEqual(expectedReversedRoute);
   });
 }); 

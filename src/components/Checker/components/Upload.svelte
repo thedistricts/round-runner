@@ -71,7 +71,7 @@
 	function reverseRoute() {
 		const reversedRoute = {
 			...$route,
-			features: []
+			features: [...$route.features].reverse()
 		};
 		isRouteReversed.set(!$isRouteReversed);
 		route.set(reversedRoute);
