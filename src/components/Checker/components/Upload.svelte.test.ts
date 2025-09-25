@@ -204,6 +204,7 @@ describe('Upload component', () => {
     
     // Set the initial route in the store
     route.set(initialRoute);
+    isRouteReversed.set(false);
     
     render(Upload);
     
