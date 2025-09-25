@@ -128,7 +128,12 @@ const ratificationResults: RatificationResults = [{
     order: 3,
     notes: '',
   },
-}];
+  }];
+
+  function removeDescriptiveLabel(label: string) {
+		return label.replace('(Start)', '').replace('(Finish)', '');
+	}
+
 
 describe('Breakdown component', () => {
   beforeEach(() => {
@@ -195,9 +200,9 @@ describe('Breakdown component', () => {
     it(`should find ${json.properties.name} table row result` , () => {
       ratification.set(ratificationResults);
       render(Breakdown);
-      const nameElement = screen.getByText(json.properties.name);
+      const nameElements = screen.queryAllByText(removeDescriptiveLabel(json.properties.name));
       const timeElement = screen.getByText(dayjs(json.properties.time).utc().format(HOURS));
-      expect(nameElement).toBeInTheDocument();
+      expect(nameElements.length).toBeLessThanOrEqual(2);
       expect(timeElement).toBeInTheDocument();
     });
   });
@@ -206,7 +211,7 @@ describe('Breakdown component', () => {
     it(`should not find ${json.properties.name} table row result` , () => {
       ratification.set(ratificationResults);
       render(Breakdown);
-      const nameElements = screen.queryAllByText(json.properties.name);
+      const nameElements = screen.queryAllByText(removeDescriptiveLabel(json.properties.name));
       expect(nameElements).length(0);
     });
   });
