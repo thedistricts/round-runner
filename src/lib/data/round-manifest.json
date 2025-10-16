@@ -117,6 +117,24 @@
 		},
 		{
 			"default": false,
+			"slug": "the-great-gift-round",
+			"title": "The Great Gift Round",
+			"description": "A challenging “gift-summit” round linking 14 Lake District peaks, covering 37 km and 3,070 m of ascent",
+			"info": "The Great Gift Peaks Round was devised to link 14 summits in the Lake District which were donated to the National Trust as memorials after World War I. The peaks are visited in any order, although one commonly used route covers about 36.79 km with circa 3,071 m of ascent. The original 'gift' involved the donation to preserve the fells in memory of those who fell in the war.",
+			"summary": "A memorial round over 14 donated summits (36.8 km, 3,070 m ascent). Created to honour WWI casualties, it links peaks such as Scafell Pike, Great Gable, Lingmell and others; the route is flexible and can be done in either order.",
+			"link": "https://macclesfield-harriers.co.uk/the-great-gift-peaks-round/",
+			"json": "/data/the-great-gift-round.geo.json",
+			"example": "/data/example/the-great-gift-round.gpx",
+			"logo": "/assets/runner.gif",
+			"image": "/assets/route-ggr.jpg",
+			"checkpointSummary": {
+				"start checkpoint": 1,
+				"summit": 14,
+				"finish checkpoint": 1
+			}
+		},
+		{
+			"default": false,
 			"slug": "tadpole-round",
 			"title": "The Tadpole Round",
 			"description": "A Great Introduction to SwimRun",
