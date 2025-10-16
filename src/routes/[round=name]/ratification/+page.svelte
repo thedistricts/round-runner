@@ -3,6 +3,11 @@
 	import { isOpen } from '$lib/stores/checker.store';
 	import { gpx } from '$lib/stores/gpx.store';
 	import { Results } from '../../../components/Checker/components';
+
+	// Accept props passed by SvelteKit even if not used
+	export let data: any = undefined;
+	export let params: any = undefined;
+
 	$: hasGpx = false;
 
 	const unsubscribeGpx = gpx.subscribe((geojson) => {
