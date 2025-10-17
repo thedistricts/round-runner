@@ -12,6 +12,7 @@
 			"summary": "Blends fell running with open water swimming in a challenge that's as brutal as it is brilliant. With 13 summits and four lake swims, it's a serious test of endurance. Expect tough climbs and cold dips.",
 			"image": "/assets/route-fgr.jpg",
 			"link": "https://www.froggrahamround.co.uk/",
+			"ordered": true,
 			"checkpointSummary": {
 				"start checkpoint": 1,
 				"summit": 13,
@@ -33,6 +34,7 @@
 			"summary": "A 64km mountain challenge in Snowdonia, with 16 summits, over 5,000m of ascent, and four stunning lake swims. It's a tough, scenic mix of fell running and wild swimming through some of Wales's most breathtaking terrain.",
 			"image": "/assets/route-pbr.jpg",
 			"link": "https://puddlebuckley.wordpress.com/",
+			"ordered": true,
 			"checkpointSummary": {
 				"start checkpoint": 1,
 				"summit": 16,
@@ -52,6 +54,7 @@
 			"summary": "Run-swim epic in the wilds of the Scottish Highlands. Starting and finishing in Shieldaig, it takes on 10 remote mountains and 3.5km of loch swims. Inspired by the Frog Graham, this is a raw, demanding loop for those chasing the toughest, most remote adventure the UK has to offer.",
 			"image": "/assets/route-ros.jpg",
 			"link": "https://ringofstirling.wordpress.com/",
+			"ordered": true,
 			"checkpointSummary": {
 				"start checkpoint": 1,
 				"summit": 10,
@@ -72,6 +75,7 @@
 			"summary": "A 48km Lake District route taking in 10 of Keswick's finest fells and over 3,500m of ascent -finished off with a well-earned brew at George Fisher's café. It's a tough challenge with a civilised twist: big climbs, stunning views, and tea and cake at the end.",
 			"image": "/assets/route-tr.jpg",
 			"link": "https://www.georgefisher.co.uk/tearound",
+			"ordered": true,
 			"checkpointSummary": {
 				"start checkpoint": 1,
 				"summit": 10,
@@ -90,6 +94,7 @@
 			"summary": "The classic UK fell running challenge to be completed in under 24 hours. Taking in legends like Skiddaw, Helvellyn, and Scafell Pike, it's a brutal test of endurance, navigation, and grit. For fell runners, this is the ultimate rite of passage",
 			"image": "/assets/route-bgr.jpg",
 			"link": "https://bobgrahamclub.org.uk/",
+			"ordered": false,
 			"checkpointSummary": {
 				"start checkpoint": 1,
 				"summit": 42,
@@ -109,6 +114,7 @@
 			"summary": "A 48km high-level journey across 21 Lake District peaks, with around 3,600m of ascent. Starting in Broughton Mills and finishing at Keswick's Moot Hall, it's a challenging but relaxed adventure -no time limit, just epic views, big climbs, and the freedom to enjoy the fells.",
 			"image": "/assets/route-ct.jpg",
 			"link": "https://gofar997.wixsite.com/gofar/cumbrian-traverse",
+			"ordered": true,
 			"checkpointSummary": {
 				"start checkpoint": 1,
 				"summit": 21,
@@ -127,6 +133,7 @@
 			"example": "/data/example/the-great-gift-round.gpx",
 			"logo": "/assets/runner.gif",
 			"image": "/assets/route-ggr.jpg",
+			"ordered": false,
 			"checkpointSummary": {
 				"start checkpoint": 1,
 				"summit": 14,
@@ -144,6 +151,7 @@
 			"summary": "A shorter, friendlier take on the Frog Graham through the Lake District with two lake swims. Ideal as a warm-up for the Frog or a great day out in its own right, it's trail running and wild swimming without the full madness.",
 			"image": "/assets/route-tpr.jpg",
 			"link": "https://www.froggrahamround.co.uk/tadpole",
+			"ordered": false,
 			"checkpointSummary": {
 				"start checkpoint": 1,
 				"water exit": 2,

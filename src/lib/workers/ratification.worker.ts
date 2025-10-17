@@ -76,7 +76,8 @@ export function getNearestTimePointOnLine(
 	point: Feature<Point, PointProperties>,
 	validityDistance: ValidityDistance,
 	pointIndex: number,
-	routeLength: number
+	routeLength: number,
+	hasDefinedStartEnd: boolean = true
 ) {
 	const isStart = pointIndex === 0;
 	const isEnd = pointIndex === routeLength - 1;
@@ -86,26 +87,28 @@ export function getNearestTimePointOnLine(
 	let index = nearestPoint.properties.index || 0;
 	let distance = nearestPoint.properties.dist || 0;
 
-	// For start/end points, we need to ensure they're in the correct half of the line
-	if ((isStart && index >= lineMidIndex) || (isEnd && index < lineMidIndex)) {
-		// If in wrong half, find the nearest point in the correct half
-		const validCoords = line.geometry.coordinates.filter((coord, i) => {
-			if (!isValidCoordinateType(coord)) {
-				console.warn(`Invalid coordinate at index ${i}: ${JSON.stringify(coord)}`);
-				return false;
-			}
-			return isStart ? i < lineMidIndex : i >= lineMidIndex;
-		});
+	if (hasDefinedStartEnd) {
+		// For start/end points, we need to ensure they're in the correct half of the line
+		if ((isStart && index >= lineMidIndex) || (isEnd && index < lineMidIndex)) {
+			// If in wrong half, find the nearest point in the correct half
+			const validCoords = line.geometry.coordinates.filter((coord, i) => {
+				if (!isValidCoordinateType(coord)) {
+					console.warn(`Invalid coordinate at index ${i}: ${JSON.stringify(coord)}`);
+					return false;
+				}
+				return isStart ? i < lineMidIndex : i >= lineMidIndex;
+			});
 		
-		const distances = validCoords.map((coord, i) => ({
-			dist: turf.distance(pointCoords, coord, { units: 'kilometers' }),
-			index: isStart ? i : i + lineMidIndex
-		}));
-		const nearest = sortBy(distances, 'dist')[0];
-		if (nearest) {
-			distance = nearest.dist;
-			index = nearest.index;
-			nearestPoint.geometry.coordinates = line.geometry.coordinates[nearest.index];
+			const distances = validCoords.map((coord, i) => ({
+				dist: turf.distance(pointCoords, coord, { units: 'kilometers' }),
+				index: isStart ? i : i + lineMidIndex
+			}));
+			const nearest = sortBy(distances, 'dist')[0];
+			if (nearest) {
+				distance = nearest.dist;
+				index = nearest.index;
+				nearestPoint.geometry.coordinates = line.geometry.coordinates[nearest.index];
+			}
 		}
 	}
 
@@ -136,7 +139,8 @@ export function getNearestTimePointOnLine(
 
 export function ratify(
 	gpx: GPXGeoJson,
-	checkpoints: RouteGeoJson
+	checkpoints: RouteGeoJson,
+	hasDefinedStartEnd: boolean = true
 ): Feature<Point, ValidityPointProperties>[] {
 
 	const trackLineString = gpx.features.find((feature) => feature.geometry.type === 'LineString');
@@ -155,7 +159,14 @@ export function ratify(
 			
 			validateOrThrowPointCoordinates(routePoint);
 
-			const target = getNearestTimePointOnLine(trackLineString, routePoint, validityDistance, index, checkpoints.features.length);
+			const target = getNearestTimePointOnLine(
+				trackLineString,
+				routePoint,
+				validityDistance,
+				index,
+				checkpoints.features.length,
+				hasDefinedStartEnd
+			);
 			const time = trackLineString?.properties?.coordinateProperties?.times[target.properties.index];
 					
 			target.properties = {
@@ -167,7 +178,20 @@ export function ratify(
 			};
 
 			return target;
-	});
+		});
+	
+	// if the route is not ordered, we should sort the points by time
+	// as the runner can start at any point on the route
+	if (!hasDefinedStartEnd) {
+		nearestRoutePoints.sort((a, b) => {
+			const timeA = a.properties.time;
+			const timeB = b.properties.time;
+			return timeA.localeCompare(timeB);
+		});
+		nearestRoutePoints.forEach((point, index) => {
+			point.properties.order = index + 1;
+		});
+	}
 
 	return nearestRoutePoints as Feature<Point, ValidityPointProperties>[];
 }

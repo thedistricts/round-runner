@@ -27,6 +27,10 @@
 	let fileName = '';
 	$: isDebug = false;
 	$: pageRouteExampleURL = $page.data.example as PageData['example'];
+	$: pageUrlSlug = $page.data.slug as PageData['slug'];
+	$: rounds = $page.data.rounds as PageData['rounds'];
+	$: activeRound = rounds.find((round) => pageUrlSlug === round.slug);
+	$: isOrdered = activeRound?.ordered ?? true;
 
 	function handleOnClick() {
 		if (browser) {
@@ -43,7 +47,7 @@
 
 		fileName = fileItem.file.name;
 		const { ratify, debug } = Comlink.wrap<ExposeRatificationWorker>(ratificationWorker);
-		const ratificationResult = await ratify(data, $route);
+		const ratificationResult = await ratify(data, $route, isOrdered);
 		ratificationStore.set(ratificationResult);
 
 		// if (isDebug) {
@@ -111,19 +115,21 @@
 				>
 					See example
 				</button>
-				<label class="ml-auto inline-flex items-center cursor-pointer">
-					<input
-						type="checkbox"
-						value=""
-						class="sr-only peer"
-						on:change={reverseRoute}
-						checked={$isRouteReversed}
-					/>
-					<div
-						class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
-					/>
-					<span class="ms-3 text-sm font-normal text-gray-500">CCW</span>
-				</label>
+				{#if isOrdered}
+					<label class="ml-auto inline-flex items-center cursor-pointer">
+						<input
+							type="checkbox"
+							value=""
+							class="sr-only peer"
+							on:change={reverseRoute}
+							checked={$isRouteReversed}
+						/>
+						<div
+							class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+						/>
+						<span class="ms-3 text-sm font-normal text-gray-500">CCW</span>
+					</label>
+				{/if}
 			</div>
 		{/if}
 	</div>
