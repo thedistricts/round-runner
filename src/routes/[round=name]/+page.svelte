@@ -6,10 +6,6 @@
 	import { Checkpoints } from '../../components/Checker/components';
 	import { page } from '$app/stores';
 
-	// Accept props passed by SvelteKit even if not used
-	export let data: any = undefined;
-	export let params: any = undefined;
-
 	$: hasGpx = false;
 
 	const unsubscribeGpx = gpx.subscribe((geojson) => {
