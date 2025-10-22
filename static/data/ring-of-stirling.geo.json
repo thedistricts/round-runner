@@ -6,7 +6,7 @@
       "properties": {
         "featureType": "start checkpoint",
         "name": "War memorial Shieldaig",
-        "notes": "Spare a moment’s thought for those who fell for our freedom",
+        "notes": "Spare a moment's thought for those who fell for our freedom",
         "height_m": 25,
         "distance_km": 0,
         "cumulative_distance_km": 0
@@ -68,8 +68,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -5.5828339,
-          57.580040
+          -5.582017,
+          57.580525
         ]
       }
     },
@@ -86,8 +86,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -5.5737883,
-          57.590185
+          -5.572498,
+          57.591264
         ]
       }
     },
@@ -95,7 +95,7 @@
       "type": "Feature",
       "properties": {
         "featureType": "water entry",
-        "name": "Bay south side of Loch a’ Bhealaich",
+        "name": "Bay south side of Loch a' Bhealaich",
         "notes": "East of narrowest point",
         "height_m": 309,
         "distance_km": 3.1,
@@ -140,8 +140,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -5.5690464,
-          57.627177
+          -5.557721,
+          57.626126
         ]
       }
     },
@@ -158,8 +158,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -5.5403746,
-          57.625287
+          -5.540462,
+          57.626163
         ]
       }
     },
@@ -176,8 +176,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -5.5267448,
-          57.622972
+          -5.525815,
+          57.623708
         ]
       }
     },
@@ -194,8 +194,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -5.5099480,
-          57.622541
+          -5.509938,
+          57.623196
         ]
       }
     },
@@ -248,8 +248,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -5.4301154,
-          57.593272
+          -5.429440,
+          57.593747
         ]
       }
     },
@@ -266,8 +266,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -5.4301154,
-          57.593272
+          -5.442422,
+          57.567135
         ]
       }
     },
@@ -284,8 +284,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -5.4426842,
-          57.566861
+          -5.463648,
+          57.564222
         ]
       }
     },
@@ -302,8 +302,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -5.4641195,
-          57.563578
+          -5.492493,
+          57.560902
         ]
       }
     },
@@ -320,26 +320,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -5.5190951,
-          57.491937
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "featureType": "water entry",
-        "name": "East shore of Loch Damh",
-        "notes": "where stream flows into Loch (42m spot height)",
-        "height_m": 41,
-        "distance_km": 4.8,
-        "cumulative_distance_km": 49.3
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -5.5795639,
-          57.512708
+          -5.518153,
+          57.492794
         ]
       }
     },
@@ -356,8 +338,26 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -5.5895590,
-          57.512424
+          -5.577247,
+          57.512219
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "featureType": "water entry",
+        "name": "East shore of Loch Damh",
+        "notes": "where stream flows into Loch (42m spot height)",
+        "height_m": 41,
+        "distance_km": 4.8,
+        "cumulative_distance_km": 49.3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.588769,
+          57.512543
         ]
       }
     },
@@ -374,8 +374,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -5.6192765,
-          57.508877
+          -5.624577,
+          57.512961
         ]
       }
     },
