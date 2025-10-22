@@ -21,7 +21,15 @@ vi.mock('$app/stores', () => ({
     subscribe: vi.fn((fn) => {
       fn({
         data: {
-          example: 'https://example.com/test.gpx'
+          example: 'https://example.com/test.gpx',
+          slug: 'frog-graham',
+          rounds: [
+            {
+              slug: 'frog-graham',
+              title: 'Frog Graham Round',
+              ordered: true
+            }
+          ]
         },
         state: {
           routeInformation: true
@@ -222,4 +230,5 @@ describe('Upload component', () => {
     };
     expect(get(route)).toEqual(expectedReversedRoute);
   });
+
 }); 
