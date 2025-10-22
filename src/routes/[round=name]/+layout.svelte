@@ -9,6 +9,7 @@
 	import Checker from '../../components/Checker/Checker.svelte';
 	import { Breakdown } from '../../components/Breakdown';
 	export let data: any;
+	export let params: any;
 
 	let currentRouteSlug = '';
 

@@ -7,15 +7,16 @@
 	import { POINT_FEATURE } from '$lib/enum/pointFeature';
 	import { routeFocus } from '$lib/stores/route.store';
 	import type { Position } from 'geojson';
-	import type { Map as MapType, MapContext } from '../Map.context';
+	import type { MapContext } from '../Map.context';
 	import type { PointProperties } from '$lib/stores/route.store.d';
+	import type { Marker as MarkerClass, Map as MapType } from 'maplibre-gl';
 
 	import type { MarkerType } from '$lib/const';
 
 	export let coordinates: Position;
 	export let properties: PointProperties;
 
-	let marker: Marker;
+	let marker: MarkerClass;
 	let map: MapType;
 
 	const { getMap } = getContext<MapContext>(key);

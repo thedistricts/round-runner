@@ -9,6 +9,13 @@
 	import { getMetricsFrom, getMetricsDefaults } from '$lib/utils';
 	import { submissionPoints } from '$lib/stores/ratification.store';
 	import { breakdown } from '$lib/stores/breakdown.store';
+	import { page } from '$app/stores';
+	import type { PageData } from '../../routes/[round=name]/$types';
+
+	$: rounds = $page.data.rounds as PageData['rounds'];
+	$: pageUrlSlug = $page.data.slug as PageData['slug'];
+	$: activeRound = rounds.find((round) => pageUrlSlug === round.slug);
+	$: isOrdered = activeRound?.ordered ?? true;
 
 	dayjs.extend(utc);
 	let start = dayjs();
@@ -28,14 +35,18 @@
 
 	onDestroy(unsubscribe);
 
-	function getOrderLabel(order: number) {
-		if (order === 0) {
-			return 'Start';
+	function getOrderLabel(order: number, isOrdered: boolean) {
+		if (isOrdered) {
+			if (order === 0) {
+				return 'Start';
+			}
+			if (order === $submissionPoints.length - 1) {
+				return 'Finish';
+			}
+			return order;
+		} else {
+			return order + 1;
 		}
-		if (order === $submissionPoints.length - 1) {
-			return 'Finish';
-		}
-		return order;
 	}
 
 	function removeDescriptiveLabel(label: string) {
@@ -111,7 +122,7 @@
 						{#each $submissionPoints as ratificationFeature, order}
 							<tr class="bg-white border-b">
 								<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-									{getOrderLabel(order)}
+									{getOrderLabel(order, isOrdered)}
 								</th>
 								<td class="px-6 py-5">
 									{removeDescriptiveLabel(ratificationFeature.properties.name)}

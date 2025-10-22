@@ -7,7 +7,9 @@ const { subscribe, update  } = writable ({
     ratio: 16/12, 
     orientation: ORIENTATION.LANDSCAPE,   
     wide: false,
-    isMobile: false
+    isMobile: false,
+    isTablet: false,
+    isDesktop: true
 })
 
 interface ViewportProps {
@@ -20,6 +22,8 @@ function register({ innerWidth, innerHeight }: ViewportProps) {
     const orientation = ratio >= 1 ? ORIENTATION.LANDSCAPE : ORIENTATION.PORTRAIT
     const wide = (ratio > 2) || (ratio < 0.5)
     const isMobile = innerWidth <= 640
+    const isTablet = innerWidth > 640 && innerWidth <= 1366
+    const isDesktop = innerWidth > 1366
 
     update (() => {
         return {
@@ -28,7 +32,9 @@ function register({ innerWidth, innerHeight }: ViewportProps) {
             orientation,
             ratio,
             wide,
-            isMobile
+            isMobile,
+            isTablet,
+            isDesktop
         }
     })
 }

@@ -3,6 +3,7 @@
 	import type { PageData } from '../../routes/[round=name]/$types';
 	import type { Map as MapLibreMap } from 'maplibre-gl';
 	import { MARKER, MARKER_SIZE } from '$lib/const';
+	import { viewport } from '$lib/stores/viewport.store';
 	import { mapStore } from '$lib/stores/map.store';
 	import { get } from 'svelte/store';
 	import { fitBoundsWithPadding } from '$lib/utils/map';
@@ -10,6 +11,7 @@
 
 	// import { POINT_FEATURE } from '$lib/enum/pointFeature';
 	$: rounds = $page.data.rounds as PageData['rounds'];
+	$: extendedRouteInformationUrl = $viewport.isDesktop ? '/route-information' : '';
 
 	async function handleRoundHover(round: PageData['rounds'][number]) {
 		if (!round.json) return;
@@ -24,7 +26,7 @@
 					bBox,
 					animate: false,
 					delay: 0,
-					isMobile: window.innerWidth < 768
+					isMobile: $viewport.isMobile
 				});
 			}
 		} catch (e) {
@@ -79,13 +81,16 @@
 		{#each rounds as round}
 			<div class="px-10 mb-5">
 				<h3 class="text-lg text-blue-700 font-medium mb-5">
-					<a href={`/${round.slug}`} on:mouseenter={() => handleRoundHover(round)}>
+					<a
+						href={`/${round.slug}${extendedRouteInformationUrl}`}
+						on:mouseenter={() => handleRoundHover(round)}
+					>
 						{round.title}
 					</a>
 				</h3>
 				<div class="relative">
 					<a
-						href={`/${round.slug}`}
+						href={`/${round.slug}${extendedRouteInformationUrl}`}
 						class="
               relative block
               after:content-['Load_Challenge'] after:text-sm after:font-semibold after:text-white

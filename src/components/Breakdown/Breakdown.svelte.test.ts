@@ -8,12 +8,29 @@ import { get } from "svelte/store";
 import { gpx } from '$lib/stores/gpx.store';
 import { ratification } from '$lib/stores/ratification.store';
 import { breakdown } from '$lib/stores/breakdown.store';
+import { page } from '$app/stores';
 import type { GPXGeoJson } from '$lib/stores/gpx.store.d';
 import type { RatificationResults } from '$lib/stores/ratification.store.d';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 import { HOURS } from '$lib/const';
+
+vi.mock('$app/stores', () => ({
+  page: {
+    subscribe: vi.fn((fn) => {
+      fn({
+        data: {
+          rounds: [
+            { title: 'Test Round', slug: 'test-round' },
+            { title: 'Another Round', slug: 'another-round' }
+          ]
+        }
+      });
+      return () => {};
+    })
+  }
+}));
 
 const stubGpxData: GPXGeoJson = {
   type: 'FeatureCollection',
@@ -232,4 +249,5 @@ describe('Breakdown component', () => {
     await fireEvent.click(closeButtonElement);
     expect(get(breakdown)).toBe(false);
   });
+
 });

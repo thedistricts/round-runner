@@ -1,0 +1,215 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lingmell",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.221260,
+          54.462784
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Scafell Pike",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.211511,
+          54.454219
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Broad Crag",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.206884,
+          54.457357
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Great End",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.194532,
+          54.464949
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Seathwaite Fell",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.193907,
+          54.476855
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Allen Crags",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.179343,
+          54.466298
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Glaramara",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.165164,
+          54.483983
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Castle Crag",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.161612,
+          54.533181
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grey Knotts",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.210113,
+          54.502307
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Brandreth",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.213772,
+          54.496266
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Base Brown",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.197777,
+          54.492581
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Green Gable",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.213780,
+          54.485704
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Great Gable",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.219296,
+          54.482084
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kirk Fell",
+        "featureType": "summit",
+        "ratify": true
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.244021,
+          54.483336
+        ]
+      }
+    }
+  ]
+}
