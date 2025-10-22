@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	// import type { PageData } from '../$types';
+	import type { PageData } from '../$types';
 	import { onMount, beforeUpdate } from 'svelte';
 	import { breakdown } from '$lib/stores/breakdown.store';
 	import { route } from '$lib/stores/route.store';
@@ -8,8 +8,7 @@
 	import type { RouteGeoJson } from '$lib/stores/route.store.d';
 	import Checker from '../../components/Checker/Checker.svelte';
 	import { Breakdown } from '../../components/Breakdown';
-	export let data: any;
-	export let params: any;
+	export let data: PageData['rounds'][0];
 
 	let currentRouteSlug = '';
 
