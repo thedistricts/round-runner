@@ -8,7 +8,7 @@
 	import TimePoint from '../assets/time-icon.svg';
 	import TimePointStart from '../assets/time-icon-start.svg';
 	import TimePointEnd from '../assets/time-icon-end.svg';
-	import TIME_ICON_TYPE from '$lib/enum/timeIconType';
+	import TIME_ICON_TYPE from '../enum/timeIconType';
 	import type { Popup } from 'maplibre-gl';
 	import type { Position } from 'geojson';
 	import type { MapContext } from '../Map.context';
@@ -71,7 +71,7 @@
 					layout: {
 						'icon-image': imageId,
 						'icon-size': size,
-						'icon-allow-overlap': true,
+						'icon-allow-overlap': overlap,
 						'icon-keep-upright': true
 					}
 				},

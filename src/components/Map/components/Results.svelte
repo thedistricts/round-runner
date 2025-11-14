@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { getContext, onMount, onDestroy } from 'svelte';
+	import { getContext, onDestroy } from 'svelte';
 	import first from 'lodash/first';
 	import last from 'lodash/last';
 	import * as turf from '@turf/turf';
-	import TIME_ICON_TYPE from '$lib/enum/timeIconType';
+	import TIME_ICON_TYPE from '../enum/timeIconType';
 	import { fitPositionWithOffset } from '$lib/utils';
 	import { ratification, resultsFocus } from '$lib/stores/ratification.store';
 	import { viewport } from '$lib/stores/viewport.store';

@@ -1,4 +1,4 @@
-enum TIME_ICON_TYPE {
+const enum TIME_ICON_TYPE {
   TIME,
   START,
   END
