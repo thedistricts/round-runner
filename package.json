@@ -68,6 +68,6 @@
 		"randomcolor": "^0.6.2"
 	},
 	"optionalDependencies": {
-		"@rollup/rollup-darwin-arm64": "4.53.2"
+		"@rollup/rollup-linux-x64-gnu": "*"
 	}
 }
