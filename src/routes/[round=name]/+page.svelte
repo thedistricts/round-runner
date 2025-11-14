@@ -1,16 +1,20 @@
 <script lang="ts">
-	import { onDestroy, beforeUpdate, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import { isOpen } from '$lib/stores/checker.store';
-	import { gpx } from '$lib/stores/gpx.store';
 	import { route } from '$lib/stores/route.store';
 	import { Checkpoints } from '../../components/Checker/components';
 	import { page } from '$app/stores';
+	import type { PageData } from '../$types';
+	import type { RouteGeoJson } from '$lib/stores/route.store.d';
+	import { browser } from '$app/environment';
+	export let data: PageData & { geojson: RouteGeoJson };
 
-	$: hasGpx = false;
+	isOpen.set(false);
 
-	const unsubscribeGpx = gpx.subscribe((geojson) => {
-		hasGpx = geojson.features.length > 0;
-	});
+	// Initialize route store during SSR (not just in onMount)
+	if (!browser && data.geojson) {
+		route.set(data.geojson);
+	}
 
 	onMount(() => {
 		const unsubscribe = page.subscribe(($page) => {
@@ -19,14 +23,6 @@
 			}
 		});
 		return unsubscribe;
-	});
-
-	onDestroy(() => {
-		unsubscribeGpx();
-	});
-
-	beforeUpdate(() => {
-		isOpen.set(false);
 	});
 </script>
 
