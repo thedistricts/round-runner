@@ -13,9 +13,7 @@
 			goto(`/${$page.params.round}/`);
 			return;
 		}
-		if (currentGpx.features.length > 0) {
-			isOpen.set(true);
-		}
+		isOpen.set(true);
 	});
 </script>
 
