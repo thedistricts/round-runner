@@ -1,0 +1,17 @@
+{
+  "tailwindCSS.includeLanguages": {
+    "svelte": "html"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["class:list\\s*=\\s*\\{([^}]*)\\}", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["class\\s*=\\s*[\"'`]([^\"'`]*)[\"'`]"]
+  ],
+  "tailwindCSS.files.exclude": [
+    "**/.git/**",
+    "**/node_modules/**",
+    "**/.svelte-kit/**",
+    "**/build/**",
+    "**/dist/**"
+  ]
+}
+

@@ -6,12 +6,19 @@
 	import { key } from '../Map.context';
 	import { HOURS } from '$lib/const';
 	import TimePoint from '../assets/time-icon.svg';
-
+	import TimePointStart from '../assets/time-icon-start.svg';
+	import TimePointEnd from '../assets/time-icon-end.svg';
+	import TIME_ICON_TYPE from '../enum/timeIconType';
 	import type { Popup } from 'maplibre-gl';
 	import type { Position } from 'geojson';
 	import type { MapContext } from '../Map.context';
 	export let coordinates: Position;
 	export let time: string = '00:00:00';
+	export let minzoom: number = 16;
+	export let maxzoom: number = 22;
+	export let size: number = 1;
+	export let overlap: boolean = false;
+	export let type: TIME_ICON_TYPE = TIME_ICON_TYPE.TIME;
 
 	dayjs.extend(utc);
 
@@ -59,10 +66,13 @@
 					id,
 					type: 'symbol',
 					source: sourceId,
-					minzoom: 16,
+					minzoom,
+					maxzoom,
 					layout: {
 						'icon-image': imageId,
-						'icon-size': 1
+						'icon-size': size,
+						'icon-allow-overlap': overlap,
+						'icon-keep-upright': true
 					}
 				},
 				undefined
@@ -89,7 +99,20 @@
 				if (popup) popup.remove();
 			});
 		};
-		image.src = TimePoint;
+		switch (type) {
+			case TIME_ICON_TYPE.TIME:
+				image.src = TimePoint;
+				break;
+			case TIME_ICON_TYPE.START:
+				image.src = TimePointStart;
+				break;
+			case TIME_ICON_TYPE.END:
+				image.src = TimePointEnd;
+				break;
+			default:
+				image.src = TimePoint;
+				break;
+		}
 	}
 
 	onMount(() => {
