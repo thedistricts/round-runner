@@ -224,6 +224,9 @@ describe('RouteSelector component', () => {
     
     await fireEvent.change(select, { target: { value: 'round-2' } });
 
+    // Wait for setTimeout in handleRouteSelectChange
+    await new Promise(resolve => setTimeout(resolve, 0));
+
     expect(gpx.reset).toHaveBeenCalledTimes(1);
     expect(breakdown.reset).toHaveBeenCalledTimes(1);
     expect(ratification.reset).toHaveBeenCalledTimes(1);
@@ -246,6 +249,9 @@ describe('RouteSelector component', () => {
     const select = screen.getByLabelText('Routes');
     
     await fireEvent.change(select, { target: { value: 'round-2' } });
+
+    // Wait for setTimeout in handleRouteSelectChange
+    await new Promise(resolve => setTimeout(resolve, 0));
 
     expect(goto).toHaveBeenCalledWith(`/round-2/${URL_PARAM.ROUTE_INFORMATION}`);
     expect(get(isOpen)).toBe(true);

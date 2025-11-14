@@ -27,10 +27,10 @@
 </script>
 
 <svelte:head>
-	<title>{`Round Runner: Validate Your ${data.title} ratification`}</title>
+	<title>{`Round Runner: Explore & View The ${data.title} Route`}</title>
 	<meta
 		name="description"
-		content={`Round Runner is an online tool designed to verify and validate your long-distance ${data.description} ${data.title}`}
+		content={`Round Runner is an online tool designed to help plan, explore and verify your long-distance ${data.description} ${data.title} route. View the route, check the checkpoints and download the .gpx route waypoints to help plan your navigation.`}
 	/>
 	<meta
 		name="keywords"
@@ -42,7 +42,7 @@
 	<meta property="og:title" content={`${data.title}`} />
 	<meta
 		property="og:description"
-		content="Round Runner is an online tool designed to verify and validate your long-distance challenges."
+		content="Round Runner is an online tool designed to help plan, explore and verify your long-distance challenges."
 	/>
 
 	<meta property="twitter:card" content="summary_large_image" />
@@ -50,7 +50,7 @@
 	<meta property="twitter:title" content={`${data.title}`} />
 	<meta
 		property="twitter:description"
-		content="Round Runner is an online tool designed to verify and validate your long-distance challenges."
+		content="Round Runner is an online tool designed to help plan, explore and verify your long-distance challenges."
 	/>
 </svelte:head>
 

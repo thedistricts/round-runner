@@ -6,30 +6,18 @@
 	<title>{`Round Runner: Plan, explore & verify your long-distance challenges`}</title>
 	<meta
 		name="description"
-		content={`Round Runner is an online tool designed to verify and validate your long-distance challenges`}
+		content={`A tool to make planning and ratification easier. Workout split times by stage and download .gpx route waypoints to help plan your navigation.`}
 	/>
 	<meta
 		name="keywords"
-		content={`Ultra Running, Long-Distance Ultras, Ultra Challenges, Run Tracking, Performance, SwimRun Challenge, Swim Run`}
+		content={`Ultra Running, Long-Distance Ultras, Ultra Challenges, Run Tracking, Performance, SwimRun Challenge, Swim Run, Download routes, GPX route`}
 	/>
 
-	<!-- <meta property="og:type" content="website" />
-	<meta property="og:url" content={$page.url.href} />
-	<meta property="og:title" content={`${data.title}`} />
-	<meta
-		property="og:description"
-		content="Round Runner is an online tool designed to verify and validate your long-distance challenges."
-	/>
-
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:url" content={$page.url.href} />
-	<meta property="twitter:title" content={`${data.title}`} />
-	 -->
 	<meta
 		property="twitter:description"
-		content="Round Runner is an online tool designed to verify and validate your long-distance challenges."
+		content="Round Runner is an online tool designed help plan, explore and verify your long-distance challenges."
 	/>
-</svelte:head> 
+</svelte:head>
 
 <div
 	class="

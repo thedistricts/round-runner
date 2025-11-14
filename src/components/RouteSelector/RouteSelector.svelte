@@ -28,7 +28,10 @@
 			? `/${target.value}/${URL_PARAM.ROUTE_INFORMATION}`
 			: `/${target.value}`;
 		$isOpen = !!isRouteInformation;
-		goto(newUrl);
+		// Note: wait for the page to update before navigating to avoid race condition
+		setTimeout(() => {
+			goto(newUrl);
+		}, 0);
 	}
 </script>
 
