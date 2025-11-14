@@ -34,6 +34,10 @@
 		const lastCoordinate = last(firstFeature.geometry.coordinates);
 		const lastTime = last(firstFeature.properties.coordinateProperties.times);
 
+		if (!firstCoordinate || !firstTime || !lastCoordinate || !lastTime) {
+			return [];
+		}
+
 		return [
 			{
 				coordinates: turf.getCoord(firstCoordinate),
@@ -66,10 +70,6 @@
 			maxZoom: 17,
 			isMobile: $viewport.isMobile
 		});
-	});
-
-	onMount(() => {
-		isActiveRoundOrdered = activeRound?.ordered ?? true;
 	});
 
 	onDestroy(() => {
