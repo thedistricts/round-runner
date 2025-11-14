@@ -13,6 +13,7 @@
 	import { Upload, Expander, ExpandAction } from './components';
 
 	$: hasGpx = false;
+	$: isLoaded = false;
 
 	function handlePopState(e: PopStateEvent) {
 		gpx.reset();
@@ -30,8 +31,10 @@
 	}
 
 	const unsubscribeGpx = gpx.subscribe((geojson) => {
-		hasGpx = geojson.features.length > 0;
-		$isOpen = hasGpx;
+		if (browser && isLoaded) {
+			hasGpx = geojson.features.length > 0;
+			$isOpen = hasGpx;
+		}
 	});
 
 	const unsubscribeOpen = isOpen.subscribe((isOpenBoolen) => {
@@ -44,6 +47,7 @@
 
 	onMount(() => {
 		if (browser) window.addEventListener(DOM_EVENTS.POPSTATE, handlePopState);
+		isLoaded = true;
 	});
 
 	onDestroy(() => {
