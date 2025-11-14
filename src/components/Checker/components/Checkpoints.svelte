@@ -18,7 +18,7 @@
 	$: isLoaded = $route.features.length > 0;
 	$: activeRound = rounds.find((round) => pageUrlSlug === round.slug);
 	$: checkpointFeatures = $route.features;
-	$: routeInformationUrl = $isOpen
+	$: routeInformationUrl = !$page.route.id?.includes(URL_PARAM.ROUTE_INFORMATION)
 		? `/${activeRound?.slug}/${URL_PARAM.ROUTE_INFORMATION}`
 		: `/${activeRound?.slug}`;
 

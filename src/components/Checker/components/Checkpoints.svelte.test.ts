@@ -26,7 +26,12 @@ vi.mock('$app/stores', () => ({
             },
             { slug: 'round-2', title: 'Round 2' }
           ]
-        }
+        },
+        route: {
+          id: 'round-1'
+        },
+        url: new URL('http://localhost/round-1'),
+        params: {}
       });
       return () => {};
     })
