@@ -8,9 +8,9 @@
 	</div>
 {/if}
 
-{#if isOpen}
-	<div
-		class="
+<div
+	class:hidden={!isOpen}
+	class="
 			relative overflow-y-auto
 			before:pointer-events-none
 			before:z-20 before:fixed before:left-0 before:right-4 before:h-16
@@ -18,19 +18,18 @@
 			print:before:hidden
 			before:hidden md:before:block
 		"
-	>
-		<div class="h-full print:h-auto">
-			<div class="px-6 py-3 print:p-0" id="expander-content">
-				<slot />
-			</div>
+>
+	<div class="h-full print:h-auto">
+		<div class="px-6 py-3 print:p-0" id="expander-content">
+			<slot />
 		</div>
-		<div
-			class="
+	</div>
+	<div
+		class="
 				fixed bottom-0 left-0 right-4 h-5
 				bg-gradient-to-t from-white
 				pointer-events-none
 				print:hidden hidden md:block
 			"
-		/>
-	</div>
-{/if}
+	/>
+</div>
