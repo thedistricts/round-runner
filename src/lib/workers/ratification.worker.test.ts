@@ -302,4 +302,48 @@ describe('ratification worker', () => {
 		expect(result.properties.isEnd).toBe(false);
 		expect(result.properties.order).toBe(1);
 	});
+
+	it('should ratify a GPS track that repeats consecutive coordinates', () => {
+		const track = featureCollection([
+			lineString(
+				[
+					[-3.137299, 54.600824],
+					[-3.137299, 54.600824],
+					[-3.137297, 54.600824],
+					[-3.1369, 54.60176]
+				],
+				{
+					coordinateProperties: {
+						times: [
+							'2026-08-30T02:59:18Z',
+							'2026-08-30T02:59:19Z',
+							'2026-08-30T02:59:22Z',
+							'2026-08-30T03:00:52Z'
+						]
+					},
+					gpxx_TrackExtension: {},
+					name: 'Frog Graham Round',
+					time: '2026-08-30T02:59:18Z',
+					_gpxType: 'trk'
+				}
+			)
+		]) as GPXGeoJson;
+		const checkpoints = [
+			point([-3.13732, 54.600761], {
+				name: 'Moot Hall (Start)',
+				featureType: 'start checkpoint',
+				leg: 1,
+				notes: '',
+				ratify: true
+			})
+		] as Feature<Point, ValidityPointProperties>[];
+
+		expect(() => ratify(track, checkpoints, true)).not.toThrow();
+
+		const result = ratify(track, checkpoints, true);
+		expect(result).toHaveLength(1);
+		expect(result[0].properties.name).toBe('Moot Hall (Start)');
+		expect(result[0].properties.index).toBeGreaterThanOrEqual(0);
+		expect(Number.isFinite(result[0].properties.dist)).toBe(true);
+	});
 }); 
